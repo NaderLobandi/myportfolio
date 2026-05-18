@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -m pip install pypdf)",
+      "Bash(python3 -m pypdf)",
+      "Bash(python3 -c \"import pypdf; print\\('ok'\\)\")"
+    ]
+  }
+}
