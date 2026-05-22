@@ -1,0 +1,150 @@
+{
+  "hero": {
+    "name": "Nader Lobandi",
+    "credentials": "Ph.D. Candidate · M.Sc. Data Science",
+    "title": "Data Scientist & PhD Researcher",
+    "company": "University of Denver",
+    "profileImage": "/profile.jpg",
+    "pitch": "I am a Data Scientist and PhD student at the University of Denver specializing in deep learning and computer vision, with 4+ years of industry experience across healthcare, transportation, and energy. At VHB I found that over 70% of a city-scale traffic streaming dataset came from a single unreliable vendor — a finding that reshaped the entire analytics roadmap. I build production ML systems: from LSTM-based energy demand forecasters for NY Transit Authority to cardiovascular risk models deployed on Modal with AUC 0.89. My research at Northeastern produced 4 peer-reviewed publications in IEEE Sensors Letters and Biosensors and Bioelectronics.",
+    "contact": {
+      "email": "naderlobandi11@gmail.com",
+      "phone": "+1 (747) 270-4363",
+      "linkedin": "https://www.linkedin.com/in/naderlobandi",
+      "github": "https://github.com/NaderLobandi"
+    }
+  },
+  "experience": [
+    {
+      "company": "BeanSprout AI",
+      "title": "Data Scientist",
+      "type": "Startup",
+      "location": "Atlanta, GA (Remote)",
+      "startDate": "2025-03",
+      "end": "2025-06",
+      "bullets": [
+        "Built a cardiovascular risk prediction model using LightGBM and XGBoost, achieving AUC 0.89, with full lifecycle support from data ingestion through hyperparameter tuning to Modal deployment with MLflow tracking.",
+        "Implemented real-time voice interaction via Vertex AI STT/TTS and designed 3 agentic workflow types — secure document access, intent routing, and adaptive user support — for an elder-care platform.",
+        "Engineered a RAG pipeline over patient documents with persistent chatbot memory and user accounts, reducing repeated data-lookup steps to ~0 per session (~estimated)."
+      ]
+    },
+    {
+      "company": "VHB (Vanasse Hangen Brustlin Inc.)",
+      "title": "Data Scientist",
+      "location": "Watertown, MA",
+      "startDate": "2024-01",
+      "end": "2025-03",
+      "bullets": [
+        "Analyzed terabytes of city-scale traffic data using PySpark, SQL, and Delta Live Tables on Databricks, uncovering that over 70% of streaming feeds originated from a single unreliable vendor.",
+        "Deployed an internal RAG chatbot with SQL execution, giving project managers natural-language access to employee hours, assignments, and reporting data in ~seconds vs. multi-day manual lookups (~estimated).",
+        "Developed LSTM, Prophet, and SARIMA time-series models to forecast energy demand for NY Transit Authority, improving load-prediction accuracy to support peak-reduction strategies."
+      ]
+    },
+    {
+      "company": "Kibur Medical Inc.",
+      "title": "Data Scientist Co-op",
+      "location": "Boston, MA",
+      "startDate": "2023-06",
+      "end": "2023-09",
+      "bullets": [
+        "Built a bilateral filtering preprocessing pipeline for high-dimensional biomedical images, improving cell quantification accuracy by ~20%.",
+        "Integrated AWS S3 for scalable, real-time image retrieval, replacing local storage and supporting a ~3-month continuous clinical imaging data workflow."
+      ]
+    },
+    {
+      "company": "Northeastern University",
+      "title": "Research Scientist",
+      "location": "Boston, MA",
+      "startDate": "2021-03",
+      "end": "2024-09",
+      "bullets": [
+        "Trained LSTM, Gaussian mixture, and regression models on time-series COVID biosensor data, achieving a best detection recall of 95% under noisy measurement conditions.",
+        "Published 4 peer-reviewed papers in IEEE Sensors Letters, Biosensors and Bioelectronics, and IEEE CICC on ML-driven biosensor detection systems.",
+        "Formulated hypothesis-testing frameworks using MAP, Bayesian, Neyman-Pearson, and Minimax criteria, reducing false-alarm trade-offs across 3+ detection threshold configurations."
+      ]
+    }
+  ],
+  "skills": {
+    "categories": [
+      {
+        "name": "Machine Learning",
+        "items": ["PyTorch & TensorFlow", "Scikit-learn", "Time-series modeling (LSTM, ARIMA, Prophet)", "Computer vision (YOLO, Azure Vision)", "MLflow & Modal deployment"]
+      },
+      {
+        "name": "Data Engineering",
+        "items": ["Python (Pandas, NumPy)", "SQL & PySpark", "Azure Databricks & Delta Lake", "AWS (S3)", "Docker & CI/CD"]
+      },
+      {
+        "name": "AI & LLMs",
+        "items": ["LangChain & Hugging Face", "Retrieval-Augmented Generation (RAG)", "Vertex AI (STT/TTS)", "Agentic workflow design"]
+      }
+    ],
+    "strong": [
+      "Python (Pandas, NumPy, Scikit-learn)",
+      "PyTorch & TensorFlow",
+      "SQL & PySpark",
+      "LLMs & RAG (LangChain, Hugging Face)",
+      "MLflow & Modal deployment",
+      "Time-series modeling (LSTM, ARIMA, Prophet)",
+      "Computer vision (YOLO, Azure Vision)",
+      "Azure Databricks & Delta Lake",
+      "AWS (S3)",
+      "Docker & CI/CD"
+    ],
+    "gaps": [
+      "Kubernetes and container orchestration at scale",
+      "dbt and modern data transformation tooling",
+      "Reinforcement learning beyond coursework",
+      "Rust or Go for systems-level programming",
+      "Mobile and edge ML deployment (TFLite, CoreML)"
+    ]
+  },
+  "projects": [
+    {
+      "name": "Financial Time-Series & SEC Document QA",
+      "description": "Streamlit application combining AutoTS ensemble forecasting — VARMAX, NeuralProphet, ARIMA, Seq2Seq — with a LangChain and LLaMA-3 RAG pipeline for chat-based querying of SEC 10-K filings.",
+      "stack": ["Python", "Streamlit", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX"],
+      "impact": "Supported exploratory scenario analysis across 4 forecasting architectures with sub-second retrieval over SEC 10-K filings (~200 pages each)."
+    },
+    {
+      "name": "Deep Learning Image Classifier",
+      "description": "CNN with Batch Normalization and Dropout for image classification, benchmarked against KSVM and KNN baselines, optimized via early stopping and learning-rate scheduling.",
+      "stack": ["Python", "PyTorch", "Scikit-learn"],
+      "impact": "Achieved 82.11% test accuracy, outperforming KSVM and KNN baselines on the same dataset (~5 percentage points improvement, ~estimated)."
+    },
+    {
+      "name": "Personal Finance Web App",
+      "description": "Full-stack Flask application with a MySQL backend for budget tracking, expense logging, and investment goal management, with session-based user authentication and multi-user support.",
+      "stack": ["Python", "Flask", "MySQL", "HTML", "CSS"],
+      "impact": "Delivered a self-hosted multi-user finance tracker covering 3 core financial domains — budgets, expenses, and investment goals — with complete CRUD and secure auth."
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Denver, Ritchie School of Engineering & Computer Science",
+      "degree": "Ph.D. in Computer Science",
+      "start": "2025-08",
+      "end": "2029-05",
+      "focus": "Deep Learning, Computer Vision, Foundation Models, GPU Computing & CUDA Programming"
+    },
+    {
+      "institution": "Northeastern University, Khoury College of Computer Sciences",
+      "degree": "M.Sc. in Data Science",
+      "start": "2021-03",
+      "end": "2024-12",
+      "gpa": "3.8",
+      "honors": "Gordon Institute LEADERS Fellowship; LEADERS Leadership Certificate"
+    },
+    {
+      "institution": "Sharif University of Technology",
+      "degree": "B.Sc. in Electrical Engineering",
+      "start": "2015-09",
+      "end": "2020-07",
+      "honors": "National Physics Olympiad Silver Medal; Ranked top 0.1% out of 100,000+ applicants in national university entrance exam"
+    }
+  ],
+  "meta": {
+    "siteTitle": "Nader Lobandi — Data Scientist & PhD Researcher",
+    "siteDescription": "Portfolio of Nader Lobandi, a Data Scientist and PhD student at the University of Denver specializing in deep learning, computer vision, and production ML systems — with 4+ years of industry experience and 4 peer-reviewed publications.",
+    "tagline": "PhD researcher building ML systems that ship."
+  }
+}
