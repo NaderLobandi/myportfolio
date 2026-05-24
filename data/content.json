@@ -5,12 +5,13 @@
     "title": "Data Scientist & PhD Researcher",
     "company": "University of Denver",
     "profileImage": "/profile.jpg",
-    "pitch": "I am a Data Scientist and PhD student at the University of Denver specializing in deep learning and computer vision, with 4+ years of industry experience across healthcare, transportation, and energy. At VHB I found that over 70% of a city-scale traffic streaming dataset came from a single unreliable vendor — a finding that reshaped the entire analytics roadmap. I build production ML systems: from LSTM-based energy demand forecasters for NY Transit Authority to cardiovascular risk models deployed on Modal with AUC 0.89. My research at Northeastern produced 4 peer-reviewed publications in IEEE Sensors Letters and Biosensors and Bioelectronics.",
+    "pitch": "Data Scientist and PhD researcher at the University of Denver, specializing in deep learning and computer vision. 4+ years of industry experience across healthcare, transportation, and energy. Author of 4 peer-reviewed publications in IEEE Sensors Letters and Biosensors and Bioelectronics.",
     "contact": {
       "email": "naderlobandi11@gmail.com",
       "phone": "+1 (747) 270-4363",
       "linkedin": "https://www.linkedin.com/in/naderlobandi",
-      "github": "https://github.com/NaderLobandi"
+      "github": "https://github.com/NaderLobandi",
+      "scholar": "https://scholar.google.com/citations?user=YZKf2ngAAAAJ&hl=en&oi=ao"
     }
   },
   "experience": [
@@ -100,22 +101,25 @@
   },
   "projects": [
     {
-      "name": "Financial Time-Series & SEC Document QA",
-      "description": "Streamlit application combining AutoTS ensemble forecasting — VARMAX, NeuralProphet, ARIMA, Seq2Seq — with a LangChain and LLaMA-3 RAG pipeline for chat-based querying of SEC 10-K filings.",
-      "stack": ["Python", "Streamlit", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX"],
-      "impact": "Supported exploratory scenario analysis across 4 forecasting architectures with sub-second retrieval over SEC 10-K filings (~200 pages each)."
-    },
-    {
-      "name": "Deep Learning Image Classifier",
-      "description": "CNN with Batch Normalization and Dropout for image classification, benchmarked against KSVM and KNN baselines, optimized via early stopping and learning-rate scheduling.",
-      "stack": ["Python", "PyTorch", "Scikit-learn"],
-      "impact": "Achieved 82.11% test accuracy, outperforming KSVM and KNN baselines on the same dataset (~5 percentage points improvement, ~estimated)."
+      "name": "Financial Time-Series & Document QA",
+      "description": "Built an educational finance tool to help non-expert users explore forecasting strategies and consume company fundamentals from SEC filings in plain language. Enabled interactive backtesting with reliable forecast horizons up to two months, paired with a chat-based interface for querying 10-K reports.",
+      "stack": ["Python", "Streamlit", "AutoTS", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX", "RAG"]
     },
     {
       "name": "Personal Finance Web App",
-      "description": "Full-stack Flask application with a MySQL backend for budget tracking, expense logging, and investment goal management, with session-based user authentication and multi-user support.",
-      "stack": ["Python", "Flask", "MySQL", "HTML", "CSS"],
-      "impact": "Delivered a self-hosted multi-user finance tracker covering 3 core financial domains — budgets, expenses, and investment goals — with complete CRUD and secure auth."
+      "description": "Built a self-hosted alternative to tools like Intuit, giving users full ownership over their financial data while tracking budgets, expenses, and investment goals. Delivered dashboards and reports summarizing financial health, with automated alerts for suspicious transactions and secure multi-user authentication.",
+      "stack": ["Python", "Flask", "MySQL", "HTML", "CSS"]
+    },
+    {
+      "name": "Financial News Sentiment Analysis",
+      "description": "Built an NLP system to interpret high-volume financial news and quantify market sentiment, supporting faster and less biased trading-signal extraction. Benchmarked classical and transformer-based approaches across two datasets (Alpha Vantage news, Yahoo Finance), with FinBERT achieving 0.73 accuracy / 0.74 macro-F1 on Alpha Vantage and BERT-uncased reaching 0.86 / 0.86 on Yahoo — validated against real-world ticker movements (e.g., VLN, HSII).",
+      "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
+    },
+    {
+      "name": "E-Waste Sustainability Assistant",
+      "description": "Built a vision tool that identifies electronic waste and returns its carbon footprint, recoverable value, and a safe disposal action, addressing the growing volume of recyclable e-waste in data centers. Delivered an end-to-end pipeline that turns a photo into a defensible refurbish/recycle/review decision in seconds, backed by a curated knowledge base with full source provenance for every CO₂ and metals figure.",
+      "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision", "RAG"],
+      "award": "Summit Hack 26 — 2nd Place"
     }
   ],
   "education": [
@@ -146,5 +150,71 @@
     "siteTitle": "Nader Lobandi — Data Scientist & PhD Researcher",
     "siteDescription": "Portfolio of Nader Lobandi, a Data Scientist and PhD student at the University of Denver specializing in deep learning, computer vision, and production ML systems — with 4+ years of industry experience and 4 peer-reviewed publications.",
     "tagline": "PhD researcher building ML systems that ship."
+  },
+  "phd": {
+    "researchStatement": "PhD researcher building ML systems that ship — specializing in deep learning, multimodal models, and vision foundation models. Strong mathematical foundations and systems-level thinking across the full ML lifecycle, from architecture design to production deployment.",
+    "researchAreas": [
+      { "text": "Computer Vision",         "tier": "major",      "weight": 10 },
+      { "text": "Deep Learning",           "tier": "major",      "weight": 10 },
+      { "text": "Multimodal Models",       "tier": "major",      "weight": 9  },
+      { "text": "LLMs & RAG",              "tier": "major",      "weight": 9  },
+      { "text": "Foundation Models",       "tier": "major",      "weight": 8  },
+      { "text": "Object Detection",        "tier": "major",      "weight": 7  },
+      { "text": "CNNs",                    "tier": "major",      "weight": 7  },
+      { "text": "YOLO",                    "tier": "major",      "weight": 7  },
+      { "text": "LSTM",                    "tier": "major",      "weight": 6  },
+      { "text": "MLOps",                   "tier": "major",      "weight": 6  },
+      { "text": "Statistical Inference",   "tier": "major",      "weight": 6  },
+      { "text": "Hypothesis Testing",      "tier": "major",      "weight": 5  },
+      { "text": "Signal Processing",       "tier": "secondary",  "weight": 5  },
+      { "text": "Time-Series Forecasting", "tier": "secondary",  "weight": 5  },
+      { "text": "Biosensors",              "tier": "secondary",  "weight": 4  },
+      { "text": "Biomedical Sensing",      "tier": "secondary",  "weight": 4  },
+      { "text": "PyTorch",                 "tier": "supporting", "weight": 3  },
+      { "text": "TensorFlow",              "tier": "supporting", "weight": 3  },
+      { "text": "CUDA/GPU",                "tier": "supporting", "weight": 3  },
+      { "text": "Agentic Workflows",       "tier": "supporting", "weight": 3  },
+      { "text": "LangChain",               "tier": "supporting", "weight": 2  },
+      { "text": "PySpark",                 "tier": "supporting", "weight": 2  },
+      { "text": "Azure",                   "tier": "supporting", "weight": 2  },
+      { "text": "Databricks",              "tier": "supporting", "weight": 2  },
+      { "text": "MLflow",                  "tier": "supporting", "weight": 2  },
+      { "text": "XGBoost",                 "tier": "supporting", "weight": 2  }
+    ],
+    "milestones": [
+      {
+        "date": "2026-05",
+        "type": "conference",
+        "title": "PhD Research Day — Poster Presentation",
+        "description": "Presented research on Digital Twin systems for Mild Cognitive Impairment (MCI) at the University of Denver PhD Research Day.",
+        "photo": "/phd/digital_twin_MCI.png",
+        "photoCaption": "PhD Research Day — Digital Twin for MCI poster"
+      },
+      {
+        "date": "2026-05",
+        "type": "award",
+        "title": "Summit Hack 26 — 2nd Place",
+        "description": "Built an e-waste sustainability assistant using computer vision and RAG to identify electronics and return carbon footprint, recoverable value, and safe disposal guidance.",
+        "photo": "/phd/Summit_hack_26.JPG",
+        "photoCaption": "Summit Hack 26 — award ceremony"
+      },
+      {
+        "date": "2026-03",
+        "type": "milestone",
+        "title": "Joined PhD Program at University of Denver",
+        "description": "Began doctoral studies in Computer Science under Dr. Mohammad Mahoor, focusing on deep learning, computer vision, and multimodal foundation models.",
+        "advisorUrl": "https://mohammadmahoor.com/"
+      }
+    ],
+    "papers": [
+      {
+        "title": "",
+        "authors": "",
+        "venue": "",
+        "url": "",
+        "added": "2026-05",
+        "myTake": ""
+      }
+    ]
   }
 }

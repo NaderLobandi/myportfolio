@@ -16,7 +16,7 @@ export default function Experience() {
   const { experience } = content
 
   return (
-    <section id="experience" className="bg-[#0a0a0a] py-24 px-6">
+    <section id="experience" className="bg-[#0a0a0a] py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
         <motion.h2

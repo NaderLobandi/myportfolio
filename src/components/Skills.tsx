@@ -8,25 +8,25 @@ const fadeUp = (delay = 0) => ({
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, ease: 'easeOut', delay },
+    transition: { duration: 0.45, ease: 'easeOut' as const, delay },
   },
 })
 
 const fadeLeft = {
   hidden: { opacity: 0, x: -24 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
 const fadeRight = {
   hidden: { opacity: 0, x: 24 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
 }
 
 export default function Skills() {
   const { skills } = content
 
   return (
-    <section id="skills" className="bg-[#0a0a0a] py-24 px-6">
+    <section id="skills" className="bg-[#0a0a0a] py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Heading */}

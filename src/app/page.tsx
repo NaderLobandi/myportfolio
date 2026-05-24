@@ -1,6 +1,9 @@
 import Hero from '@/components/Hero'
 import Experience from '@/components/Experience'
+import Education from '@/components/Education'
+import Projects from '@/components/Projects'
 import Skills from '@/components/Skills'
+import About from '@/components/About'
 import ChatAssistant from '@/components/ChatAssistant'
 
 export default function Home() {
@@ -8,7 +11,10 @@ export default function Home() {
     <main className="bg-[#0a0a0a]">
       <Hero />
       <Experience />
+      <Education />
+      <Projects />
       <Skills />
+      <About />
       <ChatAssistant />
     </main>
   )

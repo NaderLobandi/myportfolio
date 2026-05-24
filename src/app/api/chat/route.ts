@@ -9,7 +9,7 @@ const persona = readFileSync(
   'utf-8'
 )
 
-const genAI = new GoogleGenerativeAI(process.env['GEMINI-API-KEY'] ?? '')
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '')
 
 type Role = 'user' | 'model'
 
