@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
+import { track } from '@vercel/analytics'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -38,6 +39,8 @@ export default function ChatAssistant() {
   async function sendMessage() {
     const trimmed = input.trim()
     if (!trimmed || loading) return
+
+    track('chat_message', { query: trimmed })
 
     const userMsg: Message = { role: 'user', content: trimmed }
     const nextMessages = [...messages, userMsg]
@@ -86,7 +89,19 @@ export default function ChatAssistant() {
     <>
       {/* Toggle button — cartoonish profile image */}
       <button
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+        setOpen((v) => {
+          if (!v) {
+            track('chat_open')
+            fetch('/api/analytics', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ event: 'chat_open' }),
+            }).catch(() => {})
+          }
+          return !v
+        })
+      }}
         aria-label={open ? 'Close chat' : 'Open chat'}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full overflow-hidden shadow-xl ring-2 ring-[#f97316]/50 hover:ring-[#f97316] hover:scale-105 transition-all duration-200"
       >

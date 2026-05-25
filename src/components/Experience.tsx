@@ -26,7 +26,7 @@ export default function Experience() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Experience
+          Experiences
         </motion.h2>
 
         <div className="relative">

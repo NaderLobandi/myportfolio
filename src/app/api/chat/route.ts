@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { rateLimiter } from '@/lib/rate-limiter'
+import { trackChatQuery } from '@/lib/analytics'
 import content from '../../../../data/content.json'
 
 const persona = readFileSync(
@@ -41,6 +42,9 @@ export async function POST(request: Request) {
     }
 
     // Rate limit: 20 requests per minute per IP
+    console.log(JSON.stringify({ t: new Date().toISOString(), event: 'chat_query', ip, q: message.trim() }))
+    void trackChatQuery(message.trim())
+
     if (rateLimiter.check(`chat:${ip}`, 20)) {
       return Response.json(
         { error: 'Too many requests. Please wait a moment.' },

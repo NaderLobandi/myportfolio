@@ -26,7 +26,7 @@ export default function Skills() {
   const { skills } = content
 
   return (
-    <section id="skills" className="bg-[#0a0a0a] py-24 px-6 scroll-mt-20">
+    <section id="skills" className="bg-[#0a0a0a] py-24 px-6 border-t border-white/[0.05] scroll-mt-20">
       <div className="max-w-5xl mx-auto space-y-16">
 
         {/* Heading */}

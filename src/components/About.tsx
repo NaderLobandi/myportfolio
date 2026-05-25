@@ -60,7 +60,7 @@ const links = [
 ]
 
 export default function About() {
-  const { hero } = content
+  const { hero, contact } = content
 
   return (
     <section id="about" className="bg-[#0a0a0a] py-24 px-6 border-t border-white/[0.05] scroll-mt-20">
@@ -73,7 +73,7 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          About
+          Contact
         </motion.h2>
 
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
@@ -86,7 +86,7 @@ export default function About() {
             transition={{ duration: 0.55, ease: 'easeOut' as const }}
           >
             <p className="text-[#ededed]/70 text-base leading-relaxed mb-4">
-              {hero.pitch}
+              {contact.bio}
             </p>
             <p className="text-[#ededed]/40 text-sm">
               {hero.credentials} · {hero.company}

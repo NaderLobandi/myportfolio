@@ -5,7 +5,7 @@
     "title": "Data Scientist & PhD Researcher",
     "company": "University of Denver",
     "profileImage": "/profile.jpg",
-    "pitch": "Data Scientist and PhD researcher at the University of Denver, specializing in deep learning and computer vision. 4+ years of industry experience across healthcare, transportation, and energy. Author of 4 peer-reviewed publications in IEEE Sensors Letters and Biosensors and Bioelectronics.",
+    "pitch": "Machine Learning Engineer and PhD Researcher with 4+ years of experience designing, deploying, and scaling production-grade AI/ML systems across industry and academic research. Expertise spans agentic LLM applications, deep learning, real-time computer vision, and large-scale data pipelines on Azure and Databricks. Holds an M.S. in Data Science from Northeastern University with strong foundations in statistical learning, probabilistic modeling, optimization, and algorithm design. Seeking ML Engineer roles focused on building end-to-end intelligent systems and advancing applied AI and foundation model technologies.",
     "contact": {
       "email": "naderlobandi11@gmail.com",
       "phone": "+1 (747) 270-4363",
@@ -146,6 +146,9 @@
       "honors": "National Physics Olympiad Silver Medal; Ranked top 0.1% out of 100,000+ applicants in national university entrance exam"
     }
   ],
+  "contact": {
+    "bio": "ML Engineer and PhD Researcher at the University of Denver — building production AI systems at the intersection of deep learning, computer vision, and large-scale data. Open to collaboration and opportunities in ML Engineering, AI Engineering, and Data Science. If you're a builder or thinker working on hard problems, let's connect."
+  },
   "meta": {
     "siteTitle": "Nader Lobandi — Data Scientist & PhD Researcher",
     "siteDescription": "Portfolio of Nader Lobandi, a Data Scientist and PhD student at the University of Denver specializing in deep learning, computer vision, and production ML systems — with 4+ years of industry experience and 4 peer-reviewed publications.",
@@ -196,7 +199,8 @@
         "title": "Summit Hack 26 — 2nd Place",
         "description": "Built an e-waste sustainability assistant using computer vision and RAG to identify electronics and return carbon footprint, recoverable value, and safe disposal guidance.",
         "photo": "/phd/Summit_hack_26.JPG",
-        "photoCaption": "Summit Hack 26 — award ceremony"
+        "photoCaption": "Summit Hack 26 — award ceremony",
+        "link": "https://summithack.vercel.app/"
       },
       {
         "date": "2026-03",

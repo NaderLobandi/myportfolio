@@ -81,6 +81,14 @@ export default function PhDJourneyPage() {
 
         {/* ── Word cloud ──────────────────────────────────────────────── */}
         <section>
+          <motion.h1
+            className="text-3xl font-bold text-[#f97316] text-center mb-10"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+          >
+            Welcome to my PhD Journey!
+          </motion.h1>
           <motion.div
             className="flex flex-wrap justify-center items-center py-4"
             initial="hidden"
@@ -133,8 +141,9 @@ export default function PhDJourneyPage() {
                 const hasPhoto   = 'photo' in m && m.photo
                 const caption    = 'photoCaption' in m ? m.photoCaption : ''
                 const advisorUrl = 'advisorUrl'   in m ? m.advisorUrl   : ''
+                const entryLink  = 'link'         in m ? m.link         : ''
                 const photoSrc   = hasPhoto ? (m as { photo: string }).photo : ''
-                const isPoster   = photoSrc.toLowerCase().endsWith('.png')
+                const isPoster   = true
 
                 return (
                   <motion.div
@@ -178,6 +187,17 @@ export default function PhDJourneyPage() {
 
                       <p className="text-[#ededed]/50 text-sm leading-relaxed">{m.description}</p>
 
+                      {entryLink && (
+                        <a
+                          href={entryLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-[#f97316]/70 hover:text-[#f97316] transition-colors"
+                        >
+                          View project ↗
+                        </a>
+                      )}
+
                       {hasPhoto && (
                         <button
                           onClick={() => setLightbox({ src: photoSrc, alt: caption || m.title })}
@@ -190,7 +210,8 @@ export default function PhDJourneyPage() {
                               alt={caption || m.title}
                               fill
                               sizes="(max-width: 768px) 100vw, 800px"
-                              className={isPoster ? 'object-contain' : 'object-cover object-top'}
+                              className={isPoster ? 'object-contain' : 'object-cover'}
+                            style={isPoster ? {} : { objectPosition: 'center 75%' }}
                             />
                           </div>
                           {/* hover overlay */}

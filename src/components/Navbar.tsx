@@ -6,11 +6,11 @@ import Link from 'next/link'
 const NAV_LINKS = [
   { label: 'Home',       href: '#hero',       page: false, highlight: false },
   { label: 'PhD',        href: '/phd',        page: true,  highlight: true  },
-  { label: 'Experience', href: '#experience', page: false, highlight: false },
+  { label: 'Experiences', href: '#experience', page: false, highlight: false },
   { label: 'Education',  href: '#education',  page: false, highlight: false },
   { label: 'Projects',   href: '#projects',   page: false, highlight: false },
   { label: 'Skills',     href: '#skills',     page: false, highlight: false },
-  { label: 'About',      href: '#about',      page: false, highlight: false },
+  { label: 'Contact',    href: '#about',      page: false, highlight: false },
 ]
 
 const anchorClass    = 'text-[#ededed]/50 hover:text-[#ededed] text-sm px-3 py-1.5 rounded-lg hover:bg-white/[0.05] transition-all duration-200'
@@ -83,13 +83,13 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile: login + hamburger */}
+        {/* Mobile: phd + hamburger */}
         <div className="flex md:hidden items-center gap-3">
           <Link
-            href="/login"
-            className="text-sm font-medium px-3 py-1.5 rounded-lg bg-[#f97316] hover:bg-[#fb923c] text-white transition-colors"
+            href="/phd"
+            className={highlightClass}
           >
-            Login
+            PhD
           </Link>
           <button
             onClick={() => setMenuOpen((o) => !o)}
@@ -135,6 +135,13 @@ export default function Navbar() {
               </a>
             )
           )}
+          <Link
+            href="/login"
+            onClick={() => setMenuOpen(false)}
+            className="block text-sm py-2.5 text-[#ededed]/60 hover:text-[#ededed] transition-colors"
+          >
+            Login
+          </Link>
         </div>
       )}
     </header>
