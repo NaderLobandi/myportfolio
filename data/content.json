@@ -68,14 +68,17 @@
     "categories": [
       {
         "name": "Machine Learning",
+        "level": 95,
         "items": ["PyTorch & TensorFlow", "Scikit-learn", "Time-series modeling (LSTM, ARIMA, Prophet)", "Computer vision (YOLO, Azure Vision)", "MLflow & Modal deployment"]
       },
       {
         "name": "Data Engineering",
+        "level": 80,
         "items": ["Python (Pandas, NumPy)", "SQL & PySpark", "Azure Databricks & Delta Lake", "AWS (S3)", "Docker & CI/CD"]
       },
       {
         "name": "AI & LLMs",
+        "level": 90,
         "items": ["LangChain & Hugging Face", "Retrieval-Augmented Generation (RAG)", "Vertex AI (STT/TTS)", "Agentic workflow design"]
       }
     ],

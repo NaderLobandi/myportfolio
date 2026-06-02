@@ -41,7 +41,7 @@ const links = [
     label: 'GitHub',
     sub: 'github.com/NaderLobandi',
     icon: <GitHubIcon />,
-    color: '#ededed',
+    color: '#f97316',
   },
   {
     href: (c: typeof content) => c.hero.contact.scholar,
@@ -63,11 +63,11 @@ export default function About() {
   const { hero, contact } = content
 
   return (
-    <section id="about" className="bg-[#0a0a0a] py-24 px-6 border-t border-white/[0.05] scroll-mt-20">
+    <section id="about" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
         <motion.h2
-          className="text-3xl font-bold text-[#ededed] text-center mb-16"
+          className="text-3xl font-bold text-fg text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -78,22 +78,20 @@ export default function About() {
 
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
-          {/* Bio */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55, ease: 'easeOut' as const }}
           >
-            <p className="text-[#ededed]/70 text-base leading-relaxed mb-4">
+            <p className="text-fg-muted text-base leading-relaxed mb-4">
               {contact.bio}
             </p>
-            <p className="text-[#ededed]/40 text-sm">
+            <p className="text-fg-subtle text-sm">
               {hero.credentials} · {hero.company}
             </p>
           </motion.div>
 
-          {/* Links 2×2 grid */}
           <motion.div
             className="grid grid-cols-2 gap-3"
             initial={{ opacity: 0, x: 30 }}
@@ -112,7 +110,7 @@ export default function About() {
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
                   style={{ '--link-color': color } as React.CSSProperties}
-                  className="group flex flex-col gap-2 rounded-xl border border-white/[0.08] bg-[#111] px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 transition-all duration-300"
+                  className="group flex flex-col gap-2 rounded-xl border border-edge bg-card px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 transition-all duration-300"
                 >
                   <span
                     style={{ color }}
@@ -121,8 +119,8 @@ export default function About() {
                     {icon}
                   </span>
                   <div>
-                    <p className="text-[#ededed] text-sm font-medium leading-snug">{label}</p>
-                    <p className="text-[#ededed]/35 text-xs mt-0.5 truncate">{subtitle}</p>
+                    <p className="text-fg text-sm font-medium leading-snug">{label}</p>
+                    <p className="text-fg-subtle text-xs mt-0.5 truncate">{subtitle}</p>
                   </div>
                 </a>
               )

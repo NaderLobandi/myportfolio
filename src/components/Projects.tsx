@@ -7,11 +7,11 @@ export default function Projects() {
   const { projects } = content
 
   return (
-    <section id="projects" className="bg-[#0a0a0a] py-24 px-6 scroll-mt-20">
+    <section id="projects" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
         <motion.h2
-          className="text-3xl font-bold text-[#ededed] text-center mb-16"
+          className="text-3xl font-bold text-fg text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -24,7 +24,7 @@ export default function Projects() {
           {projects.map((project, i) => (
             <motion.div
               key={project.name}
-              className="flex flex-col rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-[#f97316]/30 transition-colors duration-300"
+              className="flex flex-col rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 transition-colors duration-300"
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
@@ -36,12 +36,12 @@ export default function Projects() {
                     🏆 {project.award}
                   </span>
                 )}
-                <h3 className="text-[#ededed] font-semibold text-base leading-snug">
+                <h3 className="text-fg font-semibold text-base leading-snug">
                   {project.name}
                 </h3>
               </div>
 
-              <p className="text-[#ededed]/55 text-sm leading-relaxed flex-1">
+              <p className="text-fg-muted text-sm leading-relaxed flex-1">
                 {project.description}
               </p>
 

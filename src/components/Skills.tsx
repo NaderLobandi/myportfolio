@@ -26,12 +26,11 @@ export default function Skills() {
   const { skills } = content
 
   return (
-    <section id="skills" className="bg-[#0a0a0a] py-24 px-6 border-t border-white/[0.05] scroll-mt-20">
+    <section id="skills" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto space-y-16">
 
-        {/* Heading */}
         <motion.h2
-          className="text-3xl font-bold text-[#ededed] text-center"
+          className="text-3xl font-bold text-fg text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -40,24 +39,43 @@ export default function Skills() {
           Skills
         </motion.h2>
 
-        {/* Tier 1 — Skill categories */}
+        {/* Tier 1 — Skill categories with progress bars */}
         <div>
-          <p className="text-[#ededed]/40 text-xs uppercase tracking-widest mb-6 text-center">
+          <p className="text-fg-subtle text-xs uppercase tracking-widest mb-6 text-center">
             By Domain
           </p>
           <div className="grid gap-5 sm:grid-cols-3">
             {skills.categories.map((cat, i) => (
               <motion.div
                 key={cat.name}
-                className="rounded-xl border border-white/[0.06] bg-[#111] p-5 hover:border-[#f97316]/30 transition-colors duration-300"
+                className="rounded-xl border border-edge bg-card p-5 hover:border-[#f97316]/30 transition-colors duration-300"
                 variants={fadeUp(i * 0.1)}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: '-50px' }}
               >
-                <h3 className="text-[#f97316] text-sm font-semibold mb-4 tracking-wide">
-                  {cat.name}
-                </h3>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-[#f97316] text-sm font-semibold tracking-wide">
+                    {cat.name}
+                  </h3>
+                  <span className="text-[#f97316] text-xs font-semibold tabular-nums">
+                    {'level' in cat ? `${cat.level}%` : ''}
+                  </span>
+                </div>
+
+                {/* Animated progress bar */}
+                {'level' in cat && (
+                  <div className="h-1 bg-edge rounded-full mb-4 overflow-hidden">
+                    <motion.div
+                      className="h-full bg-[#f97316] rounded-full"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${cat.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.1, ease: 'easeOut', delay: i * 0.1 + 0.2 }}
+                    />
+                  </div>
+                )}
+
                 <div className="flex flex-wrap gap-2">
                   {cat.items.map((item) => (
                     <span
@@ -80,14 +98,14 @@ export default function Skills() {
           whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
         >
-          <p className="text-[#ededed]/40 text-xs uppercase tracking-widest mb-6 text-center">
+          <p className="text-fg-subtle text-xs uppercase tracking-widest mb-6 text-center">
             Proficient
           </p>
           <div className="flex flex-wrap justify-center gap-2.5">
             {skills.strong.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full bg-[#f97316]/15 border border-[#f97316]/25 px-4 py-1.5 text-sm text-[#ededed]/80 font-medium"
+                className="rounded-full bg-[#f97316]/15 border border-[#f97316]/25 px-4 py-1.5 text-sm text-fg-muted font-medium"
               >
                 {skill}
               </span>
@@ -95,21 +113,21 @@ export default function Skills() {
           </div>
         </motion.div>
 
-        {/* Tier 3 — Gaps */}
+        {/* Tier 3 — Building toward */}
         <motion.div
           variants={fadeRight}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
         >
-          <p className="text-[#ededed]/40 text-xs uppercase tracking-widest mb-6 text-center">
+          <p className="text-fg-subtle text-xs uppercase tracking-widest mb-6 text-center">
             Building Toward
           </p>
           <div className="flex flex-wrap justify-center gap-2.5">
             {skills.gaps.map((skill) => (
               <span
                 key={skill}
-                className="rounded-full border border-dashed border-white/15 px-4 py-1.5 text-sm text-[#ededed]/35 font-medium"
+                className="rounded-full border border-dashed border-edge px-4 py-1.5 text-sm text-fg-subtle font-medium"
               >
                 {skill}
               </span>
