@@ -146,7 +146,6 @@ export default function PhDJourneyPage() {
                 const advisorUrl = 'advisorUrl'   in m ? m.advisorUrl   : ''
                 const entryLink  = 'link'         in m ? m.link         : ''
                 const photoSrc   = hasPhoto ? (m as { photo: string }).photo : ''
-                const isPoster   = true
 
                 return (
                   <motion.div
@@ -328,12 +327,15 @@ export default function PhDJourneyPage() {
               </button>
 
               {/* image */}
-              <div className="relative w-full" style={{ maxHeight: '85vh' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative w-full" style={{ height: '80vh' }}>
+                <Image
                   src={lightbox.src}
                   alt={lightbox.alt}
-                  className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+                  fill
+                  className="object-contain rounded-lg"
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  quality={90}
+                  priority
                 />
               </div>
 
