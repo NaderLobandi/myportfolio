@@ -75,14 +75,25 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
 
-        {/* Wordmark */}
-        <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, '#hero')}
-          className="text-fg font-semibold text-sm tracking-wide hover:text-[#f97316] transition-colors"
-        >
-          NL
-        </a>
+        {/* Wordmark + theme toggle */}
+        <div className="flex items-center gap-2">
+          <a
+            href="#hero"
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="text-fg font-semibold text-sm tracking-wide hover:text-[#f97316] transition-colors"
+          >
+            NL
+          </a>
+          {mounted && (
+            <button
+              onClick={toggleTheme}
+              className="p-1.5 rounded-lg text-fg-subtle hover:text-fg hover:bg-overlay transition-all duration-200"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
+          )}
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
@@ -102,15 +113,6 @@ export default function Navbar() {
               </a>
             )
           )}
-          {mounted && (
-            <button
-              onClick={toggleTheme}
-              className="ml-1 p-2 rounded-lg text-fg-subtle hover:text-fg hover:bg-overlay transition-all duration-200"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-            </button>
-          )}
           <Link
             href="/login"
             className="ml-2 text-sm font-medium px-4 py-1.5 rounded-lg bg-[#f97316] hover:bg-[#fb923c] text-white transition-colors duration-200"
@@ -119,20 +121,11 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile: News + theme toggle + hamburger */}
+        {/* Mobile: News + hamburger */}
         <div className="flex md:hidden items-center gap-2">
           <Link href="/phd" className={highlightClass}>
             News
           </Link>
-          {mounted && (
-            <button
-              onClick={toggleTheme}
-              className="p-1.5 rounded-lg text-fg-subtle hover:text-fg transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-            </button>
-          )}
           <button
             onClick={() => setMenuOpen((o) => !o)}
             className="text-fg-subtle hover:text-fg p-1.5 transition-colors"
