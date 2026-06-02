@@ -37,6 +37,7 @@ export default function Education() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.08 }}
+              whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div>

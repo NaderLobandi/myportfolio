@@ -10,8 +10,9 @@ const NAV_LINKS = [
   { label: 'News',        href: '/phd',        page: true,  highlight: true  },
   { label: 'Experiences', href: '#experience', page: false, highlight: false },
   { label: 'Education',   href: '#education',  page: false, highlight: false },
-  { label: 'Projects',    href: '#projects',   page: false, highlight: false },
-  { label: 'Skills',      href: '#skills',     page: false, highlight: false },
+  { label: 'Projects',    href: '#projects',      page: false, highlight: false },
+  { label: 'Publications', href: '#publications', page: false, highlight: false },
+  { label: 'Skills',      href: '#skills',       page: false, highlight: false },
   { label: 'Contact',     href: '#about',      page: false, highlight: false },
 ]
 

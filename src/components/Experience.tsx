@@ -50,6 +50,7 @@ export default function Experience() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
                     transition={{ duration: 0.5, ease: 'easeOut' }}
+                    whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
                   >
                     <div className="rounded-xl border border-edge bg-card p-5 hover:border-[#f97316]/30 transition-colors duration-300">
 

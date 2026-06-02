@@ -29,6 +29,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.45, ease: 'easeOut' as const, delay: (i % 2) * 0.1 }}
+              whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <div className="mb-4">
                 {'award' in project && project.award && (

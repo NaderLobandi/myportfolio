@@ -64,6 +64,40 @@
       ]
     }
   ],
+  "publications": [
+    {
+      "title": "Real-Time Detection of D-Glucose Molecules in Exhaled Aerosols Using a Biochemical Sensor for Breathalyzer Applications",
+      "authors": "P. Sadeghi, N. Lobandi, R. Alshawabkeh, A. Rui, W. Sun, J. Chen",
+      "venue": "IEEE Sensors Letters",
+      "year": 2025,
+      "doi": "10.1109/LSENS.2025.10924313",
+      "type": "journal"
+    },
+    {
+      "title": "A 24.4 μW Room Temperature Gas Sensor Based on Molecularly Imprinted Polymers Demonstrating SARS-CoV-2 and D-Glucose Aerosol Sensing",
+      "authors": "R. Burns, A. Wiechmann, P. Sadeghi, N. Lobandi, N. Fathy, R. Huang, N. X. Sun, et al.",
+      "venue": "2024 IEEE Custom Integrated Circuits Conference (CICC)",
+      "year": 2024,
+      "doi": "10.1109/CICC60959.2024.10528990",
+      "type": "conference"
+    },
+    {
+      "title": "Novel, Accurate Pathogen Sensors for Fast Detection of SARS-CoV-2 in the Aerosol in Seconds for a Breathalyzer Platform",
+      "authors": "X. Shi, P. Sadeghi, N. Lobandi, S. Emam, S. M. S. Abrishami, I. Martos-Repath, et al.",
+      "venue": "Biosensors and Bioelectronics: X",
+      "year": 2023,
+      "doi": "10.1016/j.biosx.2023.100369",
+      "type": "journal"
+    },
+    {
+      "title": "Tutorial: Piezoelectric and Magnetoelectric N/MEMS — Materials, Devices, and Applications",
+      "authors": "A. R. Will-Cole, A. E. Hassanien, S. D. Calisgan, M. G. Jeong, X. Liang, S. Kang, ..., N. Lobandi, M. Rinaldi, S. Gong, N. X. Sun",
+      "venue": "Journal of Applied Physics",
+      "year": 2022,
+      "doi": "10.1063/5.0094364",
+      "type": "journal"
+    }
+  ],
   "skills": {
     "categories": [
       {

@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import PageViewTracker from "@/components/PageViewTracker";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -221,6 +222,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface">
+        <CustomCursor />
         <ThemeProvider>
           <script
             type="application/ld+json"
