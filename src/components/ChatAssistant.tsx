@@ -23,12 +23,10 @@ export default function ChatAssistant() {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
 
-  // Auto-scroll to latest message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Focus input whenever panel opens
   useEffect(() => {
     if (open) {
       const t = setTimeout(() => inputRef.current?.focus(), 120)
@@ -80,28 +78,27 @@ export default function ChatAssistant() {
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setInput(e.target.value.slice(0, 500))
-    // Auto-resize textarea
     e.target.style.height = 'auto'
     e.target.style.height = `${Math.min(e.target.scrollHeight, 112)}px`
   }
 
   return (
     <>
-      {/* Toggle button — cartoonish profile image */}
+      {/* Toggle button */}
       <button
         onClick={() => {
-        setOpen((v) => {
-          if (!v) {
-            track('chat_open')
-            fetch('/api/analytics', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ event: 'chat_open' }),
-            }).catch(() => {})
-          }
-          return !v
-        })
-      }}
+          setOpen((v) => {
+            if (!v) {
+              track('chat_open')
+              fetch('/api/analytics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ event: 'chat_open' }),
+              }).catch(() => {})
+            }
+            return !v
+          })
+        }}
         aria-label={open ? 'Close chat' : 'Open chat'}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full overflow-hidden shadow-xl ring-2 ring-[#f97316]/50 hover:ring-[#f97316] hover:scale-105 transition-all duration-200"
       >
@@ -119,11 +116,11 @@ export default function ChatAssistant() {
       {open && (
         <div
           ref={panelRef}
-          className="fixed bottom-24 right-6 z-50 flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-white/[0.07] bg-[#111]"
+          className="fixed bottom-24 right-6 z-50 flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-edge bg-card"
           style={{ width: 350, height: 500 }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between gap-3 px-4 py-3 bg-[#181818] border-b border-white/[0.06] flex-shrink-0">
+          <div className="flex items-center justify-between gap-3 px-4 py-3 bg-[#efefef] dark:bg-[#181818] border-b border-edge flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-[#f97316]/50 flex-shrink-0">
                 <Image
@@ -132,19 +129,19 @@ export default function ChatAssistant() {
                   fill
                   sizes="32px"
                   className="object-cover"
-                        />
+                />
               </div>
               <div>
-                <p className="text-[#ededed] text-sm font-semibold leading-tight">
+                <p className="text-fg text-sm font-semibold leading-tight">
                   Nader&apos;s Digital Twin <span className="text-[#f97316] text-[10px] font-mono">AI</span>
                 </p>
-                <p className="text-[#ededed]/35 text-[10px]">Ask about Nader</p>
+                <p className="text-fg-subtle text-[10px]">Ask about Nader</p>
               </div>
             </div>
             <button
               onClick={() => setOpen(false)}
               aria-label="Close chat"
-              className="text-[#ededed]/30 hover:text-[#ededed]/80 transition-colors text-xl leading-none pb-0.5"
+              className="text-fg-subtle hover:text-fg-muted transition-colors text-xl leading-none pb-0.5"
             >
               ×
             </button>
@@ -153,7 +150,7 @@ export default function ChatAssistant() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 scroll-smooth">
             {messages.length === 0 && (
-              <p className="text-[#ededed]/25 text-sm text-center mt-10 leading-relaxed">
+              <p className="text-fg-subtle text-sm text-center mt-10 leading-relaxed">
                 Ask about Nader&apos;s research,<br />experience, or projects.
               </p>
             )}
@@ -167,19 +164,19 @@ export default function ChatAssistant() {
                   className={`max-w-[82%] text-sm leading-relaxed px-3.5 py-2.5 rounded-2xl ${
                     msg.role === 'user'
                       ? 'bg-[#f97316] text-white rounded-tr-sm'
-                      : 'bg-[#1e1e1e] text-[#ededed]/80 rounded-tl-sm'
+                      : 'bg-[#ebebeb] dark:bg-[#1e1e1e] text-fg-muted rounded-tl-sm'
                   }`}
                 >
                   {msg.role === 'assistant' ? (
                     <ReactMarkdown
                       components={{
                         p: ({ children }) => <p className="mb-1 last:mb-0">{children}</p>,
-                        strong: ({ children }) => <strong className="font-semibold text-[#ededed]">{children}</strong>,
+                        strong: ({ children }) => <strong className="font-semibold text-fg">{children}</strong>,
                         em: ({ children }) => <em className="italic">{children}</em>,
                         ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 mt-1">{children}</ul>,
                         ol: ({ children }) => <ol className="list-decimal list-inside space-y-0.5 mt-1">{children}</ol>,
                         li: ({ children }) => <li className="text-sm">{children}</li>,
-                        code: ({ children }) => <code className="bg-black/30 rounded px-1 py-0.5 text-xs font-mono text-[#f97316]">{children}</code>,
+                        code: ({ children }) => <code className="bg-black/10 dark:bg-black/30 rounded px-1 py-0.5 text-xs font-mono text-[#f97316]">{children}</code>,
                       }}
                     >
                       {msg.content}
@@ -194,11 +191,11 @@ export default function ChatAssistant() {
             {/* Typing indicator */}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-[#1e1e1e] rounded-2xl rounded-tl-sm px-4 py-3.5 flex gap-1 items-center">
+                <div className="bg-[#ebebeb] dark:bg-[#1e1e1e] rounded-2xl rounded-tl-sm px-4 py-3.5 flex gap-1 items-center">
                   {[0, 150, 300].map((delay) => (
                     <span
                       key={delay}
-                      className="w-1.5 h-1.5 rounded-full bg-[#ededed]/35 animate-bounce"
+                      className="w-1.5 h-1.5 rounded-full bg-fg-subtle animate-bounce"
                       style={{ animationDelay: `${delay}ms` }}
                     />
                   ))}
@@ -217,9 +214,8 @@ export default function ChatAssistant() {
           </div>
 
           {/* Input area */}
-          <div className="flex-shrink-0 border-t border-white/[0.06] bg-[#181818] px-3 py-3">
+          <div className="flex-shrink-0 border-t border-edge bg-[#efefef] dark:bg-[#181818] px-3 py-3">
             <div className="flex items-end gap-2">
-              {/* Textarea + char counter */}
               <div className="relative flex-1">
                 <textarea
                   ref={inputRef}
@@ -229,11 +225,11 @@ export default function ChatAssistant() {
                   placeholder="Type a message…"
                   rows={1}
                   disabled={loading}
-                  className="w-full resize-none bg-[#0d0d0d] text-[#ededed] text-sm placeholder-[#ededed]/20 rounded-xl px-3.5 pt-2.5 pb-6 border border-white/[0.06] outline-none focus:border-[#f97316]/40 transition-colors disabled:opacity-50 overflow-hidden"
+                  className="w-full resize-none bg-surface text-fg text-sm placeholder-fg-faint rounded-xl px-3.5 pt-2.5 pb-6 border border-edge outline-none focus:border-[#f97316]/40 transition-colors disabled:opacity-50 overflow-hidden"
                 />
                 <span
                   className={`absolute bottom-2 right-3 text-[10px] pointer-events-none transition-colors ${
-                    input.length > 450 ? 'text-[#f97316]' : 'text-[#ededed]/18'
+                    input.length > 450 ? 'text-[#f97316]' : 'text-fg-faint'
                   }`}
                 >
                   {input.length}/500
