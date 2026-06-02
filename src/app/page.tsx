@@ -9,7 +9,7 @@ import SectionTracker from '@/components/SectionTracker'
 
 export default function Home() {
   return (
-    <main className="bg-[#0a0a0a]">
+    <main className="bg-surface">
       <SectionTracker />
       <Hero />
       <Experience />

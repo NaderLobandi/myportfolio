@@ -35,13 +35,12 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4">
+    <main className="min-h-screen bg-surface flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
 
-        {/* Card */}
-        <div className="bg-[#111] border border-white/[0.07] rounded-2xl px-8 py-10 shadow-2xl">
-          <h1 className="text-[#ededed] text-2xl font-bold mb-1">Private Access</h1>
-          <p className="text-[#ededed]/40 text-sm mb-8">
+        <div className="bg-card border border-edge rounded-2xl px-8 py-10 shadow-2xl">
+          <h1 className="text-fg text-2xl font-bold mb-1">Private Access</h1>
+          <p className="text-fg-subtle text-sm mb-8">
             Dashboard is restricted. Enter the site password to continue.
           </p>
 
@@ -49,7 +48,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-[#ededed]/60 text-xs font-medium mb-2 uppercase tracking-wider"
+                className="block text-fg-muted text-xs font-medium mb-2 uppercase tracking-wider"
               >
                 Password
               </label>
@@ -62,11 +61,10 @@ export default function LoginPage() {
                 required
                 autoFocus
                 disabled={loading}
-                className="w-full bg-[#0a0a0a] text-[#ededed] placeholder-[#ededed]/20 border border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#f97316]/50 transition-colors disabled:opacity-50"
+                className="w-full bg-surface text-fg placeholder-fg-faint border border-edge rounded-xl px-4 py-3 text-sm outline-none focus:border-[#f97316]/50 transition-colors disabled:opacity-50"
               />
             </div>
 
-            {/* Error */}
             {error && (
               <p className="text-red-400 text-sm">{error}</p>
             )}
@@ -81,11 +79,10 @@ export default function LoginPage() {
           </form>
         </div>
 
-        {/* Back link */}
         <div className="text-center mt-6">
           <Link
             href="/"
-            className="text-[#ededed]/30 hover:text-[#ededed]/70 text-sm transition-colors"
+            className="text-fg-subtle hover:text-fg-muted text-sm transition-colors"
           >
             ← Back to site
           </Link>

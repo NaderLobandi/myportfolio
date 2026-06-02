@@ -9,7 +9,7 @@ const ROLES = [
   'Data Scientist & PhD Researcher',
   'ML Engineer & AI Builder',
   'Deep Learning Specialist',
-  'LLM Systems Engineer',
+  'Machine Learning Systems Engineer',
 ]
 
 const fadeUp = {

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 
 const NAV_LINKS = [
@@ -15,7 +16,7 @@ const NAV_LINKS = [
 ]
 
 const anchorClass    = 'text-fg-subtle hover:text-fg text-sm px-3 py-1.5 rounded-lg hover:bg-overlay transition-all duration-200'
-const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-[#f97316]/10 border border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316]/20 hover:border-[#f97316]/55 transition-all duration-200'
+const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-[#f97316]/15 border border-[#f97316]/60 dark:border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316]/25 dark:hover:bg-[#f97316]/20 hover:border-[#f97316]/80 dark:hover:border-[#f97316]/55 transition-all duration-200'
 
 function SunIcon() {
   return (
@@ -39,6 +40,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
+  const forceBg = pathname === '/phd' || pathname === '/login'
 
   useEffect(() => {
     setMounted(true)
@@ -64,7 +67,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || forceBg
           ? 'bg-surface/90 backdrop-blur-md border-b border-edge'
           : 'bg-transparent'
       }`}
