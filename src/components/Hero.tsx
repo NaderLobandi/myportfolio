@@ -7,7 +7,6 @@ import content from '../../data/content.json'
 
 const ROLES = [
   'Data Scientist & PhD Researcher',
-  'ML Engineer & AI Builder',
   'Deep Learning Specialist',
   'Machine Learning Systems Engineer',
 ]

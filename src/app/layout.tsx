@@ -7,6 +7,7 @@ import PageViewTracker from "@/components/PageViewTracker";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import CustomCursor from "@/components/CustomCursor";
+import ChatAssistant from "@/components/ChatAssistant";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -232,6 +233,7 @@ export default function RootLayout({
           {children}
           <PageViewTracker />
           <Footer />
+          <ChatAssistant />
         </ThemeProvider>
         <Analytics />
       </body>

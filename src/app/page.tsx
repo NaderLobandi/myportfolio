@@ -5,7 +5,6 @@ import Publications from '@/components/Publications'
 import Projects from '@/components/Projects'
 import Skills from '@/components/Skills'
 import About from '@/components/About'
-import ChatAssistant from '@/components/ChatAssistant'
 import SectionTracker from '@/components/SectionTracker'
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
       <Projects />
       <Skills />
       <About />
-      <ChatAssistant />
     </main>
   )
 }
