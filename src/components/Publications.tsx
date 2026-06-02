@@ -9,6 +9,7 @@ type Publication = {
   venue: string
   year: number
   doi: string
+  url?: string
   type: 'journal' | 'conference'
 }
 
@@ -55,6 +56,7 @@ export default function Publications() {
         <div className="space-y-4">
           {pubs.map((pub, i) => {
             const color = typeColor[pub.type]
+            const href = pub.url ?? `https://doi.org/${pub.doi}`
             return (
               <motion.div
                 key={i}
@@ -84,7 +86,7 @@ export default function Publications() {
 
                   {/* Title */}
                   <a
-                    href={`https://doi.org/${pub.doi}`}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-fg font-semibold text-base leading-snug hover:text-[#f97316] transition-colors duration-200 block mb-2"
@@ -102,7 +104,7 @@ export default function Publications() {
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                     <span className="text-fg-subtle text-xs italic">{pub.venue}</span>
                     <a
-                      href={`https://doi.org/${pub.doi}`}
+                      href={href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-mono text-[10px] text-fg-faint hover:text-[#f97316] transition-colors"
