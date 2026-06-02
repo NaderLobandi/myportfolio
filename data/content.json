@@ -229,7 +229,9 @@
         "title": "PhD Research Day — Poster Presentation",
         "description": "Presented research on Digital Twin systems for Mild Cognitive Impairment (MCI) at the University of Denver PhD Research Day.",
         "photo": "/phd/digital_twin_MCI.png",
-        "photoCaption": "PhD Research Day — Digital Twin for MCI poster"
+        "photoCaption": "PhD Research Day — Digital Twin for MCI poster",
+        "photo2": "/phd/Poster_session.jpg",
+        "photoCaption2": "PhD Research Day — Poster session"
       },
       {
         "date": "2026-05",

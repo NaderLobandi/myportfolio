@@ -139,7 +139,10 @@ export default function PhDJourneyPage() {
               {phd.milestones.map((m, i) => {
                 const cfg        = typeConfig[m.type] ?? typeConfig.milestone
                 const hasPhoto   = 'photo' in m && m.photo
-                const caption    = 'photoCaption' in m ? m.photoCaption : ''
+                const caption    = 'photoCaption'  in m ? (m as any).photoCaption  : ''
+                const hasPhoto2  = 'photo2' in m && (m as any).photo2
+                const photo2Src  = hasPhoto2 ? (m as any).photo2 : ''
+                const caption2   = 'photoCaption2' in m ? (m as any).photoCaption2 : ''
                 const advisorUrl = 'advisorUrl'   in m ? m.advisorUrl   : ''
                 const entryLink  = 'link'         in m ? m.link         : ''
                 const photoSrc   = hasPhoto ? (m as { photo: string }).photo : ''
@@ -199,33 +202,40 @@ export default function PhDJourneyPage() {
                       )}
 
                       {hasPhoto && (
-                        <button
-                          onClick={() => setLightbox({ src: photoSrc, alt: caption || m.title })}
-                          className="group relative mt-4 rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f97316]/50"
-                          aria-label="View full image"
-                        >
-                          <div className={`relative w-full ${isPoster ? 'h-72 bg-white/[0.03]' : 'h-56'}`}>
-                            <Image
-                              src={photoSrc}
-                              alt={caption || m.title}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 800px"
-                              className={isPoster ? 'object-contain' : 'object-cover'}
-                            style={isPoster ? {} : { objectPosition: 'center 75%' }}
-                            />
-                          </div>
-                          {/* hover overlay */}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center">
-                            <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                              View full size
-                            </span>
-                          </div>
-                          {caption && (
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/55 backdrop-blur-sm px-3 py-2">
-                              <p className="text-[#ededed]/75 text-xs text-left">{caption}</p>
-                            </div>
-                          )}
-                        </button>
+                        <div className={`mt-4 ${hasPhoto2 ? 'grid grid-cols-2 gap-3' : ''}`}>
+                          {[
+                            { src: photoSrc,  cap: caption  },
+                            ...(hasPhoto2 ? [{ src: photo2Src, cap: caption2 }] : []),
+                          ].map(({ src, cap }) => (
+                            <button
+                              key={src}
+                              onClick={() => setLightbox({ src, alt: cap || m.title })}
+                              className="group relative rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f97316]/50"
+                              aria-label="View full image"
+                            >
+                              <div className={`relative w-full ${isPoster ? 'h-64 bg-white/[0.03]' : 'h-56'}`}>
+                                <Image
+                                  src={src}
+                                  alt={cap || m.title}
+                                  fill
+                                  sizes="(max-width: 768px) 50vw, 400px"
+                                  className={isPoster ? 'object-contain' : 'object-cover'}
+                                  style={isPoster ? {} : { objectPosition: 'center 75%' }}
+                                />
+                              </div>
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center">
+                                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                  View full size
+                                </span>
+                              </div>
+                              {cap && (
+                                <div className="absolute bottom-0 left-0 right-0 bg-black/55 backdrop-blur-sm px-3 py-2">
+                                  <p className="text-[#ededed]/75 text-xs text-left">{cap}</p>
+                                </div>
+                              )}
+                            </button>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </motion.div>
