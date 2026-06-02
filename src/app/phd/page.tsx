@@ -204,23 +204,22 @@ export default function PhDJourneyPage() {
                       {hasPhoto && (
                         <div className={`mt-4 ${hasPhoto2 ? 'grid grid-cols-2 gap-3' : ''}`}>
                           {[
-                            { src: photoSrc,  cap: caption  },
-                            ...(hasPhoto2 ? [{ src: photo2Src, cap: caption2 }] : []),
-                          ].map(({ src, cap }) => (
+                            { src: photoSrc,  cap: caption,  cover: false },
+                            ...(hasPhoto2 ? [{ src: photo2Src, cap: caption2, cover: true }] : []),
+                          ].map(({ src, cap, cover }) => (
                             <button
                               key={src}
                               onClick={() => setLightbox({ src, alt: cap || m.title })}
                               className="group relative rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f97316]/50"
                               aria-label="View full image"
                             >
-                              <div className={`relative w-full ${isPoster ? 'h-64 bg-white/[0.03]' : 'h-56'}`}>
+                              <div className={`relative w-full h-64 ${cover ? '' : 'bg-white/[0.03]'}`}>
                                 <Image
                                   src={src}
                                   alt={cap || m.title}
                                   fill
                                   sizes="(max-width: 768px) 50vw, 400px"
-                                  className={isPoster ? 'object-contain' : 'object-cover'}
-                                  style={isPoster ? {} : { objectPosition: 'center 75%' }}
+                                  className={cover ? 'object-cover object-center' : 'object-contain'}
                                 />
                               </div>
                               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center">
