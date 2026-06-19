@@ -224,6 +224,17 @@
     ],
     "milestones": [
       {
+        "date": "2026-06",
+        "type": "conference",
+        "title": "Reflections from CVPR 2026",
+        "location": "Denver, Colorado",
+        "description": "I attended CVPR 2026 in Denver this June. Three themes stood out.\n\nEfficiency and on-device AI took center stage. The field has clearly pivoted from building capable models to running them on real hardware. Quantization, model compression, and hardware-aware optimization were everywhere, with Apple and NVIDIA both pushing on-device deployment and acceleration. It was encouraging to see efficiency treated as a first-class research problem.\n\nDiffusion models have become a general-purpose tool. Beyond image generation, diffusion now powers classification, 3D reconstruction, and world models, with a strong focus on making inference fast enough for real-time and edge use.\n\nWorld models and physics-aware vision are the next frontier. The growing consensus is that models must understand physical and causal structure, not just predict pixels, pointing toward vision systems that reason about the world rather than only recognize patterns within it.\n\nI left energized about the field and the role efficient, deployable vision models will play in it.",
+        "photo": "/phd/cvpr_2026.jpeg",
+        "photoCaption": "CVPR 2026 — Colorado Convention Center, Denver",
+        "photo2": "/phd/cvpr_2026_session.jpeg",
+        "photoCaption2": "CVPR 2026 — conference session"
+      },
+      {
         "date": "2026-05",
         "type": "conference",
         "title": "PhD Research Day — Poster Presentation",

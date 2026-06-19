@@ -145,7 +145,9 @@ export default function PhDJourneyPage() {
                 const caption2   = 'photoCaption2' in m ? (m as any).photoCaption2 : ''
                 const advisorUrl = 'advisorUrl'   in m ? m.advisorUrl   : ''
                 const entryLink  = 'link'         in m ? m.link         : ''
+                const location   = 'location'     in m ? (m as { location: string }).location : ''
                 const photoSrc   = hasPhoto ? (m as { photo: string }).photo : ''
+                const paragraphs = m.description.split('\n\n')
 
                 return (
                   <motion.div
@@ -171,6 +173,9 @@ export default function PhDJourneyPage() {
                           {cfg.label}
                         </span>
                         <span className="text-[#ededed]/30 text-xs">{formatDate(m.date)}</span>
+                        {location && (
+                          <span className="text-[#ededed]/30 text-xs">· {location}</span>
+                        )}
                       </div>
 
                       <h3 className="text-[#ededed] font-semibold text-base mb-1.5">
@@ -187,7 +192,11 @@ export default function PhDJourneyPage() {
                         )}
                       </h3>
 
-                      <p className="text-[#ededed]/50 text-sm leading-relaxed">{m.description}</p>
+                      <div className="space-y-3">
+                        {paragraphs.map((para, p) => (
+                          <p key={p} className="text-[#ededed]/50 text-sm leading-relaxed">{para}</p>
+                        ))}
+                      </div>
 
                       {entryLink && (
                         <a
