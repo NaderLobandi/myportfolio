@@ -197,6 +197,7 @@
     "researchAreas": [
       { "text": "Computer Vision",         "tier": "major",      "weight": 10 },
       { "text": "Deep Learning",           "tier": "major",      "weight": 10 },
+      { "text": "Efficient Foundation Models", "tier": "major",  "weight": 10 },
       { "text": "Multimodal Models",       "tier": "major",      "weight": 9  },
       { "text": "LLMs & RAG",              "tier": "major",      "weight": 9  },
       { "text": "Foundation Models",       "tier": "major",      "weight": 8  },
