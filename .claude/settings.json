@@ -5,7 +5,10 @@
       "Bash(python3 -m pip install pypdf)",
       "Bash(python3 -m pypdf)",
       "Bash(python3 -c \"import pypdf; print\\('ok'\\)\")",
-      "Bash(node -e \"const p = require\\('/Users/nalo/Desktop/myportfolio/node_modules/next/package.json'\\); console.log\\(p.version\\)\")"
+      "Bash(node -e \"const p = require\\('/Users/nalo/Desktop/myportfolio/node_modules/next/package.json'\\); console.log\\(p.version\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/nalo/Desktop/myportfolio/data/content.json'\\)\\); import json; print\\(json.dumps\\(d['skills'], indent=2\\)\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/nalo/Desktop/myportfolio/data/content.json'\\)\\); print\\(json.dumps\\(d['hero'], indent=2\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('next version:', d['version']\\)\")"
     ]
   }
 }

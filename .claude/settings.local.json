@@ -11,7 +11,19 @@
       "Bash(cp -n /tmp/portfolio_backup/public/* /Users/nalo/Desktop/myportfolio/public/)",
       "Bash(npm run *)",
       "Bash(npm install *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(git commit -m ' *)",
+      "WebSearch",
+      "WebFetch(domain:www.researchgate.net)",
+      "WebFetch(domain:scholar.google.com)",
+      "WebFetch(domain:ieeexplore.ieee.org)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(list\\(d.keys\\(\\)\\)\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('data/content.json'\\)\\); print\\(json.dumps\\(d['phd'], indent=2\\)[:2000]\\)\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('data/content.json'\\)\\); print\\(json.dumps\\(d['phd']['milestones'], indent=2\\)\\)\")",
+      "Bash(find ~/Desktop ~/Downloads -type f \\\\\\( -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.png\" -o -iname \"*.heic\" \\\\\\) -newermt \"2026-06-01\" 2>/dev/null | grep -vi node_modules | head -40)",
+      "Read(//Users/nalo/Desktop/**)",
+      "Bash(find ~/Desktop ~/Downloads ~/Pictures ~/Documents -type f \\\\\\( -iname \"*cvpr*\" -o -iname \"*IMG_*\" \\\\\\) 2>/dev/null | grep -viE \"node_modules|\\\\.next\" | head -30; echo \"=== recent in Downloads/Pictures ===\"; ls -lt ~/Downloads ~/Pictures 2>/dev/null | head -20)",
+      "Read(//Users/nalo/Downloads/**)"
     ]
   }
 }
