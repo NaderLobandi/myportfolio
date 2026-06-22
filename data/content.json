@@ -190,7 +190,7 @@
   "meta": {
     "siteTitle": "Nader Lobandi — Data Scientist & PhD Researcher",
     "siteDescription": "Portfolio of Nader Lobandi, a Data Scientist and PhD student at the University of Denver specializing in deep learning, computer vision, and production ML systems — with 4+ years of industry experience and 4 peer-reviewed publications.",
-    "tagline": "PhD researcher building ML systems that ship."
+    "tagline": "PhD researcher building efficient ML systems that ship."
   },
   "phd": {
     "researchStatement": "PhD researcher building efficient foundation models that ship. Specializing in vision and multimodal deep learning, with a focus on model compression, quantization, and hardware-aware optimization for on-device deployment. Strong mathematical foundations and systems-level thinking across the full ML lifecycle, from research to production.",
@@ -276,6 +276,41 @@
         "added": "2026-05",
         "myTake": ""
       }
-    ]
+    ],
+    "cvpr2026": {
+      "title": "CVPR 2026 — Key Takeaways",
+      "intro": "Three themes defined the conference for me, from the deployment story of today to the research frontier of tomorrow.",
+      "items": [
+        {
+          "tag": "Edge AI / Efficiency",
+          "title": "Edge AI and efficient inference are the dominant deployment story",
+          "summary": "The biggest shift was from \"can we build it\" to \"can we run it on real hardware.\" Quantization, model compression, and hardware-aware optimization (TensorRT, SNPE on Snapdragon and Jetson) were everywhere. Apple led the on-device push — deploying LLMs on iPhone via llama.cpp and Metal, and tiny VLMs on Snapdragon, with Oncel Tuzel presenting on the frontiers of on-device AI and their AToken unified vision tokenizer. The pattern is quantization plus memorization-style efficiency: cache and reuse computation, keep the active footprint small.",
+          "names": "Apple · Oncel Tuzel · TensorRT · SNPE · llama.cpp + Metal · AToken",
+          "papers": [
+            { "title": "AToken: A Unified Vision Tokenizer (Apple)", "url": "https://arxiv.org/abs/2509.14476" }
+          ]
+        },
+        {
+          "tag": "Diffusion everywhere",
+          "title": "Diffusion models have become a general-purpose modeling tool",
+          "summary": "Diffusion is no longer just for image generation. Three dedicated tutorials, plus EDGE workshop talks from Stefano Ermon (Stanford) on diffusion inference acceleration and Han Cai (NVIDIA) on post-training acceleration. The conceptual expansion is the real story — diffusion now powers discriminative classification, 3D pose via flow matching, dynamic scene reconstruction, and world models. Kaiming He's \"Back to Basics\" even challenged the core noise-prediction objective, arguing models should predict the clean image directly.",
+          "names": "Stefano Ermon · Han Cai (NVIDIA) · Kaiming He (JiT / Back to Basics)",
+          "papers": [
+            { "title": "Back to Basics / JiT — Kaiming He", "url": "https://arxiv.org/abs/2511.13720" }
+          ]
+        },
+        {
+          "tag": "World + physics models",
+          "title": "World models and physics-aware models are the future of CV",
+          "summary": "If edge efficiency and diffusion were the present, world models were the consensus future — dozens of workshops on world models, video world models, and world-model-driven VLA systems. Jack Parker-Holder (DeepMind) presented Genie 3, toward open-ended world creation. The key sub-trend is physics-awareness: pixel prediction alone is insufficient, models need physical and causal structure, reflected in CVPR papers like PHANTOM (physics-infused video generation). Thomas Serre's keynote reinforced it from neuroscience — scaling alone won't close the gap with biological vision; we need \"neural laws,\" not just scaling laws.",
+          "names": "Genie 3 (Parker-Holder / DeepMind) · PHANTOM · Serre keynote",
+          "papers": [
+            { "title": "Genie 3 — Jack Parker-Holder (DeepMind)", "url": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/" },
+            { "title": "PHANTOM — physics-infused video generation", "url": "https://arxiv.org/abs/2604.08503" }
+          ]
+        }
+      ],
+      "bonus": "The highest-value conversations happened in small workshop rooms, not the main poster hall. VGI put Grauman, Vedaldi, and Efros in one room with dedicated discussion time — access you can't get at a 4,000-person session. The lesson for next time: prioritize smaller specialized workshops for real connection over marquee main-track events."
+    }
   }
 }

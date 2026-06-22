@@ -65,6 +65,7 @@ export default function PhDJourneyPage() {
   const { phd } = content
   const papers = phd.papers as unknown as Paper[]
   const activePapers = papers.filter((p) => p.title.trim() !== '')
+  const cvpr = phd.cvpr2026
 
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
@@ -299,6 +300,80 @@ export default function PhDJourneyPage() {
                   )}
                 </motion.div>
               ))}
+            </div>
+          )}
+        </section>
+
+        {/* ── CVPR 2026 takeaways ──────────────────────────────────────── */}
+        <section>
+          <p className="text-[#ededed]/30 text-xs uppercase tracking-widest text-center mb-3">
+            {cvpr.title}
+          </p>
+          <p className="text-[#ededed]/45 text-sm text-center max-w-2xl mx-auto mb-12">
+            {cvpr.intro}
+          </p>
+
+          <div className="space-y-6">
+            {cvpr.items.map((item, i) => (
+              <motion.div
+                key={i}
+                className="rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-white/[0.12] transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.07 }}
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span
+                    className="text-xs font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full"
+                    style={{ color: '#3b82f6', background: '#3b82f61a' }}
+                  >
+                    {item.tag}
+                  </span>
+                </div>
+
+                <h3 className="text-[#ededed] font-semibold text-base leading-snug mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="text-[#ededed]/55 text-sm leading-relaxed">{item.summary}</p>
+
+                <p className="text-[#ededed]/30 text-xs mt-3">{item.names}</p>
+
+                {item.papers.length > 0 && (
+                  <div className="border-l-2 border-[#3b82f6]/35 pl-4 mt-4">
+                    <p className="text-xs text-[#3b82f6]/60 uppercase tracking-wider mb-2">Selected papers</p>
+                    <ul className="space-y-1.5">
+                      {item.papers.map((paper, p) => (
+                        <li key={p} className="text-sm">
+                          {paper.url ? (
+                            <a
+                              href={paper.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[#ededed]/65 hover:text-[#f97316] transition-colors"
+                            >
+                              {paper.title} ↗
+                            </a>
+                          ) : (
+                            <span className="text-[#ededed]/45">
+                              {paper.title}
+                              <span className="text-[#ededed]/25 italic"> · link coming soon</span>
+                            </span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {cvpr.bonus && (
+            <div className="mt-8 rounded-xl border border-white/[0.04] bg-white/[0.02] p-5">
+              <p className="text-xs text-[#ededed]/35 uppercase tracking-wider mb-2">Bonus — beyond the research</p>
+              <p className="text-[#ededed]/50 text-sm leading-relaxed italic">{cvpr.bonus}</p>
             </div>
           )}
         </section>
