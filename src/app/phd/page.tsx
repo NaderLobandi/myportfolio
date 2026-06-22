@@ -369,13 +369,6 @@ export default function PhDJourneyPage() {
               </motion.div>
             ))}
           </div>
-
-          {cvpr.bonus && (
-            <div className="mt-8 rounded-xl border border-white/[0.04] bg-white/[0.02] p-5">
-              <p className="text-xs text-[#ededed]/35 uppercase tracking-wider mb-2">Bonus — beyond the research</p>
-              <p className="text-[#ededed]/50 text-sm leading-relaxed italic">{cvpr.bonus}</p>
-            </div>
-          )}
         </section>
 
       </div>
