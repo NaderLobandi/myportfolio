@@ -1,11 +1,11 @@
 {
   "hero": {
     "name": "Nader Lobandi",
-    "credentials": "Ph.D. Candidate · M.Sc. Data Science",
-    "title": "Data Scientist & PhD Researcher",
+    "credentials": "Ph.D. Student · M.Sc. Data Science",
+    "title": "PhD Researcher & Machine Learning Engineer",
     "company": "University of Denver",
     "profileImage": "/profile.jpg",
-    "pitch": "Machine Learning Engineer and PhD Researcher with 4+ years of experience designing, deploying, and scaling production-grade AI/ML systems across industry and academic research. Expertise spans agentic LLM applications, deep learning, real-time computer vision, and large-scale data pipelines on Azure and Databricks. Holds an M.S. in Data Science from Northeastern University with strong foundations in statistical learning, probabilistic modeling, optimization, and algorithm design. Seeking ML Engineer roles focused on building end-to-end intelligent systems and advancing applied AI and foundation model technologies.",
+    "pitch": "PhD researcher in Computer Science with 4+ years building and deploying production ML systems in industry and academia. Work spans multimodal deep learning, computer vision, model compression and quantization for on-device inference, GPU programming with CUDA, and large-scale data pipelines on Azure and Databricks. Grounded in statistical learning, probabilistic modeling, optimization, and algorithm design. Four peer-reviewed publications and an M.S. in Data Science from Northeastern University. Open to research roles advancing efficient, deployable deep learning systems.",
     "contact": {
       "email": "naderlobandi11@gmail.com",
       "phone": "+1 (747) 270-4363",
@@ -16,16 +16,28 @@
   },
   "experience": [
     {
+      "company": "University of Denver, Ritchie School of Engineering & Computer Science",
+      "title": "Graduate Research Assistant",
+      "location": "Denver, CO",
+      "startDate": "2026-03",
+      "end": "Present",
+      "bullets": [
+        "Researching model compression, quantization, and hardware-aware optimization for on-device vision and multimodal inference, including GPU programming with CUDA.",
+        "Designing novel computer vision architectures for facial expression recognition trained with soft labels, targeting both ambiguity between overlapping expression classes and demographic bias in model predictions.",
+        "Developing a Digital Twin system for Mild Cognitive Impairment detection using multimodal deep learning, advised by Dr. Mohammad Mahoor."
+      ]
+    },
+    {
       "company": "BeanSprout AI",
       "title": "Data Scientist",
       "type": "Startup",
-      "location": "Atlanta, GA (Remote)",
+      "location": "Boston, MA",
       "startDate": "2025-03",
       "end": "2025-06",
       "bullets": [
-        "Built a cardiovascular risk prediction model using LightGBM and XGBoost, achieving AUC 0.89, with full lifecycle support from data ingestion through hyperparameter tuning to Modal deployment with MLflow tracking.",
-        "Implemented real-time voice interaction via Vertex AI STT/TTS and designed 3 agentic workflow types — secure document access, intent routing, and adaptive user support — for an elder-care platform.",
-        "Engineered a RAG pipeline over patient documents with persistent chatbot memory and user accounts, reducing repeated data-lookup steps to ~0 per session (~estimated)."
+        "Built a cardiovascular risk prediction model using LightGBM and XGBoost, reaching AUC 0.89, and took it from data ingestion through hyperparameter tuning to deployment on Modal with MLflow tracking.",
+        "Implemented real-time speech interaction using Vertex AI speech-to-text and text-to-speech, and designed agentic workflows for secure document access and intent routing on an elder-care platform.",
+        "Engineered a RAG pipeline over patient documents with persistent chatbot memory and user accounts, removing repeated manual data lookups from each session."
       ]
     },
     {
@@ -35,8 +47,9 @@
       "startDate": "2024-01",
       "end": "2025-03",
       "bullets": [
-        "Analyzed terabytes of city-scale traffic data using PySpark, SQL, and Delta Live Tables on Databricks, uncovering that over 70% of streaming feeds originated from a single unreliable vendor.",
-        "Deployed an internal RAG chatbot with SQL execution, giving project managers natural-language access to employee hours, assignments, and reporting data in ~seconds vs. multi-day manual lookups (~estimated).",
+        "Analyzed terabytes of city-scale traffic data using PySpark, SQL, and Delta Live Tables on Databricks, and audited streaming feeds to find that over 70% of the data came from a single unreliable vendor.",
+        "Deployed an internal RAG chatbot with SQL execution, giving project managers natural-language access to employee hours, assignments, and reporting data that previously took days to pull manually.",
+        "Built a real-time object detection and tracking pipeline using YOLO and Azure Vision to analyze live intersection feeds and flag near-miss incidents, optimizing inference latency to keep up with streaming video.",
         "Developed LSTM, Prophet, and SARIMA time-series models to forecast energy demand for NY Transit Authority, improving load-prediction accuracy to support peak-reduction strategies."
       ]
     },
@@ -47,8 +60,8 @@
       "startDate": "2023-06",
       "end": "2023-09",
       "bullets": [
-        "Built a bilateral filtering preprocessing pipeline for high-dimensional biomedical images, improving cell quantification accuracy by ~20%.",
-        "Integrated AWS S3 for scalable, real-time image retrieval, replacing local storage and supporting a ~3-month continuous clinical imaging data workflow."
+        "Built a bilateral filtering preprocessing pipeline for high-dimensional biomedical images, improving cell quantification accuracy by roughly 20%.",
+        "Integrated AWS S3 for scalable, real-time image retrieval, replacing local storage and supporting a continuous clinical imaging data workflow."
       ]
     },
     {
@@ -58,9 +71,9 @@
       "startDate": "2021-03",
       "end": "2024-09",
       "bullets": [
-        "Trained LSTM, Gaussian mixture, and regression models on time-series COVID biosensor data, achieving a best detection recall of 95% under noisy measurement conditions.",
-        "Published 4 peer-reviewed papers in IEEE Sensors Letters, Biosensors and Bioelectronics, and IEEE CICC on ML-driven biosensor detection systems.",
-        "Formulated hypothesis-testing frameworks using MAP, Bayesian, Neyman-Pearson, and Minimax criteria, reducing false-alarm trade-offs across 3+ detection threshold configurations."
+        "Trained and evaluated LSTM, Gaussian mixture, and regression models on time-series sensor data for COVID-19 detection, reaching 95% recall under noisy measurement conditions. Built training pipelines in PyTorch.",
+        "Applied detection theory, including MAP, Bayesian, Neyman-Pearson, and Minimax estimators, to separate true sensor response from background noise in low signal-to-noise biosensor measurements.",
+        "Published 4 peer-reviewed papers in IEEE Sensors Letters, Biosensors and Bioelectronics, IEEE CICC, and Journal of Applied Physics."
       ]
     }
   ],
@@ -102,71 +115,117 @@
   "skills": {
     "categories": [
       {
-        "name": "Machine Learning",
+        "name": "Deep Learning & Computer Vision",
         "level": 95,
-        "items": ["PyTorch & TensorFlow", "Scikit-learn", "Time-series modeling (LSTM, ARIMA, Prophet)", "Computer vision (YOLO, Azure Vision)", "MLflow & Modal deployment"]
+        "items": [
+          "PyTorch & TensorFlow",
+          "Model compression & quantization",
+          "On-device and hardware-aware optimization",
+          "Multimodal deep learning",
+          "Object detection & tracking (YOLO, OpenCV)",
+          "CUDA / GPU programming"
+        ]
       },
       {
-        "name": "Data Engineering",
-        "level": 80,
-        "items": ["Python (Pandas, NumPy)", "SQL & PySpark", "Azure Databricks & Delta Lake", "AWS (S3)", "Docker & CI/CD"]
-      },
-      {
-        "name": "AI & LLMs",
+        "name": "AI & Agentic Systems",
         "level": 90,
-        "items": ["LangChain & Hugging Face", "Retrieval-Augmented Generation (RAG)", "Vertex AI (STT/TTS)", "Agentic workflow design"]
+        "items": [
+          "Multi-agent orchestration",
+          "Model Context Protocol (MCP)",
+          "Retrieval-Augmented Generation (RAG)",
+          "LangChain & Hugging Face",
+          "Speech interfaces (Vertex AI STT/TTS)",
+          "Evals & LLM-as-judge testing"
+        ]
+      },
+      {
+        "name": "Data & ML Engineering",
+        "level": 85,
+        "items": [
+          "Python (Pandas, NumPy, Scikit-learn)",
+          "C++ & Linux",
+          "SQL & PySpark",
+          "Azure Databricks & Delta Lake",
+          "AWS (S3), GCP",
+          "Docker, Git, MLflow, Modal"
+        ]
+      },
+      {
+        "name": "Statistical Modeling",
+        "level": 85,
+        "items": [
+          "Statistical learning & probabilistic modeling",
+          "Detection theory (MAP, Bayesian, Neyman-Pearson, Minimax)",
+          "Time-series modeling (LSTM, ARIMA, Prophet, SARIMA)",
+          "Optimization & algorithm design"
+        ]
       }
     ],
     "strong": [
       "Python (Pandas, NumPy, Scikit-learn)",
       "PyTorch & TensorFlow",
-      "SQL & PySpark",
+      "Model compression & quantization",
+      "CUDA / GPU programming",
+      "Computer vision (YOLO, OpenCV, Azure Vision)",
+      "Multimodal deep learning",
+      "Agentic systems & MCP",
       "LLMs & RAG (LangChain, Hugging Face)",
-      "MLflow & Modal deployment",
-      "Time-series modeling (LSTM, ARIMA, Prophet)",
-      "Computer vision (YOLO, Azure Vision)",
+      "SQL & PySpark",
       "Azure Databricks & Delta Lake",
-      "AWS (S3)",
+      "MLflow & Modal deployment",
       "Docker & CI/CD"
     ],
     "gaps": [
+      "Large-scale distributed training (FSDP, Megatron-style parallelism)",
+      "JAX, XLA, and TPU training",
       "Kubernetes and container orchestration at scale",
-      "dbt and modern data transformation tooling",
       "Reinforcement learning beyond coursework",
-      "Rust or Go for systems-level programming",
-      "Mobile and edge ML deployment (TFLite, CoreML)"
+      "Rust or Go for systems-level programming"
     ]
   },
   "projects": [
     {
+      "name": "JobScout — Agentic Job Search System",
+      "description": "Built a multi-agent job search tool where an orchestrator dispatches specialist sub-agents for search, scoring, and drafting, each scoped to one task through its own agent skill. Wrote a custom MCP server normalizing eleven job boards behind a single tool surface. Kept dealbreaker filtering in deterministic Python so an untrusted posting cannot prompt-inject past it, and enforced a human-in-the-loop gate with no code path to auto-submit.",
+      "stack": ["Python", "Anthropic API", "MCP SDK", "Streamlit", "Docker", "pytest", "LLM-as-judge evals"],
+      "award": "Capstone — 5-Day AI Agents Intensive Course with Google (Kaggle)"
+    },
+    {
+      "name": "SecureFaceID — Liveness-Aware Face Authentication",
+      "description": "Built a face authentication system with liveness detection that runs on a standard RGB camera instead of depth or infrared hardware. Uses blink detection to reject photo and screen spoofing attempts, and stays accurate when the user is wearing a mask.",
+      "stack": ["Python", "OpenCV", "Computer Vision", "Liveness Detection"]
+    },
+    {
+      "name": "E-Waste Sustainability Assistant",
+      "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented a decision pipeline pairing a vision model with a heuristic engine and safety overrides, backed by a sourced knowledge base for every figure it reports.",
+      "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision", "RAG"],
+      "award": "Summit Hack 26 — 2nd Place"
+    },
+    {
+      "name": "Financial News Sentiment Analysis",
+      "description": "Built an NLP system to classify sentiment in high-volume financial news. Benchmarked classical and transformer models across two datasets, with FinBERT at 0.73 accuracy and 0.74 macro-F1 on Alpha Vantage, and BERT-uncased at 0.86 and 0.86 on Yahoo Finance, validated against real ticker movements.",
+      "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
+    },
+    {
       "name": "Financial Time-Series & Document QA",
-      "description": "Built an educational finance tool to help non-expert users explore forecasting strategies and consume company fundamentals from SEC filings in plain language. Enabled interactive backtesting with reliable forecast horizons up to two months, paired with a chat-based interface for querying 10-K reports.",
+      "description": "Built a Streamlit tool for interactive backtesting of forecasting strategies with reliable horizons up to two months, paired with a chat interface for querying 10-K filings in plain language.",
       "stack": ["Python", "Streamlit", "AutoTS", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX", "RAG"]
     },
     {
       "name": "Personal Finance Web App",
-      "description": "Built a self-hosted alternative to tools like Intuit, giving users full ownership over their financial data while tracking budgets, expenses, and investment goals. Delivered dashboards and reports summarizing financial health, with automated alerts for suspicious transactions and secure multi-user authentication.",
+      "description": "Built a self-hosted budgeting and expense tracker as a full-stack Flask application with a MySQL backend, including schema design for transactional data, automated alerts for suspicious transactions, and multi-user authentication.",
       "stack": ["Python", "Flask", "MySQL", "HTML", "CSS"]
-    },
-    {
-      "name": "Financial News Sentiment Analysis",
-      "description": "Built an NLP system to interpret high-volume financial news and quantify market sentiment, supporting faster and less biased trading-signal extraction. Benchmarked classical and transformer-based approaches across two datasets (Alpha Vantage news, Yahoo Finance), with FinBERT achieving 0.73 accuracy / 0.74 macro-F1 on Alpha Vantage and BERT-uncased reaching 0.86 / 0.86 on Yahoo — validated against real-world ticker movements (e.g., VLN, HSII).",
-      "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
-    },
-    {
-      "name": "E-Waste Sustainability Assistant",
-      "description": "Built a vision tool that identifies electronic waste and returns its carbon footprint, recoverable value, and a safe disposal action, addressing the growing volume of recyclable e-waste in data centers. Delivered an end-to-end pipeline that turns a photo into a defensible refurbish/recycle/review decision in seconds, backed by a curated knowledge base with full source provenance for every CO₂ and metals figure.",
-      "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision", "RAG"],
-      "award": "Summit Hack 26 — 2nd Place"
     }
   ],
   "education": [
     {
       "institution": "University of Denver, Ritchie School of Engineering & Computer Science",
       "degree": "Ph.D. in Computer Science",
-      "start": "2025-08",
+      "start": "2026-03",
       "end": "2029-05",
-      "focus": "Deep Learning, Computer Vision, Foundation Models, GPU Computing & CUDA Programming"
+      "gpa": "4.0",
+      "focus": "Multimodal Deep Learning, Computer Vision, Efficient Foundation Models, Model Compression & Quantization, On-Device Inference, GPU Computing & CUDA Programming",
+      "honors": "IAAP 2026 Scholarship Award"
     },
     {
       "institution": "Northeastern University, Khoury College of Computer Sciences",
@@ -184,44 +243,64 @@
       "honors": "National Physics Olympiad Silver Medal; Ranked top 0.1% out of 100,000+ applicants in national university entrance exam"
     }
   ],
+  "certifications": [
+    {
+      "name": "AI-102: Designing and Implementing a Microsoft Azure AI Solution",
+      "issuer": "Microsoft",
+      "date": ""
+    },
+    {
+      "name": "5-Day AI Agents Intensive Course with Google",
+      "issuer": "Kaggle",
+      "date": "2026-06",
+      "note": "Capstone project: JobScout"
+    }
+  ],
   "contact": {
-    "bio": "ML Engineer and PhD Researcher at the University of Denver — building production AI systems at the intersection of deep learning, computer vision, and large-scale data. Open to collaboration and opportunities in ML Engineering, AI Engineering, and Data Science. If you're a builder or thinker working on hard problems, let's connect."
+    "bio": "PhD researcher at the University of Denver working on multimodal deep learning, computer vision, and efficient models that run on real hardware. I have spent 4+ years shipping production ML systems alongside the research. Open to collaboration and research opportunities in deep learning, computer vision, and applied AI. If you are a builder or thinker working on hard problems, let's connect."
   },
   "meta": {
-    "siteTitle": "Nader Lobandi — Data Scientist & PhD Researcher",
-    "siteDescription": "Portfolio of Nader Lobandi, a Data Scientist and PhD student at the University of Denver specializing in deep learning, computer vision, and production ML systems — with 4+ years of industry experience and 4 peer-reviewed publications.",
-    "tagline": "PhD researcher building efficient ML systems that ship."
+    "siteTitle": "Nader Lobandi — PhD Researcher & Machine Learning Engineer",
+    "siteDescription": "Portfolio of Nader Lobandi, a PhD researcher at the University of Denver working on multimodal deep learning, computer vision, and efficient on-device models, with 4+ years of production ML experience and 4 peer-reviewed publications.",
+    "tagline": "PhD researcher building deep learning systems that ship."
   },
   "phd": {
-    "researchStatement": "PhD researcher building efficient foundation models that ship. Specializing in vision and multimodal deep learning, with a focus on model compression, quantization, and hardware-aware optimization for on-device deployment. Strong mathematical foundations and systems-level thinking across the full ML lifecycle, from research to production.",
+    "researchStatement": "PhD researcher building deep learning systems that ship. My work spans multimodal deep learning and computer vision, including facial expression recognition with soft labels and bias mitigation, Digital Twin systems for Mild Cognitive Impairment detection, and model compression, quantization, and hardware-aware optimization for on-device deployment. Strong mathematical foundations and systems-level thinking across the full ML lifecycle, from research to production.",
     "researchAreas": [
-      { "text": "Computer Vision",         "tier": "major",      "weight": 10 },
-      { "text": "Deep Learning",           "tier": "major",      "weight": 10 },
-      { "text": "Efficient Foundation Models", "tier": "major",  "weight": 10 },
-      { "text": "Multimodal Models",       "tier": "major",      "weight": 9  },
-      { "text": "LLMs & RAG",              "tier": "major",      "weight": 9  },
-      { "text": "Foundation Models",       "tier": "major",      "weight": 8  },
-      { "text": "Object Detection",        "tier": "major",      "weight": 7  },
-      { "text": "CNNs",                    "tier": "major",      "weight": 7  },
-      { "text": "YOLO",                    "tier": "major",      "weight": 7  },
-      { "text": "LSTM",                    "tier": "major",      "weight": 6  },
-      { "text": "MLOps",                   "tier": "major",      "weight": 6  },
-      { "text": "Statistical Inference",   "tier": "major",      "weight": 6  },
-      { "text": "Hypothesis Testing",      "tier": "major",      "weight": 5  },
-      { "text": "Signal Processing",       "tier": "secondary",  "weight": 5  },
-      { "text": "Time-Series Forecasting", "tier": "secondary",  "weight": 5  },
-      { "text": "Biosensors",              "tier": "secondary",  "weight": 4  },
-      { "text": "Biomedical Sensing",      "tier": "secondary",  "weight": 4  },
-      { "text": "PyTorch",                 "tier": "supporting", "weight": 3  },
-      { "text": "TensorFlow",              "tier": "supporting", "weight": 3  },
-      { "text": "CUDA/GPU",                "tier": "supporting", "weight": 3  },
-      { "text": "Agentic Workflows",       "tier": "supporting", "weight": 3  },
-      { "text": "LangChain",               "tier": "supporting", "weight": 2  },
-      { "text": "PySpark",                 "tier": "supporting", "weight": 2  },
-      { "text": "Azure",                   "tier": "supporting", "weight": 2  },
-      { "text": "Databricks",              "tier": "supporting", "weight": 2  },
-      { "text": "MLflow",                  "tier": "supporting", "weight": 2  },
-      { "text": "XGBoost",                 "tier": "supporting", "weight": 2  }
+      { "text": "Computer Vision",              "tier": "major",      "weight": 10 },
+      { "text": "Deep Learning",                "tier": "major",      "weight": 10 },
+      { "text": "Multimodal Models",            "tier": "major",      "weight": 10 },
+      { "text": "Efficient Foundation Models",  "tier": "major",      "weight": 10 },
+      { "text": "Facial Expression Recognition","tier": "major",      "weight": 9  },
+      { "text": "Model Compression",            "tier": "major",      "weight": 9  },
+      { "text": "Quantization",                 "tier": "major",      "weight": 9  },
+      { "text": "On-Device Inference",          "tier": "major",      "weight": 8  },
+      { "text": "Bias Mitigation & Fairness",   "tier": "major",      "weight": 8  },
+      { "text": "LLMs & RAG",                   "tier": "major",      "weight": 8  },
+      { "text": "Agentic Systems",              "tier": "major",      "weight": 7  },
+      { "text": "Digital Twin for Healthcare",  "tier": "major",      "weight": 7  },
+      { "text": "Object Detection",             "tier": "major",      "weight": 7  },
+      { "text": "CNNs",                         "tier": "major",      "weight": 6  },
+      { "text": "YOLO",                         "tier": "major",      "weight": 6  },
+      { "text": "Statistical Inference",        "tier": "major",      "weight": 6  },
+      { "text": "LSTM",                         "tier": "secondary",  "weight": 5  },
+      { "text": "MLOps",                        "tier": "secondary",  "weight": 5  },
+      { "text": "Hypothesis Testing",           "tier": "secondary",  "weight": 5  },
+      { "text": "Signal Processing",            "tier": "secondary",  "weight": 5  },
+      { "text": "Time-Series Forecasting",      "tier": "secondary",  "weight": 4  },
+      { "text": "Biosensors",                   "tier": "secondary",  "weight": 4  },
+      { "text": "Biomedical Sensing",           "tier": "secondary",  "weight": 4  },
+      { "text": "PyTorch",                      "tier": "supporting", "weight": 3  },
+      { "text": "TensorFlow",                   "tier": "supporting", "weight": 3  },
+      { "text": "CUDA/GPU",                     "tier": "supporting", "weight": 3  },
+      { "text": "Model Context Protocol (MCP)", "tier": "supporting", "weight": 3  },
+      { "text": "OpenCV",                       "tier": "supporting", "weight": 2  },
+      { "text": "LangChain",                    "tier": "supporting", "weight": 2  },
+      { "text": "PySpark",                      "tier": "supporting", "weight": 2  },
+      { "text": "Azure",                        "tier": "supporting", "weight": 2  },
+      { "text": "Databricks",                   "tier": "supporting", "weight": 2  },
+      { "text": "MLflow",                       "tier": "supporting", "weight": 2  },
+      { "text": "XGBoost",                      "tier": "supporting", "weight": 2  }
     ],
     "milestones": [
       {
@@ -240,6 +319,12 @@
         "photoCaption": "CVPR 2026 — Colorado Convention Center, Denver",
         "photo2": "/phd/cvpr_2026_session.jpeg",
         "photoCaption2": "CVPR 2026 — conference session"
+      },
+      {
+        "date": "2026-06",
+        "type": "milestone",
+        "title": "JobScout — Kaggle AI Agents Intensive Capstone",
+        "description": "Built JobScout for the capstone of the 5-Day AI Agents Intensive Course with Google. A multi-agent job search system over a custom MCP server, engineered so that a human always makes the final call on any application. The design thesis is that an agent can inherit your authority to search and draft, but never your authority to submit."
       },
       {
         "date": "2026-05",
