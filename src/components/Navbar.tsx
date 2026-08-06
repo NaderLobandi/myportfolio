@@ -51,6 +51,13 @@ function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) 
     timer.current = setTimeout(() => setOpen(next), delay)
   }
 
+  // Clicking through to /phd must close the card immediately — a pending open
+  // timer would otherwise re-open it over the new page.
+  const close = () => {
+    if (timer.current) clearTimeout(timer.current)
+    setOpen(false)
+  }
+
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current) }, [])
 
   useEffect(() => {
@@ -72,6 +79,7 @@ function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) 
         href="/phd"
         className={`${highlightClass} inline-flex items-center gap-2`}
         aria-label={unseen ? 'News — new updates' : undefined}
+        onClick={close}
       >
         {unseen && (
           <span className="relative flex w-2 h-2" aria-hidden="true">
@@ -111,6 +119,7 @@ function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) 
             <Link
               href="/phd"
               className="block mt-3 pt-2 border-t border-edge-subtle text-[#f97316] text-xs font-medium hover:text-[#fb923c] transition-colors"
+              onClick={close}
             >
               View all news →
             </Link>
@@ -224,7 +233,7 @@ export default function Navbar() {
           )}
           <Link
             href="/login"
-            className="ml-2 text-sm font-medium px-4 py-1.5 rounded-lg border border-edge text-fg-muted hover:text-fg hover:bg-overlay transition-all duration-200"
+            className={`ml-2 ${anchorClass}`}
           >
             Login
           </Link>
