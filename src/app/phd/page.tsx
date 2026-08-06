@@ -15,7 +15,6 @@ function stableHash(text: string): number {
 
 function wordStyle(text: string, weight: number, tier: string): React.CSSProperties {
   const h = stableHash(text)
-  const rotation = (h % 25) - 12
   const mx = (h % 14) + 4
   const my = (h % 10) + 3
 
@@ -35,7 +34,6 @@ function wordStyle(text: string, weight: number, tier: string): React.CSSPropert
     fontSize:   sizeMap[weight] ?? '1rem',
     color,
     display:    'inline-block',
-    transform:  `rotate(${rotation}deg)`,
     margin:     `${my}px ${mx}px`,
     fontWeight: tier === 'major' ? 700 : tier === 'secondary' ? 500 : 400,
     lineHeight: 1.2,

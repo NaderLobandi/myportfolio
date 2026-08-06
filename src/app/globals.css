@@ -80,10 +80,16 @@ body {
   animation-duration: 0.3s;
 }
 
-/* PhD word cloud: animate the `scale` property, not `transform` — each word
-   carries an inline `transform: rotate()` that a transform animation would eat. */
+/* PhD word cloud: animate the `scale` property, not `transform`, and use
+   `backwards` fill so the finished animation doesn't pin `scale` and block the
+   hover zoom below (a `both`/`forwards` fill outranks normal declarations). */
 @keyframes word-in { from { opacity: 0; scale: 0.5 } to { opacity: 1; scale: 1 } }
-.word-in { animation: word-in 0.3s ease-out both; animation-delay: var(--enter-delay, 0ms) }
+.word-in {
+  animation: word-in 0.3s ease-out backwards;
+  animation-delay: var(--enter-delay, 0ms);
+  transition: scale 0.18s ease-out;
+}
+.word-in:hover { scale: 1.18 }
 
 /* Skills: progress bars grow from the left instead of animating `width` */
 @keyframes bar-grow { from { transform: scaleX(0) } to { transform: scaleX(1) } }
