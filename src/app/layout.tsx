@@ -7,15 +7,19 @@ import PageViewTracker from "@/components/PageViewTracker";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import ChatAssistant from "@/components/ChatAssistantLazy";
+import RevealObserver from "@/components/RevealObserver";
+import { latestMilestones } from "@/lib/milestones";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
+// Only used for a few small labels — not worth a render-blocking preload.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 const BASE_URL = "https://naderlobandi.com";
@@ -227,8 +231,11 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
-          <Navbar />
+          {/* Read here, in a server component, so content.json never reaches
+              the browser bundle just for three headlines. */}
+          <Navbar previews={latestMilestones(3)} />
           {children}
+          <RevealObserver />
           <PageViewTracker />
           <Footer />
           <ChatAssistant />

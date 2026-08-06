@@ -6,12 +6,15 @@ import Projects from '@/components/Projects'
 import Skills from '@/components/Skills'
 import About from '@/components/About'
 import SectionTracker from '@/components/SectionTracker'
+import content from '../../data/content.json'
 
 export default function Home() {
+  const { hero, meta } = content
+
   return (
     <main className="bg-surface">
       <SectionTracker />
-      <Hero />
+      <Hero hero={hero} meta={{ tagline: meta.tagline }} />
       <Experience />
       <Education />
       <Publications />

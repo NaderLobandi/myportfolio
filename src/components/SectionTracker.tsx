@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react'
 import { track } from '@vercel/analytics'
 
-const SECTIONS = ['hero', 'experience', 'education', 'projects', 'skills', 'about'] as const
+const SECTIONS = ['hero', 'experience', 'education', 'publications', 'projects', 'skills', 'about'] as const
 const LABELS: Record<string, string> = {
   hero: 'Hero', experience: 'Experience', education: 'Education',
-  projects: 'Projects', skills: 'Skills', about: 'Contact',
+  publications: 'Publications', projects: 'Projects', skills: 'Skills', about: 'Contact',
 }
 
 export default function SectionTracker() {
@@ -22,11 +22,11 @@ export default function SectionTracker() {
       if (seconds >= 3) {
         const section = LABELS[id] ?? id
         track('section_dwell', { section, seconds })
-        fetch('/api/analytics', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ event: 'section_dwell', section, seconds }),
-        }).catch(() => {})
+        navigator.sendBeacon(
+          '/api/analytics',
+          new Blob([JSON.stringify({ event: 'section_dwell', section, seconds })],
+            { type: 'application/json' }),
+        )
       }
       entryTime.current.delete(id)
     }
@@ -45,12 +45,14 @@ export default function SectionTracker() {
       observers.push(obs)
     }
 
-    const onUnload = () => SECTIONS.forEach(flush)
-    window.addEventListener('beforeunload', onUnload)
+    // `pagehide` instead of `beforeunload`: the latter makes the page
+    // ineligible for the bfcache, which is what makes Back feel slow.
+    const onHide = () => SECTIONS.forEach(flush)
+    window.addEventListener('pagehide', onHide)
 
     return () => {
       observers.forEach((o) => o.disconnect())
-      window.removeEventListener('beforeunload', onUnload)
+      window.removeEventListener('pagehide', onHide)
     }
   }, [])
 

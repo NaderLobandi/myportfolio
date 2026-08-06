@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
 
 export default function Projects() {
@@ -10,26 +7,17 @@ export default function Projects() {
     <section id="projects" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <motion.h2
-          className="text-3xl font-bold text-fg text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
           Projects
-        </motion.h2>
+        </h2>
 
         <div className="grid gap-5 sm:grid-cols-2">
           {projects.map((project, i) => (
-            <motion.div
+            <div
               key={project.name}
-              className="flex flex-col rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 transition-colors duration-300"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.45, ease: 'easeOut' as const, delay: (i % 2) * 0.1 }}
-              whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${(i % 2) * 100}ms` } as React.CSSProperties}
+              className="flex flex-col rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
             >
               <div className="mb-4">
                 {'award' in project && project.award && (
@@ -56,7 +44,7 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

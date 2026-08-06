@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import content from '../../../data/content.json'
 import { typeConfig, formatDate, sortedMilestones } from '../../lib/milestones'
@@ -58,18 +57,14 @@ export default function PhDJourneyPage() {
 
   // 34 nodes, each with a hashed inline transform — don't rebuild them every
   // time the lightbox opens or closes.
-  const words = useMemo(() => phd.researchAreas.map((area) => (
-    <motion.span
+  const words = useMemo(() => phd.researchAreas.map((area, i) => (
+    <span
       key={area.text}
-      style={wordStyle(area.text, area.weight, area.tier)}
-      variants={{
-        hidden: { opacity: 0, scale: 0.5 },
-        show:   { opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeOut' as const } },
-      }}
-      whileHover={{ scale: 1.18, transition: { duration: 0.18 } }}
+      className="word-in"
+      style={{ ...wordStyle(area.text, area.weight, area.tier), '--enter-delay': `${i * 12}ms` } as React.CSSProperties}
     >
       {area.text}
-    </motion.span>
+    </span>
   )), [phd.researchAreas])
 
   useEffect(() => {
@@ -85,25 +80,12 @@ export default function PhDJourneyPage() {
 
         {/* ── Word cloud ──────────────────────────────────────────────── */}
         <section>
-          <motion.h1
-            className="text-3xl font-bold text-[#f97316] text-center mb-10"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-          >
+          <h1 className="enter-up text-3xl font-bold text-[#f97316] text-center mb-10">
             Welcome to my PhD Journey!
-          </motion.h1>
-          <motion.div
-            className="flex flex-wrap justify-center items-center py-4"
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.012 } },
-            }}
-          >
+          </h1>
+          <div className="flex flex-wrap justify-center items-center py-4">
             {words}
-          </motion.div>
+          </div>
 
           {/* legend */}
           <div className="flex flex-wrap gap-6 justify-center mt-8">
@@ -142,13 +124,11 @@ export default function PhDJourneyPage() {
                 const paragraphs = m.description.split('\n\n')
 
                 return (
-                  <motion.div
+                  <div
                     key={i}
+                    data-reveal="x"
+                    style={{ '--reveal-delay': `${i * 90}ms` } as React.CSSProperties}
                     className="relative"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.09 }}
                   >
                     {/* dot */}
                     <div
@@ -237,7 +217,7 @@ export default function PhDJourneyPage() {
                         </div>
                       )}
                     </div>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>
@@ -257,13 +237,11 @@ export default function PhDJourneyPage() {
           ) : (
             <div className="space-y-6">
               {activePapers.map((paper, i) => (
-                <motion.div
+                <div
                   key={i}
+                  data-reveal="up"
+                  style={{ '--reveal-delay': `${i * 70}ms` } as React.CSSProperties}
                   className="rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-white/[0.12] transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.07 }}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-1">
                     <h3 className="text-[#ededed] font-semibold text-base leading-snug flex-1">
@@ -289,7 +267,7 @@ export default function PhDJourneyPage() {
                       <p className="text-[#ededed]/60 text-sm leading-relaxed italic">{paper.myTake}</p>
                     </div>
                   )}
-                </motion.div>
+                </div>
               ))}
             </div>
           )}
@@ -306,13 +284,11 @@ export default function PhDJourneyPage() {
 
           <div className="space-y-6">
             {cvpr.items.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
+                data-reveal="up"
+                style={{ '--reveal-delay': `${i * 70}ms` } as React.CSSProperties}
                 className="rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-white/[0.12] transition-colors duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.07 }}
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span
@@ -357,7 +333,7 @@ export default function PhDJourneyPage() {
                     </ul>
                   </div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
@@ -365,22 +341,13 @@ export default function PhDJourneyPage() {
       </div>
 
       {/* ── Lightbox ────────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setLightbox(null)}
-          >
-            <motion.div
-              className="relative max-w-5xl w-full max-h-[90vh]"
-              initial={{ scale: 0.92 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.92 }}
-              transition={{ duration: 0.2 }}
+      {lightbox && (
+        <div
+          className="lightbox-in fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          onClick={() => setLightbox(null)}
+        >
+            <div
+              className="lightbox-zoom relative max-w-5xl w-full max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* close button */}
@@ -409,10 +376,9 @@ export default function PhDJourneyPage() {
               {lightbox.alt && (
                 <p className="text-white/50 text-sm text-center mt-3">{lightbox.alt}</p>
               )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+        </div>
+      )}
     </main>
   )
 }

@@ -4,8 +4,7 @@ import { useState, useEffect, useRef, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { typeConfig, formatDate, latestMilestones } from '../lib/milestones'
+import { typeConfig, formatDate, type MilestonePreview } from '../lib/milestone-style'
 
 const NAV_LINKS = [
   { label: 'Home',        href: '#hero',       page: false, highlight: false },
@@ -22,8 +21,6 @@ const anchorClass    = 'text-fg-subtle hover:text-fg text-sm px-3 py-1.5 rounded
 const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-[#f97316]/15 border border-[#f97316]/60 dark:border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316]/25 dark:hover:bg-[#f97316]/20 hover:border-[#f97316]/80 dark:hover:border-[#f97316]/55 transition-all duration-200'
 
 const NEWS_SEEN_KEY = 'nl:newsSeen'
-const PREVIEW       = latestMilestones(3)
-const LATEST_DATE   = PREVIEW[0]?.date ?? ''
 
 const readSeen = () => localStorage.getItem(NEWS_SEEN_KEY)
 
@@ -32,18 +29,25 @@ const subscribeSeen = (onChange: () => void) => {
   return () => window.removeEventListener('storage', onChange)
 }
 
-function markNewsSeen() {
-  if (localStorage.getItem(NEWS_SEEN_KEY) === LATEST_DATE) return
-  localStorage.setItem(NEWS_SEEN_KEY, LATEST_DATE)
+function markNewsSeen(latestDate: string) {
+  if (localStorage.getItem(NEWS_SEEN_KEY) === latestDate) return
+  localStorage.setItem(NEWS_SEEN_KEY, latestDate)
   window.dispatchEvent(new StorageEvent('storage'))  // same-tab: 'storage' only fires cross-tab
 }
 
 /** News link: pulsing dot while there's an unseen milestone, plus a hover/focus
  *  preview of the newest entries (desktop only — touch has no hover). */
-function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) {
+function NewsPill({
+  unseen,
+  withCard,
+  previews,
+}: {
+  unseen: boolean
+  withCard: boolean
+  previews: MilestonePreview[]
+}) {
   const [open, setOpen] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const reduceMotion = useReducedMotion()
 
   const schedule = (next: boolean, delay: number) => {
     if (!withCard) return
@@ -83,27 +87,23 @@ function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) 
       >
         {unseen && (
           <span className="relative flex w-2 h-2" aria-hidden="true">
-            {!reduceMotion && (
-              <span className="absolute inline-flex w-full h-full rounded-full bg-[#f97316] opacity-75 animate-ping" />
-            )}
+            <span className="absolute inline-flex w-full h-full rounded-full bg-[#f97316] opacity-75 motion-safe:animate-ping" />
             <span className="relative inline-flex w-2 h-2 rounded-full bg-[#f97316]" />
           </span>
         )}
         News
       </Link>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="hidden md:block absolute right-0 top-full mt-2 w-72 rounded-xl border border-edge bg-surface/95 backdrop-blur-md p-3 shadow-lg"
-            initial={reduceMotion ? false : { opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -6 }}
-            transition={{ duration: 0.18, ease: 'easeOut' as const }}
-          >
+      {withCard && (
+        <div
+          className={`hidden md:block absolute right-0 top-full mt-2 w-72 rounded-xl border border-edge bg-surface/95 backdrop-blur-md p-3 shadow-lg transition-all duration-200 ease-out ${
+            open ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1.5 pointer-events-none'
+          }`}
+          aria-hidden={!open}
+        >
             <p className="text-fg-subtle text-[10px] uppercase tracking-widest mb-2">Latest</p>
             <ul className="space-y-2">
-              {PREVIEW.map((m) => (
+              {previews.map((m) => (
                 <li key={m.date + m.title} className="flex items-start gap-2">
                   <span
                     className="mt-1.5 w-2 h-2 rounded-full shrink-0"
@@ -123,9 +123,8 @@ function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) 
             >
               View all news →
             </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </div>
   )
 }
@@ -147,22 +146,23 @@ function MoonIcon() {
   )
 }
 
-export default function Navbar() {
+export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
   const forceBg = pathname === '/phd' || pathname === '/login'
+  const latestDate = previews[0]?.date ?? ''
 
   // localStorage is client-only, so read it as an external store: SSR and the
   // hydration render both see "seen", then React re-reads on the client.
-  const seenDate = useSyncExternalStore(subscribeSeen, readSeen, () => LATEST_DATE)
-  const newsUnseen = seenDate !== LATEST_DATE
+  const seenDate = useSyncExternalStore(subscribeSeen, readSeen, () => latestDate)
+  const newsUnseen = seenDate !== latestDate
 
   useEffect(() => {
-    if (pathname === '/phd') markNewsSeen()
-  }, [pathname])
+    if (pathname === '/phd') markNewsSeen(latestDate)
+  }, [pathname, latestDate])
 
   useEffect(() => {
     setMounted(true)
@@ -219,7 +219,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ label, href, page }) =>
             page ? (
-              <NewsPill key={href} unseen={newsUnseen} withCard />
+              <NewsPill key={href} unseen={newsUnseen} withCard previews={previews} />
             ) : (
               <a
                 key={href}
@@ -241,7 +241,7 @@ export default function Navbar() {
 
         {/* Mobile: News + hamburger */}
         <div className="flex md:hidden items-center gap-2">
-          <NewsPill unseen={newsUnseen} withCard={false} />
+          <NewsPill unseen={newsUnseen} withCard={false} previews={previews} />
           <button
             onClick={() => setMenuOpen((o) => !o)}
             className="text-fg-subtle hover:text-fg p-1.5 transition-colors"

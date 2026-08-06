@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
 
 function formatYear(ym: string): string {
@@ -18,26 +15,17 @@ export default function Education() {
     <section id="education" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <motion.h2
-          className="text-3xl font-bold text-fg text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
           Education
-        </motion.h2>
+        </h2>
 
         <div className="space-y-5">
           {education.map((entry, i) => (
-            <motion.div
+            <div
               key={entry.institution}
-              className="rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 transition-colors duration-300"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.45, ease: 'easeOut' as const, delay: i * 0.08 }}
-              whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
+              className="rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div>
@@ -73,7 +61,7 @@ export default function Education() {
                   </p>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

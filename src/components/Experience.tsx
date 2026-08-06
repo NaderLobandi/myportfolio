@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
 
 function formatDate(ym: string | undefined): string {
@@ -19,15 +16,9 @@ export default function Experience() {
     <section id="experience" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <motion.h2
-          className="text-3xl font-bold text-fg text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-20">
           Experiences
-        </motion.h2>
+        </h2>
 
         <div className="relative">
           <div className="absolute left-3 top-0 bottom-0 w-px bg-[#f97316]/25 md:left-1/2 md:-translate-x-1/2" />
@@ -41,18 +32,14 @@ export default function Experience() {
 
                   <div className="absolute left-3 top-6 -translate-x-1/2 z-10 w-3 h-3 rounded-full bg-[#f97316] ring-2 ring-surface md:left-1/2" />
 
-                  <motion.div
+                  <div
+                    data-reveal={isLeft ? 'left' : 'right'}
                     className={[
                       'ml-9 w-full md:ml-0 md:w-[46%]',
                       isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10',
                     ].join(' ')}
-                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
-                    whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
                   >
-                    <div className="rounded-xl border border-edge bg-card p-5 hover:border-[#f97316]/30 transition-colors duration-300">
+                    <div className="rounded-xl border border-edge bg-card p-5 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300">
 
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
                         <div>
@@ -78,7 +65,7 @@ export default function Experience() {
                       </ul>
 
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               )
             })}

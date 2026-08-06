@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
 
 const LinkedInIcon = () => (
@@ -66,38 +63,25 @@ export default function About() {
     <section id="about" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <motion.h2
-          className="text-3xl font-bold text-fg text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
           Contact
-        </motion.h2>
+        </h2>
 
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: 'easeOut' as const }}
-          >
+          <div data-reveal="left">
             <p className="text-fg-muted text-base leading-relaxed mb-4">
               {contact.bio}
             </p>
             <p className="text-fg-subtle text-sm">
               {hero.credentials} · {hero.company}
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
+          <div
+            data-reveal="right"
+            style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
             className="grid grid-cols-2 gap-3"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, ease: 'easeOut' as const, delay: 0.1 }}
           >
             {links.map(({ href, label, sub, icon, color }) => {
               const url = typeof href === 'function' ? href(content) : href
@@ -125,7 +109,7 @@ export default function About() {
                 </a>
               )
             })}
-          </motion.div>
+          </div>
 
         </div>
       </div>

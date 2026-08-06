@@ -1,6 +1,3 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
 
 type Publication = {
@@ -40,32 +37,23 @@ export default function Publications() {
     <section id="publications" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <div data-reveal="up" className="text-center mb-16">
           <h2 className="text-3xl font-bold text-fg mb-3">Publications</h2>
           <p className="text-fg-subtle text-sm">
             4 peer-reviewed papers · IEEE · Biosensors &amp; Bioelectronics · AIP Publishing
           </p>
-        </motion.div>
+        </div>
 
         <div className="space-y-4">
           {pubs.map((pub, i) => {
             const color = typeColor[pub.type]
             const href = pub.url ?? `https://doi.org/${pub.doi}`
             return (
-              <motion.div
+              <div
                 key={i}
-                className="group flex gap-5 rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 transition-colors duration-300"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.08 }}
-                whileHover={{ y: -3, transition: { duration: 0.2, ease: 'easeOut' } }}
+                data-reveal="up"
+                style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
+                className="group flex gap-5 rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
               >
                 {/* Number badge */}
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#f97316]/10 border border-[#f97316]/20 flex items-center justify-center mt-0.5">
@@ -113,18 +101,16 @@ export default function Publications() {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>
 
         {/* Scholar link */}
-        <motion.div
+        <div
+          data-reveal
+          style={{ '--reveal-delay': '350ms' } as React.CSSProperties}
           className="text-center mt-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.35 }}
         >
           <a
             href="https://scholar.google.com/citations?user=YZKf2ngAAAAJ&hl=en"
@@ -134,7 +120,7 @@ export default function Publications() {
           >
             View on Google Scholar ↗
           </a>
-        </motion.div>
+        </div>
 
       </div>
     </section>

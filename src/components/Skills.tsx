@@ -1,26 +1,4 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import content from '../../data/content.json'
-
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: 'easeOut' as const, delay },
-  },
-})
-
-const fadeLeft = {
-  hidden: { opacity: 0, x: -24 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
-}
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 24 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: 'easeOut' as const } },
-}
 
 export default function Skills() {
   const { skills } = content
@@ -29,15 +7,9 @@ export default function Skills() {
     <section id="skills" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto space-y-16">
 
-        <motion.h2
-          className="text-3xl font-bold text-fg text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center">
           Skills
-        </motion.h2>
+        </h2>
 
         {/* Tier 1 — Skill categories with progress bars */}
         <div>
@@ -46,13 +18,11 @@ export default function Skills() {
           </p>
           <div className="grid gap-5 sm:grid-cols-3">
             {skills.categories.map((cat, i) => (
-              <motion.div
+              <div
                 key={cat.name}
+                data-reveal="up"
+                style={{ '--reveal-delay': `${i * 100}ms` } as React.CSSProperties}
                 className="rounded-xl border border-edge bg-card p-5 hover:border-[#f97316]/30 transition-colors duration-300"
-                variants={fadeUp(i * 0.1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-50px' }}
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-[#f97316] text-sm font-semibold tracking-wide">
@@ -66,12 +36,13 @@ export default function Skills() {
                 {/* Animated progress bar */}
                 {'level' in cat && (
                   <div className="h-1 bg-edge rounded-full mb-4 overflow-hidden">
-                    <motion.div
+                    <div
+                      data-reveal="bar"
+                      style={{
+                        width: `${cat.level}%`,
+                        '--reveal-delay': `${i * 100 + 200}ms`,
+                      } as React.CSSProperties}
                       className="h-full bg-[#f97316] rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${cat.level}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.1, ease: 'easeOut', delay: i * 0.1 + 0.2 }}
                     />
                   </div>
                 )}
@@ -86,18 +57,13 @@ export default function Skills() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Tier 2 — Strong skills */}
-        <motion.div
-          variants={fadeLeft}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-        >
+        <div data-reveal="left">
           <p className="text-fg-subtle text-xs uppercase tracking-widest mb-6 text-center">
             Proficient
           </p>
@@ -111,15 +77,10 @@ export default function Skills() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Tier 3 — Building toward */}
-        <motion.div
-          variants={fadeRight}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-        >
+        <div data-reveal="right">
           <p className="text-fg-subtle text-xs uppercase tracking-widest mb-6 text-center">
             Building Toward
           </p>
@@ -133,7 +94,7 @@ export default function Skills() {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

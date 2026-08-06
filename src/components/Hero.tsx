@@ -1,9 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import content from '../../data/content.json'
 
 const ROLES = [
   'Data Scientist & PhD Researcher',
@@ -11,17 +9,23 @@ const ROLES = [
   'Machine Learning Systems Engineer',
 ]
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 36 },
-  show: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: 'easeOut' as const, delay },
-  }),
+/** Stagger for the above-the-fold entrance animations (see globals.css). */
+const delay = (ms: number) => ({ '--enter-delay': `${ms}ms` }) as React.CSSProperties
+
+/** Only the fields Hero renders — passed in from the server page so the whole
+ *  of content.json stays out of the client bundle. */
+export type HeroProps = {
+  hero: {
+    profileImage: string
+    name: string
+    credentials: string
+    company: string
+    pitch: string
+  }
+  meta: { tagline: string }
 }
 
-export default function Hero() {
-  const { hero, meta } = content
+export default function Hero({ hero, meta }: HeroProps) {
   const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
@@ -50,19 +54,10 @@ export default function Hero() {
       <div className="relative max-w-5xl mx-auto w-full flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-16">
 
         {/* Photo */}
-        <motion.div
-          className="order-first md:order-last flex-shrink-0"
-          initial={{ opacity: 0, scale: 0.88 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.55, ease: 'easeOut', delay: 0.15 }}
-        >
+        <div className="order-first md:order-last flex-shrink-0 enter-pop" style={delay(150)}>
           <div className="relative">
             {/* Pulsing glow ring */}
-            <motion.div
-              className="absolute -inset-3 rounded-full bg-[#f97316]/20 blur-xl"
-              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.95, 1.05, 0.95] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-            />
+            <div className="absolute -inset-3 rounded-full bg-[#f97316]/20 blur-xl glow-pulse" />
             <div className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] rounded-full overflow-hidden ring-2 ring-[#f97316]/50">
               <Image
                 src={hero.profileImage}
@@ -74,82 +69,37 @@ export default function Hero() {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Text */}
         <div className="flex-1 flex flex-col items-center text-center md:items-start md:text-left">
 
-          <motion.p
-            className="text-[#f97316] text-sm font-medium tracking-wide mb-3"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0}
-          >
+          <p className="enter-up text-[#f97316] text-sm font-medium tracking-wide mb-3" style={delay(0)}>
             {meta.tagline}
-          </motion.p>
+          </p>
 
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold text-fg leading-tight mb-1"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.1}
-          >
+          <h1 className="enter-up text-4xl md:text-5xl font-bold text-fg leading-tight mb-1" style={delay(100)}>
             {hero.name}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className="text-[#f97316] text-sm font-medium mb-1"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.18}
-          >
+          <p className="enter-up text-[#f97316] text-sm font-medium mb-1" style={delay(180)}>
             {hero.credentials}
-          </motion.p>
+          </p>
 
-          {/* Typing/cycling role */}
-          <motion.div
-            className="h-7 mb-0.5 overflow-hidden"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.24}
-          >
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={roleIndex}
-                className="text-fg-muted text-base"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-              >
-                {ROLES[roleIndex]}
-              </motion.p>
-            </AnimatePresence>
-          </motion.div>
+          {/* Cycling role — `key` restarts the CSS fade on each swap */}
+          <div className="enter-up h-7 mb-0.5 overflow-hidden" style={delay(240)}>
+            <p key={roleIndex} className="fade-swap text-fg-muted text-base">
+              {ROLES[roleIndex]}
+            </p>
+          </div>
 
-          <motion.p
-            className="text-fg-subtle text-sm mb-8"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.3}
-          >
+          <p className="enter-up text-fg-subtle text-sm mb-8" style={delay(300)}>
             {hero.company}
-          </motion.p>
+          </p>
 
-          <motion.p
-            className="text-fg-muted text-base leading-relaxed max-w-prose"
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            custom={0.38}
-          >
+          <p className="enter-up text-fg-muted text-base leading-relaxed max-w-prose" style={delay(380)}>
             {hero.pitch}
-          </motion.p>
+          </p>
         </div>
       </div>
     </section>
