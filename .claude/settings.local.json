@@ -23,7 +23,13 @@
       "Bash(find ~/Desktop ~/Downloads -type f \\\\\\( -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.png\" -o -iname \"*.heic\" \\\\\\) -newermt \"2026-06-01\" 2>/dev/null | grep -vi node_modules | head -40)",
       "Read(//Users/nalo/Desktop/**)",
       "Bash(find ~/Desktop ~/Downloads ~/Pictures ~/Documents -type f \\\\\\( -iname \"*cvpr*\" -o -iname \"*IMG_*\" \\\\\\) 2>/dev/null | grep -viE \"node_modules|\\\\.next\" | head -30; echo \"=== recent in Downloads/Pictures ===\"; ls -lt ~/Downloads ~/Pictures 2>/dev/null | head -20)",
-      "Read(//Users/nalo/Downloads/**)"
+      "Read(//Users/nalo/Downloads/**)",
+      "Bash(rtk next *)",
+      "Bash(rtk lint *)",
+      "Bash(rtk git *)",
+      "Bash(perl -pi -e 's/unseen=\\\\{mounted && newsUnseen\\\\}/unseen={newsUnseen}/g' src/components/Navbar.tsx)",
+      "Bash(pkill -f \"next dev -p 3111\")",
+      "Bash(rtk git commit -q -m 'feat: make News the focal navbar tab with unseen dot and hover preview *)"
     ]
   }
 }

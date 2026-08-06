@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import content from '../../../data/content.json'
+import { typeConfig, formatDate, sortedMilestones } from '../../lib/milestones'
 
 // ── helpers ────────────────────────────────────────────────────────────────
 
@@ -41,20 +42,6 @@ function wordStyle(text: string, weight: number, tier: string): React.CSSPropert
     lineHeight: 1.2,
     cursor:     'default',
   }
-}
-
-const typeConfig: Record<string, { label: string; color: string; dot: string }> = {
-  award:       { label: 'Award',       color: '#f97316', dot: '#f97316' },
-  conference:  { label: 'Conference',  color: '#3b82f6', dot: '#3b82f6' },
-  publication: { label: 'Publication', color: '#22c55e', dot: '#22c55e' },
-  milestone:   { label: 'Milestone',   color: '#a855f7', dot: '#a855f7' },
-}
-
-function formatDate(ym: string): string {
-  const [year, month] = ym.split('-')
-  return new Date(Number(year), Number(month) - 1).toLocaleDateString('en-US', {
-    month: 'short', year: 'numeric',
-  })
 }
 
 type Paper = { title: string; authors: string; venue: string; url: string; added: string; myTake: string }
@@ -137,7 +124,7 @@ export default function PhDJourneyPage() {
           <div className="relative">
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/[0.06]" />
             <div className="space-y-10 pl-8">
-              {phd.milestones.map((m, i) => {
+              {sortedMilestones().map((m, i) => {
                 const cfg        = typeConfig[m.type] ?? typeConfig.milestone
                 const hasPhoto   = 'photo' in m && m.photo
                 const caption    = 'photoCaption'  in m ? (m as any).photoCaption  : ''

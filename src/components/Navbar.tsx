@@ -1,9 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { typeConfig, formatDate, latestMilestones } from '../lib/milestones'
 
 const NAV_LINKS = [
   { label: 'Home',        href: '#hero',       page: false, highlight: false },
@@ -18,6 +20,106 @@ const NAV_LINKS = [
 
 const anchorClass    = 'text-fg-subtle hover:text-fg text-sm px-3 py-1.5 rounded-lg hover:bg-overlay transition-all duration-200'
 const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-[#f97316]/15 border border-[#f97316]/60 dark:border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316]/25 dark:hover:bg-[#f97316]/20 hover:border-[#f97316]/80 dark:hover:border-[#f97316]/55 transition-all duration-200'
+
+const NEWS_SEEN_KEY = 'nl:newsSeen'
+const PREVIEW       = latestMilestones(3)
+const LATEST_DATE   = PREVIEW[0]?.date ?? ''
+
+const readSeen = () => localStorage.getItem(NEWS_SEEN_KEY)
+
+const subscribeSeen = (onChange: () => void) => {
+  window.addEventListener('storage', onChange)
+  return () => window.removeEventListener('storage', onChange)
+}
+
+function markNewsSeen() {
+  if (localStorage.getItem(NEWS_SEEN_KEY) === LATEST_DATE) return
+  localStorage.setItem(NEWS_SEEN_KEY, LATEST_DATE)
+  window.dispatchEvent(new StorageEvent('storage'))  // same-tab: 'storage' only fires cross-tab
+}
+
+/** News link: pulsing dot while there's an unseen milestone, plus a hover/focus
+ *  preview of the newest entries (desktop only — touch has no hover). */
+function NewsPill({ unseen, withCard }: { unseen: boolean; withCard: boolean }) {
+  const [open, setOpen] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const reduceMotion = useReducedMotion()
+
+  const schedule = (next: boolean, delay: number) => {
+    if (!withCard) return
+    if (timer.current) clearTimeout(timer.current)
+    timer.current = setTimeout(() => setOpen(next), delay)
+  }
+
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current) }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => schedule(true, 120)}
+      onMouseLeave={() => schedule(false, 200)}
+      onFocus={() => schedule(true, 0)}
+      onBlur={() => schedule(false, 200)}
+    >
+      <Link
+        href="/phd"
+        className={`${highlightClass} inline-flex items-center gap-2`}
+        aria-label={unseen ? 'News — new updates' : undefined}
+      >
+        {unseen && (
+          <span className="relative flex w-2 h-2" aria-hidden="true">
+            {!reduceMotion && (
+              <span className="absolute inline-flex w-full h-full rounded-full bg-[#f97316] opacity-75 animate-ping" />
+            )}
+            <span className="relative inline-flex w-2 h-2 rounded-full bg-[#f97316]" />
+          </span>
+        )}
+        News
+      </Link>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="hidden md:block absolute right-0 top-full mt-2 w-72 rounded-xl border border-edge bg-surface/95 backdrop-blur-md p-3 shadow-lg"
+            initial={reduceMotion ? false : { opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: 'easeOut' as const }}
+          >
+            <p className="text-fg-subtle text-[10px] uppercase tracking-widest mb-2">Latest</p>
+            <ul className="space-y-2">
+              {PREVIEW.map((m) => (
+                <li key={m.date + m.title} className="flex items-start gap-2">
+                  <span
+                    className="mt-1.5 w-2 h-2 rounded-full shrink-0"
+                    style={{ background: (typeConfig[m.type] ?? typeConfig.milestone).dot }}
+                  />
+                  <span className="min-w-0">
+                    <span className="block text-fg text-xs font-medium leading-snug">{m.title}</span>
+                    <span className="block text-fg-subtle text-[11px]">{formatDate(m.date)}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/phd"
+              className="block mt-3 pt-2 border-t border-edge-subtle text-[#f97316] text-xs font-medium hover:text-[#fb923c] transition-colors"
+            >
+              View all news →
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 function SunIcon() {
   return (
@@ -43,6 +145,15 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
   const forceBg = pathname === '/phd' || pathname === '/login'
+
+  // localStorage is client-only, so read it as an external store: SSR and the
+  // hydration render both see "seen", then React re-reads on the client.
+  const seenDate = useSyncExternalStore(subscribeSeen, readSeen, () => LATEST_DATE)
+  const newsUnseen = seenDate !== LATEST_DATE
+
+  useEffect(() => {
+    if (pathname === '/phd') markNewsSeen()
+  }, [pathname])
 
   useEffect(() => {
     setMounted(true)
@@ -97,11 +208,9 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ label, href, page, highlight }) =>
+          {NAV_LINKS.map(({ label, href, page }) =>
             page ? (
-              <Link key={href} href={href} className={highlight ? highlightClass : anchorClass}>
-                {label}
-              </Link>
+              <NewsPill key={href} unseen={newsUnseen} withCard />
             ) : (
               <a
                 key={href}
@@ -115,7 +224,7 @@ export default function Navbar() {
           )}
           <Link
             href="/login"
-            className="ml-2 text-sm font-medium px-4 py-1.5 rounded-lg bg-[#f97316] hover:bg-[#fb923c] text-white transition-colors duration-200"
+            className="ml-2 text-sm font-medium px-4 py-1.5 rounded-lg border border-edge text-fg-muted hover:text-fg hover:bg-overlay transition-all duration-200"
           >
             Login
           </Link>
@@ -123,9 +232,7 @@ export default function Navbar() {
 
         {/* Mobile: News + hamburger */}
         <div className="flex md:hidden items-center gap-2">
-          <Link href="/phd" className={highlightClass}>
-            News
-          </Link>
+          <NewsPill unseen={newsUnseen} withCard={false} />
           <button
             onClick={() => setMenuOpen((o) => !o)}
             className="text-fg-subtle hover:text-fg p-1.5 transition-colors"
