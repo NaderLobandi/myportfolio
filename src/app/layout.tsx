@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import PageViewTracker from "@/components/PageViewTracker";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import ChatAssistant from "@/components/ChatAssistant";
+import ChatAssistant from "@/components/ChatAssistantLazy";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

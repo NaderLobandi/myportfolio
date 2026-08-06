@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import content from '../../../data/content.json'
@@ -56,6 +56,22 @@ export default function PhDJourneyPage() {
 
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
+  // 34 nodes, each with a hashed inline transform — don't rebuild them every
+  // time the lightbox opens or closes.
+  const words = useMemo(() => phd.researchAreas.map((area) => (
+    <motion.span
+      key={area.text}
+      style={wordStyle(area.text, area.weight, area.tier)}
+      variants={{
+        hidden: { opacity: 0, scale: 0.5 },
+        show:   { opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeOut' as const } },
+      }}
+      whileHover={{ scale: 1.18, transition: { duration: 0.18 } }}
+    >
+      {area.text}
+    </motion.span>
+  )), [phd.researchAreas])
+
   useEffect(() => {
     if (!lightbox) return
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null) }
@@ -83,22 +99,10 @@ export default function PhDJourneyPage() {
             animate="show"
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.035 } },
+              show: { transition: { staggerChildren: 0.012 } },
             }}
           >
-            {phd.researchAreas.map((area) => (
-              <motion.span
-                key={area.text}
-                style={wordStyle(area.text, area.weight, area.tier)}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.5 },
-                  show:   { opacity: 1, scale: 1, transition: { duration: 0.38, ease: 'easeOut' as const } },
-                }}
-                whileHover={{ scale: 1.18, transition: { duration: 0.18 } }}
-              >
-                {area.text}
-              </motion.span>
-            ))}
+            {words}
           </motion.div>
 
           {/* legend */}
@@ -398,7 +402,6 @@ export default function PhDJourneyPage() {
                   fill
                   className="object-contain rounded-lg"
                   sizes="(max-width: 768px) 100vw, 1200px"
-                  quality={90}
                   priority
                 />
               </div>
