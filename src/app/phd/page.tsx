@@ -78,7 +78,7 @@ export default function PhDJourneyPage() {
 
         {/* ── Word cloud ──────────────────────────────────────────────── */}
         <section>
-          <h1 className="enter-up text-3xl font-bold text-[#f97316] text-center mb-10">
+          <h1 className="enter-up text-3xl font-bold text-accent text-center mb-10">
             Welcome to my PhD Journey!
           </h1>
           <div className="flex flex-wrap justify-center items-center py-4">
@@ -155,7 +155,7 @@ export default function PhDJourneyPage() {
                             href={advisorUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ml-2 text-[#f97316]/60 hover:text-[#f97316] text-sm font-normal transition-colors"
+                            className="ml-2 text-accent/60 hover:text-accent text-sm font-normal transition-colors"
                           >
                             (Dr. Mohammad Mahoor ↗)
                           </a>
@@ -173,7 +173,7 @@ export default function PhDJourneyPage() {
                           href={entryLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-[#f97316]/70 hover:text-[#f97316] transition-colors"
+                          className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-accent/70 hover:text-accent transition-colors"
                         >
                           View project ↗
                         </a>
@@ -188,7 +188,7 @@ export default function PhDJourneyPage() {
                             <button
                               key={src}
                               onClick={() => setLightbox({ src, alt: cap || m.title })}
-                              className="group relative rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f97316]/50"
+                              className="group relative rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                               aria-label="View full image"
                             >
                               <div className={`relative w-full h-64 ${cover ? '' : 'bg-white/[0.03]'}`}>
@@ -245,7 +245,7 @@ export default function PhDJourneyPage() {
                     <h3 className="text-[#ededed] font-semibold text-base leading-snug flex-1">
                       {paper.url ? (
                         <a href={paper.url} target="_blank" rel="noopener noreferrer"
-                           className="hover:text-[#f97316] transition-colors">
+                           className="hover:text-accent transition-colors">
                           {paper.title} ↗
                         </a>
                       ) : paper.title}
@@ -260,8 +260,8 @@ export default function PhDJourneyPage() {
                     </p>
                   )}
                   {paper.myTake && (
-                    <div className="border-l-2 border-[#f97316]/35 pl-4 mt-3">
-                      <p className="text-xs text-[#f97316]/55 uppercase tracking-wider mb-1.5">My Take</p>
+                    <div className="border-l-2 border-accent/35 pl-4 mt-3">
+                      <p className="text-xs text-accent/55 uppercase tracking-wider mb-1.5">My Take</p>
                       <p className="text-[#ededed]/60 text-sm leading-relaxed italic">{paper.myTake}</p>
                     </div>
                   )}
@@ -316,7 +316,7 @@ export default function PhDJourneyPage() {
                               href={paper.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#ededed]/65 hover:text-[#f97316] transition-colors"
+                              className="text-[#ededed]/65 hover:text-accent transition-colors"
                             >
                               {paper.title} ↗
                             </a>

@@ -12,7 +12,7 @@ export default function Home() {
   const { hero, meta } = content
 
   return (
-    <main className="bg-surface">
+    <main id="main" className="bg-surface">
       <SectionTracker />
       <Hero hero={hero} meta={{ tagline: meta.tagline }} />
       <Experience />

@@ -1,4 +1,5 @@
 import content from '../../data/content.json'
+import SectionHeading from './SectionHeading'
 
 type Publication = {
   title: string
@@ -19,7 +20,7 @@ function Authors({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         part === 'N. Lobandi' ? (
-          <span key={i} className="text-[#f97316] font-semibold">
+          <span key={i} className="text-accent font-semibold">
             {part}
           </span>
         ) : (
@@ -37,27 +38,26 @@ export default function Publications() {
     <section id="publications" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <div data-reveal="up" className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-fg mb-3">Publications</h2>
-          <p className="text-fg-subtle text-sm">
-            4 peer-reviewed papers · IEEE · Biosensors &amp; Bioelectronics · AIP Publishing
-          </p>
-        </div>
+        <SectionHeading
+          eyebrow="Peer reviewed"
+          title="Publications"
+          note="4 papers · IEEE · Biosensors & Bioelectronics · AIP Publishing"
+        />
 
         <div className="space-y-4">
           {pubs.map((pub, i) => {
             const color = typeColor[pub.type]
             const href = pub.url ?? `https://doi.org/${pub.doi}`
             return (
-              <div
+              <article
                 key={i}
                 data-reveal="up"
                 style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
-                className="group flex gap-5 rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
+                className="card group flex gap-5 rounded-2xl p-6"
               >
                 {/* Number badge */}
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#f97316]/10 border border-[#f97316]/20 flex items-center justify-center mt-0.5">
-                  <span className="text-[#f97316] text-xs font-bold">{pubs.length - i}</span>
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mt-0.5">
+                  <span className="text-accent text-xs font-bold">{pubs.length - i}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
@@ -77,10 +77,10 @@ export default function Publications() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-fg font-semibold text-base leading-snug hover:text-[#f97316] transition-colors duration-200 block mb-2"
+                    className="text-fg font-semibold text-base leading-snug hover:text-accent transition-colors duration-200 block mb-2"
                   >
                     {pub.title}
-                    <span className="ml-1 text-[#f97316]/60 group-hover:text-[#f97316] transition-colors">↗</span>
+                    <span className="ml-1 text-accent/60 group-hover:text-accent transition-colors">↗</span>
                   </a>
 
                   {/* Authors */}
@@ -95,13 +95,13 @@ export default function Publications() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-[10px] text-fg-faint hover:text-[#f97316] transition-colors"
+                      className="font-mono text-[10px] text-fg-faint hover:text-accent transition-colors"
                     >
                       doi:{pub.doi}
                     </a>
                   </div>
                 </div>
-              </div>
+              </article>
             )
           })}
         </div>
@@ -116,7 +116,7 @@ export default function Publications() {
             href="https://scholar.google.com/citations?user=YZKf2ngAAAAJ&hl=en"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-fg-subtle hover:text-[#f97316] transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-fg-subtle hover:text-accent transition-colors"
           >
             View on Google Scholar ↗
           </a>

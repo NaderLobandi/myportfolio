@@ -1,4 +1,5 @@
 import content from '../../data/content.json'
+import SectionHeading from './SectionHeading'
 
 function formatYear(ym: string): string {
   const [year, month] = ym.split('-')
@@ -15,9 +16,7 @@ export default function Education() {
     <section id="education" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
-          Education
-        </h2>
+        <SectionHeading eyebrow="Academic background" title="Education" />
 
         <div className="space-y-5">
           {education.map((entry, i) => (
@@ -25,14 +24,14 @@ export default function Education() {
               key={entry.institution}
               data-reveal="up"
               style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
-              className="rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
+              className="card rounded-2xl p-6"
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div>
                   <h3 className="text-fg font-semibold text-base leading-snug">
                     {entry.degree}
                   </h3>
-                  <p className="text-[#f97316] text-sm font-medium mt-0.5">
+                  <p className="text-accent text-sm font-medium mt-0.5">
                     {entry.institution}
                   </p>
                 </div>

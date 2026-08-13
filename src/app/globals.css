@@ -2,6 +2,11 @@
 
 /* Light theme (default) */
 :root {
+  --accent: #f97316;
+  --accent-hi: #fb923c;
+  /* Shadows carry the accent hue instead of flat black */
+  --shadow-lift: 0 12px 32px -12px rgba(249, 115, 22, 0.28);
+  --ease-out-soft: cubic-bezier(0.32, 0.72, 0, 1);
   --surface: #f5f5f5;
   --card: #ffffff;
   --fg: #18181b;
@@ -17,6 +22,7 @@
 
 /* Dark theme */
 .dark {
+  --shadow-lift: 0 12px 32px -12px rgba(249, 115, 22, 0.35);
   --surface: #0a0a0a;
   --card: #111111;
   --fg: #ededed;
@@ -33,6 +39,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
+  --color-accent: var(--accent);
+  --color-accent-hi: var(--accent-hi);
   --color-surface: var(--surface);
   --color-card: var(--card);
   --color-fg: var(--fg);
@@ -48,11 +56,71 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--surface);
   color: var(--fg);
   font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
 }
+
+/* Film grain — fixed and non-interactive so it never repaints on scroll */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1, h2, h3 { text-wrap: balance }
+p { text-wrap: pretty }
+
+/* Display headings: tighter tracking the larger they get */
+.display { letter-spacing: -0.03em; line-height: 1.02 }
+
+/* Shared card surface — hover lift, accent-tinted shadow, press feedback */
+.card {
+  border: 1px solid var(--edge);
+  background: var(--card);
+  transition:
+    transform 0.35s var(--ease-out-soft),
+    border-color 0.35s var(--ease-out-soft),
+    box-shadow 0.35s var(--ease-out-soft);
+}
+.card:hover {
+  border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+.card:active { transform: translateY(-1px) scale(0.995) }
+
+/* Skip link — visible only when focused */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform 0.25s var(--ease-out-soft);
+}
+.skip-link:focus-visible { transform: none }
 
 /* ── Scroll reveals ─────────────────────────────────────────────────────────
    One shared IntersectionObserver (RevealObserver) adds .is-visible.
@@ -123,6 +191,8 @@ body {
 .lightbox-zoom { animation: lightbox-zoom 0.2s ease-out both }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  .card:hover, .card:active { transform: none }
   [data-reveal] { opacity: 1 }
   [data-reveal='bar'] { transform: none }
   [data-reveal].is-visible,

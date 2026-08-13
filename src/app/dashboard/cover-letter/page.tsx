@@ -91,7 +91,7 @@ export default function CoverLetterPage() {
               required
               disabled={loading}
               maxLength={5000}
-              className="w-full bg-[#111] text-[#ededed] placeholder-[#ededed]/20 border border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#f97316]/50 transition-colors resize-y disabled:opacity-50"
+              className="w-full bg-[#111] text-[#ededed] placeholder-[#ededed]/20 border border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-accent/50 transition-colors resize-y disabled:opacity-50"
             />
             <p className="text-[#ededed]/20 text-xs mt-1">{jobDescription.length}/5000</p>
           </div>
@@ -105,7 +105,7 @@ export default function CoverLetterPage() {
                   key={t.value}
                   className={`flex-1 flex items-start gap-3 cursor-pointer rounded-xl border px-4 py-3 transition-colors ${
                     tone === t.value
-                      ? 'border-[#f97316]/60 bg-[#f97316]/5'
+                      ? 'border-accent/60 bg-accent/5'
                       : 'border-white/[0.08] bg-[#111] hover:border-white/20'
                   }`}
                 >
@@ -116,10 +116,10 @@ export default function CoverLetterPage() {
                     checked={tone === t.value}
                     onChange={() => setTone(t.value)}
                     disabled={loading}
-                    className="mt-0.5 accent-[#f97316]"
+                    className="mt-0.5 accent-accent"
                   />
                   <span>
-                    <span className={`block text-sm font-medium ${tone === t.value ? 'text-[#f97316]' : 'text-[#ededed]'}`}>
+                    <span className={`block text-sm font-medium ${tone === t.value ? 'text-accent' : 'text-[#ededed]'}`}>
                       {t.label}
                     </span>
                     <span className="block text-xs text-[#ededed]/40 mt-0.5">{t.description}</span>
@@ -134,7 +134,7 @@ export default function CoverLetterPage() {
           <button
             type="submit"
             disabled={loading || jobDescription.trim().length === 0}
-            className="bg-[#f97316] hover:bg-[#fb923c] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="bg-accent hover:bg-accent-hi text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {loading ? 'Generating…' : 'Generate Cover Letter'}
           </button>
@@ -151,7 +151,7 @@ export default function CoverLetterPage() {
                 {result.keyPoints.map((point, i) => (
                   <span
                     key={i}
-                    className="bg-[#f97316]/10 text-[#f97316]/80 border border-[#f97316]/20 text-xs font-medium px-3 py-1.5 rounded-full"
+                    className="bg-accent/10 text-accent/80 border border-accent/20 text-xs font-medium px-3 py-1.5 rounded-full"
                   >
                     {point}
                   </span>
@@ -165,7 +165,7 @@ export default function CoverLetterPage() {
                 <p className="text-[#ededed] text-sm font-semibold">Cover Letter</p>
                 <button
                   onClick={handleCopy}
-                  className="text-xs font-medium px-4 py-2 rounded-lg border border-white/[0.08] text-[#ededed]/60 hover:text-[#ededed] hover:border-[#f97316]/40 transition-colors"
+                  className="text-xs font-medium px-4 py-2 rounded-lg border border-white/[0.08] text-[#ededed]/60 hover:text-[#ededed] hover:border-accent/40 transition-colors"
                 >
                   {copied ? 'Copied!' : 'Copy'}
                 </button>

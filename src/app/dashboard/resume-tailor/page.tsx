@@ -105,7 +105,7 @@ export default function ResumeTailorPage() {
             required
             disabled={loading}
             maxLength={5000}
-            className="w-full bg-[#111] text-[#ededed] placeholder-[#ededed]/20 border border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-[#f97316]/50 transition-colors resize-y disabled:opacity-50"
+            className="w-full bg-[#111] text-[#ededed] placeholder-[#ededed]/20 border border-white/[0.08] rounded-xl px-4 py-3 text-sm outline-none focus:border-accent/50 transition-colors resize-y disabled:opacity-50"
           />
           <div className="flex items-center justify-between mt-1 mb-4">
             <span className="text-[#ededed]/20 text-xs">{jobDescription.length}/5000</span>
@@ -116,7 +116,7 @@ export default function ResumeTailorPage() {
           <button
             type="submit"
             disabled={loading || jobDescription.trim().length === 0}
-            className="bg-[#f97316] hover:bg-[#fb923c] text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="bg-accent hover:bg-accent-hi text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {loading ? 'Tailoring…' : 'Tailor Resume'}
           </button>
@@ -128,7 +128,7 @@ export default function ResumeTailorPage() {
               <h2 className="text-[#ededed] text-xl font-semibold">Results</h2>
               <button
                 onClick={handleCopy}
-                className="text-xs font-medium px-4 py-2 rounded-lg border border-white/[0.08] text-[#ededed]/60 hover:text-[#ededed] hover:border-[#f97316]/40 transition-colors"
+                className="text-xs font-medium px-4 py-2 rounded-lg border border-white/[0.08] text-[#ededed]/60 hover:text-[#ededed] hover:border-accent/40 transition-colors"
               >
                 {copied ? 'Copied!' : 'Copy tailored version'}
               </button>
@@ -174,13 +174,13 @@ export default function ResumeTailorPage() {
 
                       {/* After */}
                       <div className="px-6 py-5">
-                        <p className="text-[#f97316]/70 text-xs font-medium uppercase tracking-wider mb-3">
+                        <p className="text-accent/70 text-xs font-medium uppercase tracking-wider mb-3">
                           Tailored
                         </p>
                         <ul className="space-y-2">
                           {entry.bullets.map((b, i) => (
                             <li key={i} className="text-[#ededed]/80 text-sm leading-relaxed flex gap-2">
-                              <span className="mt-1.5 w-1 h-1 rounded-full bg-[#f97316]/50 flex-shrink-0" />
+                              <span className="mt-1.5 w-1 h-1 rounded-full bg-accent/50 flex-shrink-0" />
                               {b}
                             </li>
                           ))}

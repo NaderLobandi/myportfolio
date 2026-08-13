@@ -1,4 +1,5 @@
 import content from '../../data/content.json'
+import SectionHeading from './SectionHeading'
 
 export default function Projects() {
   const { projects } = content
@@ -7,9 +8,7 @@ export default function Projects() {
     <section id="projects" className="bg-surface py-24 px-6 scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
-          Projects
-        </h2>
+        <SectionHeading eyebrow="Selected work" title="Projects" />
 
         <div className="grid gap-5 sm:grid-cols-2">
           {projects.map((project, i) => (
@@ -17,11 +16,11 @@ export default function Projects() {
               key={project.name}
               data-reveal="up"
               style={{ '--reveal-delay': `${(i % 2) * 100}ms` } as React.CSSProperties}
-              className="flex flex-col rounded-xl border border-edge bg-card p-6 hover:border-[#f97316]/30 hover:-translate-y-[3px] transition duration-300"
+              className="card flex flex-col rounded-2xl p-6"
             >
               <div className="mb-4">
                 {'award' in project && project.award && (
-                  <span className="inline-block text-xs font-medium text-[#f97316] bg-[#f97316]/10 border border-[#f97316]/20 rounded-full px-3 py-1 mb-3">
+                  <span className="inline-block text-xs font-medium text-accent bg-accent/10 border border-accent/20 rounded-full px-3 py-1 mb-3">
                     🏆 {project.award}
                   </span>
                 )}
@@ -38,7 +37,7 @@ export default function Projects() {
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full bg-[#f97316]/10 px-2.5 py-1 text-xs text-[#f97316]/80 font-medium"
+                    className="rounded-full bg-accent/10 px-2.5 py-1 text-xs text-accent/80 font-medium"
                   >
                     {tech}
                   </span>

@@ -59,9 +59,9 @@ export default async function AnalyticsPage() {
             <ol className="text-left text-[#ededed]/60 text-sm space-y-2 max-w-md mx-auto">
               <li>1. Go to <strong className="text-[#ededed]/80">vercel.com → your project → Storage</strong></li>
               <li>2. Click <strong className="text-[#ededed]/80">Create Database → KV</strong></li>
-              <li>3. Name it anything (e.g. <code className="text-[#f97316]">portfolio-analytics</code>)</li>
+              <li>3. Name it anything (e.g. <code className="text-accent">portfolio-analytics</code>)</li>
               <li>4. Click <strong className="text-[#ededed]/80">Connect Project</strong> — env vars auto-populate</li>
-              <li>5. Redeploy from your terminal with <code className="text-[#f97316]">vercel --prod</code></li>
+              <li>5. Redeploy from your terminal with <code className="text-accent">vercel --prod</code></li>
             </ol>
           </div>
         </div>

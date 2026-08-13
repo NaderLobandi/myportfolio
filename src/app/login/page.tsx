@@ -61,7 +61,7 @@ export default function LoginPage() {
                 required
                 autoFocus
                 disabled={loading}
-                className="w-full bg-surface text-fg placeholder-fg-faint border border-edge rounded-xl px-4 py-3 text-sm outline-none focus:border-[#f97316]/50 transition-colors disabled:opacity-50"
+                className="w-full bg-surface text-fg placeholder-fg-faint border border-edge rounded-xl px-4 py-3 text-sm outline-none focus:border-accent/50 transition-colors disabled:opacity-50"
               />
             </div>
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading || password.length === 0}
-              className="w-full bg-[#f97316] hover:bg-[#fb923c] text-white font-semibold text-sm py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full bg-accent hover:bg-accent-hi text-white font-semibold text-sm py-3 rounded-xl transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {loading ? 'Signing in…' : 'Sign In'}
             </button>

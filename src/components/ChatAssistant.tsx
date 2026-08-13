@@ -100,7 +100,7 @@ export default function ChatAssistant() {
           })
         }}
         aria-label={open ? 'Close chat' : 'Open chat'}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full overflow-hidden shadow-xl ring-2 ring-[#f97316]/50 hover:ring-[#f97316] hover:scale-105 transition-all duration-200"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full overflow-hidden shadow-xl ring-2 ring-accent/50 hover:ring-accent hover:scale-105 transition-all duration-200"
       >
         <Image
           src={AVATAR_SRC}
@@ -121,7 +121,7 @@ export default function ChatAssistant() {
           {/* Header */}
           <div className="flex items-center justify-between gap-3 px-4 py-3 bg-[#efefef] dark:bg-[#181818] border-b border-edge flex-shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-[#f97316]/50 flex-shrink-0">
+              <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-accent/50 flex-shrink-0">
                 <Image
                   src={AVATAR_SRC}
                   alt="Nader"
@@ -132,7 +132,7 @@ export default function ChatAssistant() {
               </div>
               <div>
                 <p className="text-fg text-sm font-semibold leading-tight">
-                  Nader&apos;s Digital Twin <span className="text-[#f97316] text-[10px] font-mono">AI</span>
+                  Nader&apos;s Digital Twin <span className="text-accent text-[10px] font-mono">AI</span>
                 </p>
                 <p className="text-fg-subtle text-[10px]">Ask about Nader</p>
               </div>
@@ -162,7 +162,7 @@ export default function ChatAssistant() {
                 <div
                   className={`max-w-[82%] text-sm leading-relaxed px-3.5 py-2.5 rounded-2xl ${
                     msg.role === 'user'
-                      ? 'bg-[#f97316] text-white rounded-tr-sm'
+                      ? 'bg-accent text-white rounded-tr-sm'
                       : 'bg-[#ebebeb] dark:bg-[#1e1e1e] text-fg-muted rounded-tl-sm'
                   }`}
                 >
@@ -175,7 +175,7 @@ export default function ChatAssistant() {
                         ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 mt-1">{children}</ul>,
                         ol: ({ children }) => <ol className="list-decimal list-inside space-y-0.5 mt-1">{children}</ol>,
                         li: ({ children }) => <li className="text-sm">{children}</li>,
-                        code: ({ children }) => <code className="bg-black/10 dark:bg-black/30 rounded px-1 py-0.5 text-xs font-mono text-[#f97316]">{children}</code>,
+                        code: ({ children }) => <code className="bg-black/10 dark:bg-black/30 rounded px-1 py-0.5 text-xs font-mono text-accent">{children}</code>,
                       }}
                     >
                       {msg.content}
@@ -224,11 +224,11 @@ export default function ChatAssistant() {
                   placeholder="Type a message…"
                   rows={1}
                   disabled={loading}
-                  className="w-full resize-none bg-surface text-fg text-sm placeholder-fg-faint rounded-xl px-3.5 pt-2.5 pb-6 border border-edge outline-none focus:border-[#f97316]/40 transition-colors disabled:opacity-50 overflow-hidden"
+                  className="w-full resize-none bg-surface text-fg text-sm placeholder-fg-faint rounded-xl px-3.5 pt-2.5 pb-6 border border-edge outline-none focus:border-accent/40 transition-colors disabled:opacity-50 overflow-hidden"
                 />
                 <span
                   className={`absolute bottom-2 right-3 text-[10px] pointer-events-none transition-colors ${
-                    input.length > 450 ? 'text-[#f97316]' : 'text-fg-faint'
+                    input.length > 450 ? 'text-accent' : 'text-fg-faint'
                   }`}
                 >
                   {input.length}/500
@@ -240,7 +240,7 @@ export default function ChatAssistant() {
                 onClick={sendMessage}
                 disabled={loading || input.trim().length === 0}
                 aria-label="Send message"
-                className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#f97316] text-white flex items-center justify-center hover:bg-[#fb923c] active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-150"
+                className="flex-shrink-0 w-9 h-9 rounded-xl bg-accent text-white flex items-center justify-center hover:bg-accent-hi active:scale-95 disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-150"
               >
                 <svg
                   width="15"

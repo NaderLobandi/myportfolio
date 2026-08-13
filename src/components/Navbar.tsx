@@ -18,7 +18,7 @@ const NAV_LINKS = [
 ]
 
 const anchorClass    = 'text-fg-subtle hover:text-fg text-sm px-3 py-1.5 rounded-lg hover:bg-overlay transition-all duration-200'
-const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-[#f97316]/15 border border-[#f97316]/60 dark:border-[#f97316]/30 text-[#f97316] hover:bg-[#f97316]/25 dark:hover:bg-[#f97316]/20 hover:border-[#f97316]/80 dark:hover:border-[#f97316]/55 transition-all duration-200'
+const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/60 dark:border-accent/30 text-accent hover:bg-accent/25 dark:hover:bg-accent/20 hover:border-accent/80 dark:hover:border-accent/55 transition-all duration-200'
 
 const NEWS_SEEN_KEY = 'nl:newsSeen'
 
@@ -87,8 +87,8 @@ function NewsPill({
       >
         {unseen && (
           <span className="relative flex w-2 h-2" aria-hidden="true">
-            <span className="absolute inline-flex w-full h-full rounded-full bg-[#f97316] opacity-75 motion-safe:animate-ping" />
-            <span className="relative inline-flex w-2 h-2 rounded-full bg-[#f97316]" />
+            <span className="absolute inline-flex w-full h-full rounded-full bg-accent opacity-75 motion-safe:animate-ping" />
+            <span className="relative inline-flex w-2 h-2 rounded-full bg-accent" />
           </span>
         )}
         News
@@ -118,7 +118,7 @@ function NewsPill({
             </ul>
             <Link
               href="/phd"
-              className="block mt-3 pt-2 border-t border-edge-subtle text-[#f97316] text-xs font-medium hover:text-[#fb923c] transition-colors"
+              className="block mt-3 pt-2 border-t border-edge-subtle text-accent text-xs font-medium hover:text-accent-hi transition-colors"
               onClick={close}
             >
               View all news →
@@ -200,7 +200,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="text-fg font-semibold text-sm tracking-wide hover:text-[#f97316] transition-colors"
+            className="text-fg font-semibold text-sm tracking-wide hover:text-accent transition-colors"
           >
             NL
           </a>
@@ -270,7 +270,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
                 href={href}
                 onClick={() => setMenuOpen(false)}
                 className={`block text-sm py-2.5 border-b border-edge-subtle last:border-0 transition-colors ${
-                  highlight ? 'text-[#f97316] font-semibold' : 'text-fg-muted hover:text-fg'
+                  highlight ? 'text-accent font-semibold' : 'text-fg-muted hover:text-fg'
                 }`}
               >
                 {label}

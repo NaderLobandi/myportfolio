@@ -233,6 +233,9 @@ export default function RootLayout({
           />
           {/* Read here, in a server component, so content.json never reaches
               the browser bundle just for three headlines. */}
+          <a href="#main" className="skip-link">
+            Skip to content
+          </a>
           <Navbar previews={latestMilestones(3)} />
           {children}
           <RevealObserver />

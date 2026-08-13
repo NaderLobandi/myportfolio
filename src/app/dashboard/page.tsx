@@ -50,9 +50,9 @@ export default function DashboardPage() {
             <Link
               key={tool.href}
               href={tool.href}
-              className="group flex flex-col gap-4 rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-[#f97316]/30 hover:bg-[#f97316]/[0.03] transition-all duration-300"
+              className="group flex flex-col gap-4 rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-accent/30 hover:bg-accent/[0.03] transition-all duration-300"
             >
-              <span className="text-[#f97316] group-hover:scale-110 transition-transform duration-300 w-fit">
+              <span className="text-accent group-hover:scale-110 transition-transform duration-300 w-fit">
                 {tool.icon}
               </span>
               <div>

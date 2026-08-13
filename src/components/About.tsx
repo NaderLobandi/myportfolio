@@ -1,4 +1,5 @@
 import content from '../../data/content.json'
+import SectionHeading from './SectionHeading'
 
 const LinkedInIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -63,9 +64,7 @@ export default function About() {
     <section id="about" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
       <div className="max-w-5xl mx-auto">
 
-        <h2 data-reveal="up" className="text-3xl font-bold text-fg text-center mb-16">
-          Contact
-        </h2>
+        <SectionHeading eyebrow="Get in touch" title="Contact" />
 
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
@@ -94,7 +93,7 @@ export default function About() {
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
                   style={{ '--link-color': color } as React.CSSProperties}
-                  className="group flex flex-col gap-2 rounded-xl border border-edge bg-card px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 transition-all duration-300"
+                  className="group flex flex-col gap-2 rounded-2xl border border-edge bg-card px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 hover:-translate-y-[3px] active:translate-y-0 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 >
                   <span
                     style={{ color }}
