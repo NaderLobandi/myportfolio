@@ -29,7 +29,11 @@
       "Bash(rtk git *)",
       "Bash(perl -pi -e 's/unseen=\\\\{mounted && newsUnseen\\\\}/unseen={newsUnseen}/g' src/components/Navbar.tsx)",
       "Bash(pkill -f \"next dev -p 3111\")",
-      "Bash(rtk git commit -q -m 'feat: make News the focal navbar tab with unseen dot and hover preview *)"
+      "Bash(rtk git commit -q -m 'feat: make News the focal navbar tab with unseen dot and hover preview *)",
+      "Bash(rtk ls *)",
+      "Bash(rtk npx *)",
+      "Bash(rtk wc *)",
+      "Bash(rtk read *)"
     ]
   }
 }
