@@ -20,6 +20,13 @@ const GitHubIcon = () => (
   </svg>
 )
 
+const CVIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="w-5 h-5">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <path d="M14 2v6h6M8 13h8M8 17h5" />
+  </svg>
+)
+
 const ScholarIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
     <path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" />
@@ -55,6 +62,14 @@ const links = [
     icon: <MailIcon />,
     color: '#f97316',
   },
+  {
+    href: (c: typeof content) => c.hero.contact.cv,
+    label: 'Curriculum Vitae',
+    sub: 'Download the latest CV (PDF)',
+    icon: <CVIcon />,
+    color: '#10b981',
+    wide: true,
+  },
 ]
 
 export default function About() {
@@ -82,7 +97,7 @@ export default function About() {
             style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
             className="grid grid-cols-2 gap-3"
           >
-            {links.map(({ href, label, sub, icon, color }) => {
+            {links.map(({ href, label, sub, icon, color, wide }) => {
               const url = typeof href === 'function' ? href(content) : href
               const subtitle = typeof sub === 'function' ? sub(content) : sub
               const isExternal = !url.startsWith('mailto:')
@@ -93,7 +108,7 @@ export default function About() {
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
                   style={{ '--link-color': color } as React.CSSProperties}
-                  className="group flex flex-col gap-2 rounded-2xl border border-edge bg-card px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 hover:-translate-y-[3px] active:translate-y-0 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                  className={`${wide ? 'col-span-2 ' : ''}group flex flex-col gap-2 rounded-2xl border border-edge bg-card px-4 py-4 hover:border-[var(--link-color)]/40 hover:bg-[var(--link-color)]/5 hover:-translate-y-[3px] active:translate-y-0 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]`}
                 >
                   <span
                     style={{ color }}

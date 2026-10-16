@@ -22,7 +22,7 @@ export type HeroProps = {
     credentials: string
     company: string
     pitch: string
-    contact: { email: string }
+    contact: { email: string; cv: string }
   }
   meta: { tagline: string }
 }
@@ -120,6 +120,14 @@ export default function Hero({ hero, meta }: HeroProps) {
             >
               Research updates
             </Link>
+            <a
+              href={hero.contact.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-edge px-5 py-3 text-sm font-medium text-fg-muted transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-accent/40 hover:text-fg active:scale-[0.98]"
+            >
+              Download CV
+            </a>
           </div>
         </div>
       </div>
