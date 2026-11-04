@@ -6,16 +6,17 @@ import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { typeConfig, formatDate, type MilestonePreview } from '../lib/milestone-style'
 
+/** News pill and CV render first; these are the remaining tabs. Page links
+ *  are routes, `#` links scroll on the home page. */
 const NAV_LINKS = [
-  { label: 'Home',        href: '#hero',       page: false, highlight: false },
-  { label: 'News',        href: '/phd',        page: true,  highlight: true  },
-  { label: 'Experiences', href: '#experience', page: false, highlight: false },
-  { label: 'Education',   href: '#education',  page: false, highlight: false },
-  { label: 'Projects',    href: '#projects',      page: false, highlight: false },
-  { label: 'Publications', href: '#publications', page: false, highlight: false },
-  { label: 'Skills',      href: '#skills',       page: false, highlight: false },
-  { label: 'Contact',     href: '#about',      page: false, highlight: false },
+  { label: 'Experience',   href: '/experience'   },
+  { label: 'Education',    href: '/education'    },
+  { label: 'Projects',     href: '/projects'     },
+  { label: 'Publications', href: '/publications' },
+  { label: 'Contact',      href: '#about'        },
 ]
+
+const CV_HREF = '/Nader_Lobandi_CV.pdf'
 
 const anchorClass    = 'text-fg-subtle hover:text-fg text-sm px-3 py-1.5 rounded-lg hover:bg-overlay transition-all duration-200'
 const highlightClass = 'text-sm font-semibold px-3 py-1.5 rounded-lg bg-accent/15 border border-accent/60 dark:border-accent/30 text-accent hover:bg-accent/25 dark:hover:bg-accent/20 hover:border-accent/80 dark:hover:border-accent/55 transition-all duration-200'
@@ -152,7 +153,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
-  const forceBg = pathname === '/phd' || pathname === '/login'
+  const forceBg = pathname !== '/'
   const latestDate = previews[0]?.date ?? ''
 
   // localStorage is client-only, so read it as an external store: SSR and the
@@ -177,7 +178,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
     const id = href.replace('#', '')
     const el = document.getElementById(id)
     if (!el) {
-      window.location.href = '/' + href
+      window.location.assign('/' + href)
       return
     }
     el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -197,13 +198,13 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
 
         {/* Wordmark + theme toggle */}
         <div className="flex items-center gap-2">
-          <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, '#hero')}
+          <Link
+            href="/"
+            aria-label="Home"
             className="text-fg font-semibold text-sm tracking-wide hover:text-accent transition-colors"
           >
             NL
-          </a>
+          </Link>
           {mounted && (
             <button
               onClick={toggleTheme}
@@ -217,9 +218,18 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ label, href, page }) =>
-            page ? (
-              <NewsPill key={href} unseen={newsUnseen} withCard previews={previews} />
+          <NewsPill unseen={newsUnseen} withCard previews={previews} />
+          <a href={CV_HREF} target="_blank" rel="noopener noreferrer" className={anchorClass}>CV</a>
+          {NAV_LINKS.map(({ label, href }) =>
+            href.startsWith('/') ? (
+              <Link
+                key={href}
+                href={href}
+                aria-current={pathname === href ? 'page' : undefined}
+                className={`${anchorClass} ${pathname === href ? 'text-fg bg-overlay' : ''}`}
+              >
+                {label}
+              </Link>
             ) : (
               <a
                 key={href}
@@ -233,7 +243,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
           )}
           <Link
             href="/login"
-            className={`ml-2 ${anchorClass}`}
+            className="ml-3 text-fg-subtle/60 hover:text-fg text-xs px-2 py-1.5 transition-colors"
           >
             Login
           </Link>
@@ -244,8 +254,10 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
           <NewsPill unseen={newsUnseen} withCard={false} previews={previews} />
           <button
             onClick={() => setMenuOpen((o) => !o)}
-            className="text-fg-subtle hover:text-fg p-1.5 transition-colors"
-            aria-label="Toggle menu"
+            className="text-fg-subtle hover:text-fg p-2.5 -mr-2.5 transition-colors"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             {menuOpen ? (
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -262,15 +274,35 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-surface/95 backdrop-blur-md border-b border-edge px-6 pb-4">
-          {NAV_LINKS.map(({ label, href, page, highlight }) =>
-            page ? (
+        <div id="mobile-menu" className="md:hidden bg-surface/95 backdrop-blur-md border-b border-edge px-6 pb-4">
+          <Link
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            aria-current={pathname === '/' ? 'page' : undefined}
+            className={`block text-sm py-2.5 border-b border-edge-subtle transition-colors ${
+              pathname === '/' ? 'text-fg font-medium' : 'text-fg-muted hover:text-fg'
+            }`}
+          >
+            Home
+          </Link>
+          <a
+            href={CV_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+            className="block text-fg-muted hover:text-fg text-sm py-2.5 border-b border-edge-subtle transition-colors"
+          >
+            CV
+          </a>
+          {NAV_LINKS.map(({ label, href }) =>
+            href.startsWith('/') ? (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className={`block text-sm py-2.5 border-b border-edge-subtle last:border-0 transition-colors ${
-                  highlight ? 'text-accent font-semibold' : 'text-fg-muted hover:text-fg'
+                aria-current={pathname === href ? 'page' : undefined}
+                className={`block text-sm py-2.5 border-b border-edge-subtle transition-colors ${
+                  pathname === href ? 'text-fg font-medium' : 'text-fg-muted hover:text-fg'
                 }`}
               >
                 {label}
@@ -280,7 +312,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
                 key={href}
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="block text-fg-muted hover:text-fg text-sm py-2.5 border-b border-edge-subtle last:border-0 transition-colors"
+                className="block text-fg-muted hover:text-fg text-sm py-2.5 border-b border-edge-subtle transition-colors"
               >
                 {label}
               </a>

@@ -1,11 +1,8 @@
 import Hero from '@/components/Hero'
-import Experience from '@/components/Experience'
-import Education from '@/components/Education'
-import Publications from '@/components/Publications'
-import Projects from '@/components/Projects'
-import Skills from '@/components/Skills'
+import AtAGlance from '@/components/AtAGlance'
 import About from '@/components/About'
 import SectionTracker from '@/components/SectionTracker'
+import { latestMilestones } from '@/lib/milestones'
 import content from '../../data/content.json'
 
 export default function Home() {
@@ -14,12 +11,8 @@ export default function Home() {
   return (
     <main id="main" className="bg-surface">
       <SectionTracker />
-      <Hero hero={hero} meta={{ tagline: meta.tagline }} />
-      <Experience />
-      <Education />
-      <Publications />
-      <Projects />
-      <Skills />
+      <Hero hero={hero} meta={{ tagline: meta.tagline }} latest={latestMilestones(3)} />
+      <AtAGlance />
       <About />
     </main>
   )

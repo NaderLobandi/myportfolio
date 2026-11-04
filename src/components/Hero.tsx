@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { typeConfig, formatDate, type MilestonePreview } from '../lib/milestone-style'
 
 const ROLES = [
-  'Data Scientist & PhD Researcher',
-  'Deep Learning Specialist',
+  'PhD Researcher, Efficient Multimodal AI',
+  'Computer Vision & Embodied AI',
   'Machine Learning Systems Engineer',
 ]
 
@@ -20,14 +21,15 @@ export type HeroProps = {
     profileImage: string
     name: string
     credentials: string
-    company: string
+    educationLine: string
     pitch: string
     contact: { email: string; cv: string }
   }
   meta: { tagline: string }
+  latest: MilestonePreview[]
 }
 
-export default function Hero({ hero, meta }: HeroProps) {
+export default function Hero({ hero, meta, latest }: HeroProps) {
   const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
@@ -96,29 +98,23 @@ export default function Hero({ hero, meta }: HeroProps) {
           </div>
 
           <p className="enter-up text-fg-subtle text-sm mb-8" style={delay(300)}>
-            {hero.company}
+            {hero.educationLine}
           </p>
 
           <p className="enter-up text-fg-muted text-base leading-relaxed max-w-[62ch]" style={delay(380)}>
             {hero.pitch}
           </p>
 
-          {/* Primary paths out of the hero — the page had no call to action */}
+          {/* Two paths only: the PhD journey first, the CV second */}
           <div className="enter-up flex flex-wrap items-center justify-center md:justify-start gap-3 mt-8" style={delay(460)}>
-            <a
-              href={`mailto:${hero.contact.email}`}
-              className="group inline-flex items-center gap-3 rounded-full bg-accent pl-6 pr-1.5 py-1.5 text-sm font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-hi active:scale-[0.98]"
-            >
-              Get in touch
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px">
-                ↗
-              </span>
-            </a>
             <Link
               href="/phd"
-              className="inline-flex items-center gap-2 rounded-full border border-edge px-5 py-3 text-sm font-medium text-fg-muted transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-accent/40 hover:text-fg active:scale-[0.98]"
+              className="group inline-flex items-center gap-3 rounded-full bg-accent pl-6 pr-1.5 py-1.5 text-sm font-semibold text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-accent-hi active:scale-[0.98]"
             >
-              Research updates
+              Follow my PhD journey
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5">
+                →
+              </span>
             </Link>
             <a
               href={hero.contact.cv}
@@ -129,6 +125,35 @@ export default function Hero({ hero, meta }: HeroProps) {
               Download CV
             </a>
           </div>
+          <a
+            href={`mailto:${hero.contact.email}`}
+            className="enter-up mt-4 text-fg-subtle text-sm hover:text-accent transition-colors"
+            style={delay(520)}
+          >
+            or email me ↗
+          </a>
+
+          {latest.length > 0 && (
+            <div className="enter-up mt-10 w-full max-w-md rounded-xl border border-edge bg-surface/60 backdrop-blur-sm p-4 text-left" style={delay(600)}>
+              <p className="text-fg-subtle text-[10px] uppercase tracking-widest mb-3">Latest from my PhD</p>
+              <ul className="space-y-2.5">
+                {latest.map((m) => (
+                  <li key={m.date + m.title}>
+                    <Link href="/phd" className="group flex items-start gap-2.5">
+                      <span
+                        className="mt-1.5 w-2 h-2 rounded-full shrink-0"
+                        style={{ background: (typeConfig[m.type] ?? typeConfig.milestone).dot }}
+                      />
+                      <span className="min-w-0 flex-1 text-fg text-sm leading-snug group-hover:text-accent transition-colors">
+                        {m.title}
+                      </span>
+                      <span className="text-fg-subtle text-xs whitespace-nowrap">{formatDate(m.date)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -26,6 +26,8 @@
 
 # resume / CV source files (serve public/profile.jpg from public/ instead)
 *.pdf
+# ...except the public CV served at naderlobandi.com/Nader_Lobandi_CV.pdf
+!public/Nader_Lobandi_CV.pdf
 
 # debug
 npm-debug.log*

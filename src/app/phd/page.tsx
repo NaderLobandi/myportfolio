@@ -27,8 +27,8 @@ function wordStyle(text: string, weight: number, tier: string): React.CSSPropert
     tier === 'major'
       ? weight >= 9 ? '#f97316' : weight >= 7 ? '#fb923c' : '#fdba74'
       : tier === 'secondary'
-      ? 'rgba(237,237,237,0.72)'
-      : 'rgba(237,237,237,0.28)'
+      ? 'var(--fg-muted)'
+      : 'var(--fg-subtle)'
 
   return {
     fontSize:   sizeMap[weight] ?? '1rem',
@@ -73,40 +73,26 @@ export default function PhDJourneyPage() {
   }, [lightbox])
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] pt-24 pb-28 px-6">
+    <main className="min-h-screen bg-surface pt-24 pb-28 px-6">
       <div className="max-w-4xl mx-auto space-y-24">
 
-        {/* ── Word cloud ──────────────────────────────────────────────── */}
-        <section>
-          <h1 className="enter-up text-3xl font-bold text-accent text-center mb-10">
-            Welcome to my PhD Journey!
+        {/* ── Intro ───────────────────────────────────────────────────── */}
+        <section className="text-center">
+          <h1 className="enter-up text-3xl md:text-4xl font-bold text-accent mb-4">
+            My PhD Journey
           </h1>
-          <div className="flex flex-wrap justify-center items-center py-4">
-            {words}
-          </div>
-
-          {/* legend */}
-          <div className="flex flex-wrap gap-6 justify-center mt-8">
-            {[
-              { label: 'Primary focus',    color: '#f97316'               },
-              { label: 'Secondary area',   color: 'rgba(237,237,237,0.72)' },
-              { label: 'Supporting tools', color: 'rgba(237,237,237,0.28)' },
-            ].map(({ label, color }) => (
-              <div key={label} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ background: color }} />
-                <span className="text-xs text-[#ededed]/35">{label}</span>
-              </div>
-            ))}
-          </div>
+          <p className="enter-up text-fg/75 text-base leading-relaxed max-w-2xl mx-auto">
+            {phd.researchStatement}
+          </p>
         </section>
 
         {/* ── Milestones timeline ─────────────────────────────────────── */}
         <section>
-          <p className="text-[#ededed]/30 text-xs uppercase tracking-widest text-center mb-14">
+          <p className="text-fg/55 text-xs uppercase tracking-widest text-center mb-14">
             Milestones
           </p>
           <div className="relative">
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/[0.06]" />
+            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-edge" />
             <div className="space-y-10 pl-8">
               {sortedMilestones().map((m, i) => {
                 const cfg        = typeConfig[m.type] ?? typeConfig.milestone
@@ -130,11 +116,11 @@ export default function PhDJourneyPage() {
                   >
                     {/* dot */}
                     <div
-                      className="absolute -left-8 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-[#0a0a0a]"
+                      className="absolute -left-8 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-surface"
                       style={{ background: cfg.dot }}
                     />
 
-                    <div className="rounded-xl border border-white/[0.06] bg-[#111] p-5 hover:border-white/[0.12] transition-colors duration-300">
+                    <div className="rounded-xl border border-edge bg-card p-5 hover:border-fg/15 transition-colors duration-300">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
                         <span
                           className="text-xs font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full"
@@ -142,13 +128,13 @@ export default function PhDJourneyPage() {
                         >
                           {cfg.label}
                         </span>
-                        <span className="text-[#ededed]/30 text-xs">{formatDate(m.date)}</span>
+                        <span className="text-fg/55 text-xs">{formatDate(m.date)}</span>
                         {location && (
-                          <span className="text-[#ededed]/30 text-xs">· {location}</span>
+                          <span className="text-fg/55 text-xs">· {location}</span>
                         )}
                       </div>
 
-                      <h3 className="text-[#ededed] font-semibold text-base mb-1.5">
+                      <h3 className="text-fg font-semibold text-base mb-1.5">
                         {m.title}
                         {advisorUrl && (
                           <a
@@ -164,7 +150,7 @@ export default function PhDJourneyPage() {
 
                       <div className="space-y-3">
                         {paragraphs.map((para, p) => (
-                          <p key={p} className="text-[#ededed]/50 text-sm leading-relaxed">{para}</p>
+                          <p key={p} className="text-fg/75 text-sm leading-relaxed">{para}</p>
                         ))}
                       </div>
 
@@ -191,7 +177,7 @@ export default function PhDJourneyPage() {
                               className="group relative rounded-lg overflow-hidden w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
                               aria-label="View full image"
                             >
-                              <div className={`relative w-full h-64 ${cover ? '' : 'bg-white/[0.03]'}`}>
+                              <div className={`relative w-full h-64 ${cover ? '' : 'bg-overlay'}`}>
                                 <Image
                                   src={src}
                                   alt={cap || m.title}
@@ -207,7 +193,7 @@ export default function PhDJourneyPage() {
                               </div>
                               {cap && (
                                 <div className="absolute bottom-0 left-0 right-0 bg-black/55 backdrop-blur-sm px-3 py-2">
-                                  <p className="text-[#ededed]/75 text-xs text-left">{cap}</p>
+                                  <p className="text-white/75 text-xs text-left">{cap}</p>
                                 </div>
                               )}
                             </button>
@@ -222,27 +208,22 @@ export default function PhDJourneyPage() {
           </div>
         </section>
 
-        {/* ── Papers + My Take ────────────────────────────────────────── */}
-        <section>
-          <p className="text-[#ededed]/30 text-xs uppercase tracking-widest text-center mb-12">
+        {/* ── Papers + My Take (hidden until there is something to show) ── */}
+        {activePapers.length > 0 && <section>
+          <p className="text-fg/55 text-xs uppercase tracking-widest text-center mb-12">
             Papers I&apos;m Reading
           </p>
 
-          {activePapers.length === 0 ? (
-            <p className="text-center text-[#ededed]/25 text-sm italic">
-              Paper reading log coming soon — check back shortly.
-            </p>
-          ) : (
-            <div className="space-y-6">
+          <div className="space-y-6">
               {activePapers.map((paper, i) => (
                 <div
                   key={i}
                   data-reveal="up"
                   style={{ '--reveal-delay': `${i * 70}ms` } as React.CSSProperties}
-                  className="rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-white/[0.12] transition-colors duration-300"
+                  className="rounded-xl border border-edge bg-card p-6 hover:border-fg/15 transition-colors duration-300"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-1">
-                    <h3 className="text-[#ededed] font-semibold text-base leading-snug flex-1">
+                    <h3 className="text-fg font-semibold text-base leading-snug flex-1">
                       {paper.url ? (
                         <a href={paper.url} target="_blank" rel="noopener noreferrer"
                            className="hover:text-accent transition-colors">
@@ -250,33 +231,32 @@ export default function PhDJourneyPage() {
                         </a>
                       ) : paper.title}
                     </h3>
-                    <span className="text-[#ededed]/25 text-xs whitespace-nowrap shrink-0">
+                    <span className="text-fg/55 text-xs whitespace-nowrap shrink-0">
                       {formatDate(paper.added)}
                     </span>
                   </div>
                   {(paper.authors || paper.venue) && (
-                    <p className="text-[#ededed]/40 text-xs mb-4">
+                    <p className="text-fg/55 text-xs mb-4">
                       {[paper.authors, paper.venue].filter(Boolean).join(' · ')}
                     </p>
                   )}
                   {paper.myTake && (
                     <div className="border-l-2 border-accent/35 pl-4 mt-3">
                       <p className="text-xs text-accent/55 uppercase tracking-wider mb-1.5">My Take</p>
-                      <p className="text-[#ededed]/60 text-sm leading-relaxed italic">{paper.myTake}</p>
+                      <p className="text-fg/75 text-sm leading-relaxed italic">{paper.myTake}</p>
                     </div>
                   )}
                 </div>
               ))}
             </div>
-          )}
-        </section>
+        </section>}
 
         {/* ── CVPR 2026 takeaways ──────────────────────────────────────── */}
         <section>
-          <p className="text-[#ededed]/30 text-xs uppercase tracking-widest text-center mb-3">
+          <p className="text-fg/55 text-xs uppercase tracking-widest text-center mb-3">
             {cvpr.title}
           </p>
-          <p className="text-[#ededed]/45 text-sm text-center max-w-2xl mx-auto mb-12">
+          <p className="text-fg/55 text-sm text-center max-w-2xl mx-auto mb-12">
             {cvpr.intro}
           </p>
 
@@ -286,7 +266,7 @@ export default function PhDJourneyPage() {
                 key={i}
                 data-reveal="up"
                 style={{ '--reveal-delay': `${i * 70}ms` } as React.CSSProperties}
-                className="rounded-xl border border-white/[0.06] bg-[#111] p-6 hover:border-white/[0.12] transition-colors duration-300"
+                className="rounded-xl border border-edge bg-card p-6 hover:border-fg/15 transition-colors duration-300"
               >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span
@@ -297,13 +277,13 @@ export default function PhDJourneyPage() {
                   </span>
                 </div>
 
-                <h3 className="text-[#ededed] font-semibold text-base leading-snug mb-2">
+                <h3 className="text-fg font-semibold text-base leading-snug mb-2">
                   {item.title}
                 </h3>
 
-                <p className="text-[#ededed]/55 text-sm leading-relaxed">{item.summary}</p>
+                <p className="text-fg/75 text-sm leading-relaxed">{item.summary}</p>
 
-                <p className="text-[#ededed]/30 text-xs mt-3">{item.names}</p>
+                <p className="text-fg/55 text-xs mt-3">{item.names}</p>
 
                 {item.papers.length > 0 && (
                   <div className="border-l-2 border-[#3b82f6]/35 pl-4 mt-4">
@@ -316,14 +296,14 @@ export default function PhDJourneyPage() {
                               href={paper.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[#ededed]/65 hover:text-accent transition-colors"
+                              className="text-fg/75 hover:text-accent transition-colors"
                             >
                               {paper.title} ↗
                             </a>
                           ) : (
-                            <span className="text-[#ededed]/45">
+                            <span className="text-fg/55">
                               {paper.title}
-                              <span className="text-[#ededed]/25 italic"> · link coming soon</span>
+                              <span className="text-fg/55 italic"> · link coming soon</span>
                             </span>
                           )}
                         </li>
@@ -336,11 +316,38 @@ export default function PhDJourneyPage() {
           </div>
         </section>
 
+        {/* ── Word cloud ──────────────────────────────────────────────── */}
+        <section>
+          <p className="text-fg/55 text-xs uppercase tracking-widest text-center mb-10">
+            Research Areas
+          </p>
+          <div className="flex flex-wrap justify-center items-center py-4">
+            {words}
+          </div>
+
+          {/* legend */}
+          <div className="flex flex-wrap gap-6 justify-center mt-8">
+            {[
+              { label: 'Primary focus',    color: '#f97316'               },
+              { label: 'Secondary area',   color: 'var(--fg-muted)' },
+              { label: 'Supporting tools', color: 'var(--fg-subtle)' },
+            ].map(({ label, color }) => (
+              <div key={label} className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{ background: color }} />
+                <span className="text-xs text-fg/55">{label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
       </div>
 
       {/* ── Lightbox ────────────────────────────────────────────────────── */}
       {lightbox && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt || 'Image viewer'}
           className="lightbox-in fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
           onClick={() => setLightbox(null)}
         >

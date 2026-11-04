@@ -19,9 +19,14 @@ export default function Projects() {
               className="card flex flex-col rounded-2xl p-6"
             >
               <div className="mb-4">
+                {'tag' in project && project.tag && (
+                  <span className="inline-block text-xs font-medium text-fg-muted bg-overlay border border-edge rounded-full px-3 py-1 mb-3 mr-2">
+                    {project.tag}
+                  </span>
+                )}
                 {'award' in project && project.award && (
                   <span className="inline-block text-xs font-medium text-accent bg-accent/10 border border-accent/20 rounded-full px-3 py-1 mb-3">
-                    🏆 {project.award}
+                    {project.award}
                   </span>
                 )}
                 <h3 className="text-fg font-semibold text-base leading-snug">
@@ -32,6 +37,17 @@ export default function Projects() {
               <p className="text-fg-muted text-sm leading-relaxed flex-1">
                 {project.description}
               </p>
+
+              {'link' in project && project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-accent hover:text-accent-hi transition-colors"
+                >
+                  View on GitHub ↗
+                </a>
+              )}
 
               <div className="flex flex-wrap gap-1.5 mt-5">
                 {project.stack.map((tech) => (

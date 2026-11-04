@@ -4,8 +4,9 @@
     "credentials": "Ph.D. Student · M.Sc. Data Science",
     "title": "PhD Researcher & Machine Learning Engineer",
     "company": "University of Denver",
+    "educationLine": "PhD CS, University of Denver · M.S. Data Science, Northeastern · B.S. EE, Sharif",
     "profileImage": "/profile.jpg",
-    "pitch": "PhD researcher in Computer Science with 4+ years building and deploying production ML systems in industry and academia. Work spans multimodal deep learning, computer vision, model compression and quantization for on-device inference, GPU programming with CUDA, and large-scale data pipelines on Azure and Databricks. Grounded in statistical learning, probabilistic modeling, optimization, and algorithm design. Four peer-reviewed publications and an M.S. in Data Science from Northeastern University. Open to research roles advancing efficient, deployable deep learning systems.",
+    "pitch": "I build efficient multimodal models that run on real hardware: compression and quantization for on-device inference, embodied perception and speech for social robots. 4+ years shipping production ML and four peer-reviewed publications.",
     "contact": {
       "email": "naderlobandi11@gmail.com",
       "phone": "+1 (747) 270-4363",
@@ -18,14 +19,15 @@
   "experience": [
     {
       "company": "University of Denver, Ritchie School of Engineering & Computer Science",
-      "title": "Graduate Research Assistant",
+      "title": "Research Assistant",
       "location": "Denver, CO",
       "startDate": "2026-03",
       "end": "Present",
       "bullets": [
-        "Researching model compression, quantization, and hardware-aware optimization for on-device vision and multimodal inference, including GPU programming with CUDA.",
-        "Designing novel computer vision architectures for facial expression recognition trained with soft labels, targeting both ambiguity between overlapping expression classes and demographic bias in model predictions.",
-        "Developing a Digital Twin system for Mild Cognitive Impairment detection using multimodal deep learning, advised by Dr. Mohammad Mahoor."
+        "Efficient Foundation Models: researching model compression, quantization, and hardware-aware optimization for on-device vision-language and multimodal inference. Building a benchmark dataset and efficient models for hardware e-waste detection and recovery in data centers, with CUDA-accelerated components.",
+        "Facial Expression Recognition: designing vision architectures trained with soft labels on AffectNet+ to address ambiguity between overlapping expressions and demographic bias.",
+        "Embodied Multiparty AI: designing multiparty perception for a social robot, fusing microphone-array direction into camera video to resolve who is speaking and who is addressed, with a geometry-grounded benchmark.",
+        "Speech Synthesis via Search: developing a black-box search framework that clones voices onto frozen TTS models for a social robot, raising speaker-similarity fitness from 84.95 to 96.61 in 2,000 evaluations. Now in production."
       ]
     },
     {
@@ -56,7 +58,7 @@
     },
     {
       "company": "Kibur Medical Inc.",
-      "title": "Data Scientist Co-op",
+      "title": "Data Scientist Intern",
       "location": "Boston, MA",
       "startDate": "2023-06",
       "end": "2023-09",
@@ -67,7 +69,7 @@
     },
     {
       "company": "Northeastern University",
-      "title": "Research Scientist",
+      "title": "Research Assistant",
       "location": "Boston, MA",
       "startDate": "2021-03",
       "end": "2024-09",
@@ -186,24 +188,46 @@
   },
   "projects": [
     {
+      "name": "E-Waste Benchmark Dataset for Data Centers",
+      "tag": "PhD Research",
+      "description": "Building a large-scale benchmark dataset for hardware e-waste detection and recovery in data centers. Scraped more than 1.5 million images with agent-driven web scraping pipelines, and am using it to train efficient vision models for identifying recoverable hardware.",
+      "stack": ["Python", "AI Agents", "Web Scraping", "Computer Vision", "Dataset Curation"]
+    },
+    {
+      "name": "Speech Synthesis via Search",
+      "tag": "PhD Research · In production",
+      "description": "Black-box search framework that clones a target voice onto a frozen TTS model without retraining it, built for a social robot. Raised speaker-similarity fitness from 84.95 to 96.61 in 2,000 evaluations, and now runs in production on the robot.",
+      "stack": ["Python", "Text-to-Speech", "Voice Cloning", "Black-box Search", "Social Robotics"]
+    },
+    {
+      "name": "Embodied Multiparty AI",
+      "tag": "PhD Research",
+      "description": "Multiparty perception for a social robot. Fuses microphone-array direction of arrival into camera video to resolve who is speaking and who is being addressed in group conversation, with a geometry-grounded benchmark for evaluation.",
+      "stack": ["Python", "Computer Vision", "Audio-Visual Fusion", "Microphone Arrays", "Social Robotics"]
+    },
+    {
       "name": "JobScout — Agentic Job Search System",
+      "link": "https://github.com/NaderLobandi/jobscout",
       "description": "Built a multi-agent job search tool where an orchestrator dispatches specialist sub-agents for search, scoring, and drafting, each scoped to one task through its own agent skill. Wrote a custom MCP server normalizing eleven job boards behind a single tool surface. Kept dealbreaker filtering in deterministic Python so an untrusted posting cannot prompt-inject past it, and enforced a human-in-the-loop gate with no code path to auto-submit.",
       "stack": ["Python", "Anthropic API", "MCP SDK", "Streamlit", "Docker", "pytest", "LLM-as-judge evals"],
       "award": "Capstone — 5-Day AI Agents Intensive Course with Google (Kaggle)"
     },
     {
       "name": "SecureFaceID — Liveness-Aware Face Authentication",
+      "link": "https://github.com/NaderLobandi/SecureFaceID",
       "description": "Built a face authentication system with liveness detection that runs on a standard RGB camera instead of depth or infrared hardware. Uses blink detection to reject photo and screen spoofing attempts, and stays accurate when the user is wearing a mask.",
       "stack": ["Python", "OpenCV", "Computer Vision", "Liveness Detection"]
     },
     {
       "name": "E-Waste Sustainability Assistant",
-      "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented a decision pipeline pairing a vision model with a heuristic engine and safety overrides, backed by a sourced knowledge base for every figure it reports.",
-      "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision", "RAG"],
+      "link": "https://github.com/NaderLobandi/Summit-Hack-26",
+      "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented in Streamlit using Gemini 3 Flash for vision with strict JSON output, plus a heuristic decision engine with safety overrides.",
+      "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision"],
       "award": "Summit Hack 26 — 2nd Place"
     },
     {
       "name": "Financial News Sentiment Analysis",
+      "link": "https://github.com/NaderLobandi/cs6120-finance-sentiment",
       "description": "Built an NLP system to classify sentiment in high-volume financial news. Benchmarked classical and transformer models across two datasets, with FinBERT at 0.73 accuracy and 0.74 macro-F1 on Alpha Vantage, and BERT-uncased at 0.86 and 0.86 on Yahoo Finance, validated against real ticker movements.",
       "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
     },
@@ -211,11 +235,6 @@
       "name": "Financial Time-Series & Document QA",
       "description": "Built a Streamlit tool for interactive backtesting of forecasting strategies with reliable horizons up to two months, paired with a chat interface for querying 10-K filings in plain language.",
       "stack": ["Python", "Streamlit", "AutoTS", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX", "RAG"]
-    },
-    {
-      "name": "Personal Finance Web App",
-      "description": "Built a self-hosted budgeting and expense tracker as a full-stack Flask application with a MySQL backend, including schema design for transactional data, automated alerts for suspicious transactions, and multi-user authentication.",
-      "stack": ["Python", "Flask", "MySQL", "HTML", "CSS"]
     }
   ],
   "education": [
@@ -223,8 +242,8 @@
       "institution": "University of Denver, Ritchie School of Engineering & Computer Science",
       "degree": "Ph.D. in Computer Science",
       "start": "2026-03",
-      "end": "2029-05",
-      "gpa": "4.0",
+      "end": "2028-05",
+      "gpa": "3.7",
       "focus": "Multimodal Deep Learning, Computer Vision, Efficient Foundation Models, Model Compression & Quantization, On-Device Inference, GPU Computing & CUDA Programming",
       "honors": "IAAP 2026 Scholarship Award"
     },
@@ -248,7 +267,7 @@
     {
       "name": "AI-102: Designing and Implementing a Microsoft Azure AI Solution",
       "issuer": "Microsoft",
-      "date": ""
+      "date": "2024-03"
     },
     {
       "name": "5-Day AI Agents Intensive Course with Google",
@@ -258,7 +277,7 @@
     }
   ],
   "contact": {
-    "bio": "PhD researcher at the University of Denver working on multimodal deep learning, computer vision, and efficient models that run on real hardware. I have spent 4+ years shipping production ML systems alongside the research. Open to collaboration and research opportunities in deep learning, computer vision, and applied AI. If you are a builder or thinker working on hard problems, let's connect."
+    "bio": "If you are a builder or thinker working on hard problems, let's connect."
   },
   "meta": {
     "siteTitle": "Nader Lobandi — PhD Researcher & Machine Learning Engineer",
@@ -266,7 +285,7 @@
     "tagline": "PhD researcher building deep learning systems that ship."
   },
   "phd": {
-    "researchStatement": "PhD researcher building deep learning systems that ship. My work spans multimodal deep learning and computer vision, including facial expression recognition with soft labels and bias mitigation, Digital Twin systems for Mild Cognitive Impairment detection, and model compression, quantization, and hardware-aware optimization for on-device deployment. Strong mathematical foundations and systems-level thinking across the full ML lifecycle, from research to production.",
+    "researchStatement": "I work on efficient multimodal models that run on real hardware: compression and quantization for on-device inference, facial expression recognition with soft labels, and embodied perception and speech synthesis for social robots.",
     "researchAreas": [
       { "text": "Computer Vision",              "tier": "major",      "weight": 10 },
       { "text": "Deep Learning",                "tier": "major",      "weight": 10 },
@@ -279,7 +298,9 @@
       { "text": "Bias Mitigation & Fairness",   "tier": "major",      "weight": 8  },
       { "text": "LLMs & RAG",                   "tier": "major",      "weight": 8  },
       { "text": "Agentic Systems",              "tier": "major",      "weight": 7  },
-      { "text": "Digital Twin for Healthcare",  "tier": "major",      "weight": 7  },
+      { "text": "Embodied Multiparty AI",       "tier": "major",      "weight": 8  },
+      { "text": "Speech Synthesis",             "tier": "major",      "weight": 7  },
+      { "text": "Social Robotics",              "tier": "major",      "weight": 7  },
       { "text": "Object Detection",             "tier": "major",      "weight": 7  },
       { "text": "CNNs",                         "tier": "major",      "weight": 6  },
       { "text": "YOLO",                         "tier": "major",      "weight": 6  },

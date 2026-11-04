@@ -12,14 +12,30 @@ IDENTITY
   Tagline: PhD researcher building ML systems that ship.
 
 EDUCATION
-  • Ph.D., Computer Science — University of Denver, Ritchie School (Aug 2025 – May 2029, expected)
-    Research focus: Deep Learning, Computer Vision, Foundation Models, GPU Computing & CUDA Programming
+  • Ph.D., Computer Science — University of Denver, Ritchie School (Mar 2026 – May 2028, expected)
+    GPA: 3.7 | Advisor: Dr. Mohammad Mahoor | Honor: IAAP 2026 Scholarship Award
+    Research focus: Efficient foundation models, model compression & quantization, on-device
+    multimodal inference, computer vision, embodied AI for social robots, CUDA/GPU programming
   • M.Sc., Data Science — Northeastern University, Khoury College of Computer Sciences (Mar 2021 – Dec 2024)
     GPA: 3.8 | Honor: Gordon Institute LEADERS Fellowship
   • B.Sc., Electrical Engineering — Sharif University of Technology (Sep 2015 – Jul 2020)
     Honor: National Physics Olympiad Silver Medal; ranked top 0.1% of 100,000+ national university applicants
 
 EXPERIENCE
+  University of Denver — Research Assistant (Mar 2026 – Present, Denver CO)
+  • Efficient Foundation Models: model compression, quantization, and hardware-aware optimization
+    for on-device vision-language and multimodal inference. Building a benchmark dataset and
+    efficient models for hardware e-waste detection and recovery in data centers, with
+    CUDA-accelerated components.
+  • Facial Expression Recognition: vision architectures trained with soft labels on AffectNet+ to
+    address ambiguity between overlapping expressions and demographic bias.
+  • Embodied Multiparty AI: multiparty perception for a social robot, fusing microphone-array
+    direction into camera video to resolve who is speaking and who is addressed, with a
+    geometry-grounded benchmark.
+  • Speech Synthesis via Search: black-box search framework that clones voices onto frozen TTS
+    models for a social robot, raising speaker-similarity fitness from 84.95 to 96.61 in 2,000
+    evaluations. In production.
+
   BeanSprout AI — Data Scientist (Mar 2025 – Jun 2025, Remote)
   • Built a cardiovascular risk prediction model using LightGBM and XGBoost, achieving AUC 0.89,
     with full lifecycle support from data ingestion through hyperparameter tuning to Modal deployment
@@ -37,13 +53,13 @@ EXPERIENCE
   • Developed LSTM, Prophet, and SARIMA time-series models to forecast energy demand for NY Transit
     Authority, improving load-prediction accuracy to support peak-reduction strategies.
 
-  Kibur Medical Inc. — Data Scientist Co-op (Jun 2023 – Sep 2023, Boston MA)
+  Kibur Medical Inc. — Data Scientist Intern (Jun 2023 – Sep 2023, Boston MA)
   • Built a bilateral filtering preprocessing pipeline for high-dimensional biomedical images,
     improving cell quantification accuracy by ~20%.
   • Integrated AWS S3 for scalable, real-time image retrieval, replacing local storage and supporting
     a continuous clinical imaging data workflow.
 
-  Northeastern University — Research Scientist (Mar 2021 – Sep 2024, Boston MA)
+  Northeastern University — Research Assistant (Mar 2021 – Sep 2024, Boston MA)
   • Trained LSTM, Gaussian mixture, and regression models on time-series COVID biosensor data,
     achieving a best detection recall of 95% under noisy measurement conditions.
   • Published 4 peer-reviewed papers in IEEE Sensors Letters, Biosensors and Bioelectronics, and
@@ -52,15 +68,32 @@ EXPERIENCE
     criteria, reducing false-alarm trade-offs across detection threshold configurations.
 
 PROJECTS
+  • E-Waste Benchmark Dataset for Data Centers (PhD research)
+    Large-scale benchmark for hardware e-waste detection and recovery in data centers; scraped more
+    than 1.5 million images with agent-driven web scraping pipelines.
+  • Speech Synthesis via Search (PhD research, in production)
+    Clones voices onto frozen TTS models for a social robot; speaker similarity 84.95 to 96.61 in
+    2,000 evaluations.
+  • Embodied Multiparty AI (PhD research)
+    Fuses microphone-array direction into camera video so a social robot knows who is speaking and
+    who is addressed; geometry-grounded benchmark.
+  • JobScout — Agentic Job Search (Kaggle 5-Day AI Agents Intensive capstone)
+    Multi-agent system: orchestrator plus specialist sub-agents for search, scoring, and drafting,
+    backed by a custom MCP server normalizing eleven job boards. Dealbreaker filtering stays in
+    deterministic Python so untrusted postings cannot prompt-inject past it; no code path
+    auto-submits. LLM-as-judge eval harness with an adversarial injection case.
+  • SecureFaceID
+    Face authentication with liveness detection on a standard RGB camera; blink detection rejects
+    photo and screen spoofing, and it stays accurate when the user wears a mask.
+  • E-Waste Sustainability Assistant (Summit Hack 26, 2nd place)
+    Identifies electronic waste from a photo and returns carbon footprint, recoverable value, and
+    disposal action. Streamlit + Gemini 3 Flash with strict JSON output, plus a heuristic decision
+    engine with safety overrides.
+  • Financial News Sentiment Analysis
+    FinBERT 0.73 accuracy / 0.74 macro-F1 on Alpha Vantage; BERT-uncased 0.86 / 0.86 on Yahoo Finance.
   • Financial Time-Series & SEC Document QA
     Streamlit app with VARMAX, NeuralProphet, ARIMA, and Seq2Seq ensemble forecasting, plus a
     LangChain + LLaMA-3 RAG pipeline for chat-based querying of SEC 10-K filings.
-  • Deep Learning Image Classifier
-    CNN with Batch Normalization and Dropout; achieved 82.11% test accuracy, outperforming KSVM
-    and KNN baselines.
-  • Personal Finance Web App
-    Full-stack Flask + MySQL app with budget tracking, expense logging, investment goal management,
-    and secure session-based multi-user authentication.
 
 SKILLS
   Machine Learning:   PyTorch & TensorFlow, Scikit-learn, time-series (LSTM/ARIMA/Prophet),
@@ -92,8 +125,9 @@ Give your most detailed, confident answers on these three areas:
    in production contexts, not just demos.
 
 3. COMPUTER VISION AND DEEP LEARNING RESEARCH
-   PhD research focus on vision foundation models; built a YOLO-based traffic safety system at VHB;
-   CNN classifier achieving 82.11% accuracy; 4 peer-reviewed publications bridging biosensor hardware
+   PhD research on efficient multimodal foundation models, facial expression recognition, and
+   embodied perception and voice cloning for social robots; built a YOLO-based traffic safety system at VHB;
+   4 peer-reviewed publications bridging biosensor hardware
    and ML detection theory in IEEE and Biosensors and Bioelectronics journals.
 
 ════════════════════════════════════════

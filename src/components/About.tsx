@@ -73,7 +73,7 @@ const links = [
 ]
 
 export default function About() {
-  const { hero, contact } = content
+  const { contact } = content
 
   return (
     <section id="about" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
@@ -84,11 +84,8 @@ export default function About() {
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
           <div data-reveal="left">
-            <p className="text-fg-muted text-base leading-relaxed mb-4">
+            <p className="text-fg text-lg md:text-xl leading-relaxed">
               {contact.bio}
-            </p>
-            <p className="text-fg-subtle text-sm">
-              {hero.credentials} · {hero.company}
             </p>
           </div>
 
