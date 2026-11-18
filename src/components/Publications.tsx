@@ -1,5 +1,6 @@
 import content from '../../data/content.json'
 import SectionHeading from './SectionHeading'
+import OrgLogo, { logoOf } from './OrgLogo'
 
 type Publication = {
   title: string
@@ -55,9 +56,9 @@ export default function Publications() {
                 style={{ '--reveal-delay': `${i * 80}ms` } as React.CSSProperties}
                 className="card group flex gap-5 rounded-2xl p-6"
               >
-                {/* Number badge */}
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mt-0.5">
-                  <span className="text-accent text-xs font-bold">{pubs.length - i}</span>
+                {/* Venue logo */}
+                <div className="mt-0.5 shrink-0">
+                  <OrgLogo src={logoOf(pub)} name={pub.venue} size={44} />
                 </div>
 
                 <div className="flex-1 min-w-0">

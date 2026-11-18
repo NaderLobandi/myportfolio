@@ -19,6 +19,7 @@
   "experience": [
     {
       "company": "University of Denver, Ritchie School of Engineering & Computer Science",
+      "logo": "/logos/du.svg",
       "title": "Research Assistant",
       "location": "Denver, CO",
       "startDate": "2026-03",
@@ -31,7 +32,8 @@
       ]
     },
     {
-      "company": "BeanSprout AI",
+      "company": "Stealth Startup",
+      "logo": "/logos/stealth.png",
       "title": "Data Scientist",
       "type": "Startup",
       "location": "Boston, MA",
@@ -45,6 +47,7 @@
     },
     {
       "company": "VHB (Vanasse Hangen Brustlin Inc.)",
+      "logo": "/logos/vhb.png",
       "title": "Data Scientist",
       "location": "Watertown, MA",
       "startDate": "2024-01",
@@ -58,6 +61,7 @@
     },
     {
       "company": "Kibur Medical Inc.",
+      "logo": "/logos/kibur.png",
       "title": "Data Scientist Intern",
       "location": "Boston, MA",
       "startDate": "2023-06",
@@ -69,6 +73,7 @@
     },
     {
       "company": "Northeastern University",
+      "logo": "/logos/northeastern.png",
       "title": "Research Assistant",
       "location": "Boston, MA",
       "startDate": "2021-03",
@@ -85,6 +90,7 @@
       "title": "Real-Time Detection of D-Glucose Molecules in Exhaled Aerosols Using a Biochemical Sensor for Breathalyzer Applications",
       "authors": "P. Sadeghi, N. Lobandi, R. Alshawabkeh, A. Rui, W. Sun, J. Chen",
       "venue": "IEEE Sensors Letters",
+      "logo": "/logos/ieee.svg",
       "year": 2025,
       "doi": "10.1109/LSENS.2025.10924313",
       "url": "https://ieeexplore.ieee.org/document/10924313",
@@ -94,6 +100,7 @@
       "title": "A 24.4 μW Room Temperature Gas Sensor Based on Molecularly Imprinted Polymers Demonstrating SARS-CoV-2 and D-Glucose Aerosol Sensing",
       "authors": "R. Burns, A. Wiechmann, P. Sadeghi, N. Lobandi, N. Fathy, R. Huang, N. X. Sun, et al.",
       "venue": "2024 IEEE Custom Integrated Circuits Conference (CICC)",
+      "logo": "/logos/ieee.svg",
       "year": 2024,
       "doi": "10.1109/CICC60959.2024.10528990",
       "type": "conference"
@@ -102,6 +109,7 @@
       "title": "Novel, Accurate Pathogen Sensors for Fast Detection of SARS-CoV-2 in the Aerosol in Seconds for a Breathalyzer Platform",
       "authors": "X. Shi, P. Sadeghi, N. Lobandi, S. Emam, S. M. S. Abrishami, I. Martos-Repath, et al.",
       "venue": "Biosensors and Bioelectronics: X",
+      "logo": "/logos/elsevier.svg",
       "year": 2023,
       "doi": "10.1016/j.biosx.2023.100369",
       "type": "journal"
@@ -110,6 +118,7 @@
       "title": "Tutorial: Piezoelectric and Magnetoelectric N/MEMS — Materials, Devices, and Applications",
       "authors": "A. R. Will-Cole, A. E. Hassanien, S. D. Calisgan, M. G. Jeong, X. Liang, S. Kang, ..., N. Lobandi, M. Rinaldi, S. Gong, N. X. Sun",
       "venue": "Journal of Applied Physics",
+      "logo": "/logos/aip.jpg",
       "year": 2022,
       "doi": "10.1063/5.0094364",
       "type": "journal"
@@ -189,24 +198,28 @@
   "projects": [
     {
       "name": "E-Waste Benchmark Dataset for Data Centers",
+      "figure": "ewaste-dataset",
       "tag": "PhD Research",
       "description": "Building a large-scale benchmark dataset for hardware e-waste detection and recovery in data centers. Scraped more than 1.5 million images with agent-driven web scraping pipelines, and am using it to train efficient vision models for identifying recoverable hardware.",
       "stack": ["Python", "AI Agents", "Web Scraping", "Computer Vision", "Dataset Curation"]
     },
     {
       "name": "Speech Synthesis via Search",
+      "figure": "speech-search",
       "tag": "PhD Research · In production",
       "description": "Black-box search framework that clones a target voice onto a frozen TTS model without retraining it, built for a social robot. Raised speaker-similarity fitness from 84.95 to 96.61 in 2,000 evaluations, and now runs in production on the robot.",
       "stack": ["Python", "Text-to-Speech", "Voice Cloning", "Black-box Search", "Social Robotics"]
     },
     {
       "name": "Embodied Multiparty AI",
+      "figure": "multiparty",
       "tag": "PhD Research",
       "description": "Multiparty perception for a social robot. Fuses microphone-array direction of arrival into camera video to resolve who is speaking and who is being addressed in group conversation, with a geometry-grounded benchmark for evaluation.",
       "stack": ["Python", "Computer Vision", "Audio-Visual Fusion", "Microphone Arrays", "Social Robotics"]
     },
     {
       "name": "JobScout — Agentic Job Search System",
+      "image": "/projects/jobscout.jpg",
       "link": "https://github.com/NaderLobandi/jobscout",
       "description": "Built a multi-agent job search tool where an orchestrator dispatches specialist sub-agents for search, scoring, and drafting, each scoped to one task through its own agent skill. Wrote a custom MCP server normalizing eleven job boards behind a single tool surface. Kept dealbreaker filtering in deterministic Python so an untrusted posting cannot prompt-inject past it, and enforced a human-in-the-loop gate with no code path to auto-submit.",
       "stack": ["Python", "Anthropic API", "MCP SDK", "Streamlit", "Docker", "pytest", "LLM-as-judge evals"],
@@ -214,12 +227,14 @@
     },
     {
       "name": "SecureFaceID — Liveness-Aware Face Authentication",
+      "image": "/projects/securefaceid.jpg",
       "link": "https://github.com/NaderLobandi/SecureFaceID",
       "description": "Built a face authentication system with liveness detection that runs on a standard RGB camera instead of depth or infrared hardware. Uses blink detection to reject photo and screen spoofing attempts, and stays accurate when the user is wearing a mask.",
       "stack": ["Python", "OpenCV", "Computer Vision", "Liveness Detection"]
     },
     {
       "name": "E-Waste Sustainability Assistant",
+      "image": "/projects/ewaste-assistant.jpg",
       "link": "https://github.com/NaderLobandi/Summit-Hack-26",
       "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented in Streamlit using Gemini 3 Flash for vision with strict JSON output, plus a heuristic decision engine with safety overrides.",
       "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision"],
@@ -227,12 +242,14 @@
     },
     {
       "name": "Financial News Sentiment Analysis",
+      "figure": "sentiment-bars",
       "link": "https://github.com/NaderLobandi/cs6120-finance-sentiment",
       "description": "Built an NLP system to classify sentiment in high-volume financial news. Benchmarked classical and transformer models across two datasets, with FinBERT at 0.73 accuracy and 0.74 macro-F1 on Alpha Vantage, and BERT-uncased at 0.86 and 0.86 on Yahoo Finance, validated against real ticker movements.",
       "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
     },
     {
       "name": "Financial Time-Series & Document QA",
+      "figure": "forecast",
       "description": "Built a Streamlit tool for interactive backtesting of forecasting strategies with reliable horizons up to two months, paired with a chat interface for querying 10-K filings in plain language.",
       "stack": ["Python", "Streamlit", "AutoTS", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX", "RAG"]
     }
@@ -240,6 +257,7 @@
   "education": [
     {
       "institution": "University of Denver, Ritchie School of Engineering & Computer Science",
+      "logo": "/logos/du.svg",
       "degree": "Ph.D. in Computer Science",
       "start": "2026-03",
       "end": "2028-05",
@@ -249,6 +267,7 @@
     },
     {
       "institution": "Northeastern University, Khoury College of Computer Sciences",
+      "logo": "/logos/northeastern.png",
       "degree": "M.Sc. in Data Science",
       "start": "2021-03",
       "end": "2024-12",
@@ -257,6 +276,7 @@
     },
     {
       "institution": "Sharif University of Technology",
+      "logo": "/logos/sharif.png",
       "degree": "B.Sc. in Electrical Engineering",
       "start": "2015-09",
       "end": "2020-07",

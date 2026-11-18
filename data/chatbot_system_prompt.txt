@@ -36,7 +36,7 @@ EXPERIENCE
     models for a social robot, raising speaker-similarity fitness from 84.95 to 96.61 in 2,000
     evaluations. In production.
 
-  BeanSprout AI — Data Scientist (Mar 2025 – Jun 2025, Remote)
+  Stealth Startup — Data Scientist (Mar 2025 – Jun 2025, Remote)
   • Built a cardiovascular risk prediction model using LightGBM and XGBoost, achieving AUC 0.89,
     with full lifecycle support from data ingestion through hyperparameter tuning to Modal deployment
     with MLflow tracking.

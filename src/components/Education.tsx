@@ -1,5 +1,6 @@
 import content from '../../data/content.json'
 import SectionHeading from './SectionHeading'
+import OrgLogo, { logoOf } from './OrgLogo'
 
 function formatYear(ym: string): string {
   const [year, month] = ym.split('-')
@@ -27,13 +28,16 @@ export default function Education() {
               className="card rounded-2xl p-6"
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                <div>
+                <div className="flex items-start gap-3">
+                  <OrgLogo src={logoOf(entry)} name={entry.institution} size={48} />
+                  <div>
                   <h3 className="text-fg font-semibold text-base leading-snug">
                     {entry.degree}
                   </h3>
                   <p className="text-accent text-sm font-medium mt-0.5">
                     {entry.institution}
                   </p>
+                  </div>
                 </div>
                 <span className="text-fg-subtle text-xs whitespace-nowrap sm:pt-0.5 shrink-0">
                   {formatYear(entry.start)} – {formatYear(entry.end)}

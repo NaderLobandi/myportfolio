@@ -1,5 +1,6 @@
 import content from '../../data/content.json'
 import SectionHeading from './SectionHeading'
+import ProjectVisual from './ProjectVisual'
 
 export default function Projects() {
   const { projects } = content
@@ -18,6 +19,11 @@ export default function Projects() {
               style={{ '--reveal-delay': `${(i % 2) * 100}ms` } as React.CSSProperties}
               className="card flex flex-col rounded-2xl p-6"
             >
+              <ProjectVisual
+                project={project}
+                sizes="(max-width: 640px) 100vw, 480px"
+                className="-mx-6 -mt-6 mb-5 rounded-t-2xl"
+              />
               <div className="mb-4">
                 {'tag' in project && project.tag && (
                   <span className="inline-block text-xs font-medium text-fg-muted bg-overlay border border-edge rounded-full px-3 py-1 mb-3 mr-2">

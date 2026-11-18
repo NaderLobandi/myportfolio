@@ -1,5 +1,6 @@
 import content from '../../data/content.json'
 import SectionHeading from './SectionHeading'
+import OrgLogo, { logoOf } from './OrgLogo'
 
 /** Accepts "YYYY-MM"; anything else (missing, or a literal "Present") is a
  *  label already and passes through unchanged. */
@@ -48,13 +49,16 @@ export default function Experience() {
                     <div className="card rounded-2xl p-5">
 
                       <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
-                        <div>
+                        <div className="flex items-start gap-3">
+                          <OrgLogo src={logoOf(job)} name={job.company} />
+                          <div>
                           <h3 className="text-fg font-semibold text-base leading-snug">
                             {job.title}
                           </h3>
                           <p className="text-accent text-sm font-medium mt-0.5">
                             {job.company}
                           </p>
+                          </div>
                         </div>
                         <span className="text-fg-subtle text-xs whitespace-nowrap pt-0.5">
                           {formatDate(job.startDate)} – {formatDate(job.end)}
