@@ -219,7 +219,7 @@
     },
     {
       "name": "JobScout — Agentic Job Search System",
-      "image": "/projects/jobscout.jpg",
+      "figure": "jobscout",
       "link": "https://github.com/NaderLobandi/jobscout",
       "description": "Built a multi-agent job search tool where an orchestrator dispatches specialist sub-agents for search, scoring, and drafting, each scoped to one task through its own agent skill. Wrote a custom MCP server normalizing eleven job boards behind a single tool surface. Kept dealbreaker filtering in deterministic Python so an untrusted posting cannot prompt-inject past it, and enforced a human-in-the-loop gate with no code path to auto-submit.",
       "stack": ["Python", "Anthropic API", "MCP SDK", "Streamlit", "Docker", "pytest", "LLM-as-judge evals"],
@@ -227,14 +227,14 @@
     },
     {
       "name": "SecureFaceID — Liveness-Aware Face Authentication",
-      "image": "/projects/securefaceid.jpg",
+      "figure": "securefaceid",
       "link": "https://github.com/NaderLobandi/SecureFaceID",
       "description": "Built a face authentication system with liveness detection that runs on a standard RGB camera instead of depth or infrared hardware. Uses blink detection to reject photo and screen spoofing attempts, and stays accurate when the user is wearing a mask.",
       "stack": ["Python", "OpenCV", "Computer Vision", "Liveness Detection"]
     },
     {
       "name": "E-Waste Sustainability Assistant",
-      "image": "/projects/ewaste-assistant.jpg",
+      "figure": "ewaste-scan",
       "link": "https://github.com/NaderLobandi/Summit-Hack-26",
       "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented in Streamlit using Gemini 3 Flash for vision with strict JSON output, plus a heuristic decision engine with safety overrides.",
       "stack": ["Python", "Streamlit", "Gemini 3 Flash", "Computer Vision"],
@@ -242,7 +242,7 @@
     },
     {
       "name": "Financial News Sentiment Analysis",
-      "figure": "sentiment-bars",
+      "figure": "sentiment",
       "link": "https://github.com/NaderLobandi/cs6120-finance-sentiment",
       "description": "Built an NLP system to classify sentiment in high-volume financial news. Benchmarked classical and transformer models across two datasets, with FinBERT at 0.73 accuracy and 0.74 macro-F1 on Alpha Vantage, and BERT-uncased at 0.86 and 0.86 on Yahoo Finance, validated against real ticker movements.",
       "stack": ["Python", "Hugging Face", "BERT", "FinBERT", "DistilBERT", "GloVe", "Word2Vec", "TF-IDF", "Streamlit"]
