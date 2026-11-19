@@ -34,6 +34,14 @@ export default function ChatAssistant() {
     }
   }, [open])
 
+  // The backdrop makes the chat modal-like, so Escape should dismiss it too.
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   async function sendMessage() {
     const trimmed = input.trim()
     if (!trimmed || loading) return
@@ -84,6 +92,17 @@ export default function ChatAssistant() {
 
   return (
     <>
+      {/* Backdrop: blurs and dims the whole page (navbar included) while the
+          chat is open. Same z-index as the button and panel, but earlier in
+          the DOM, so they stay sharp on top of it. Click or tap closes. */}
+      {open && (
+        <div
+          className="lightbox-in fixed inset-0 z-50 bg-surface/30 backdrop-blur-md"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Toggle button */}
       <button
         onClick={() => {
