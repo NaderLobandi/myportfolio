@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import content from '../../../data/content.json'
 import { typeConfig, formatDate, sortedMilestones } from '../../lib/milestones'
+import ReadMore from '../../components/ReadMore'
 
 // ── helpers ────────────────────────────────────────────────────────────────
 
@@ -39,21 +40,6 @@ function wordStyle(text: string, weight: number, tier: string): React.CSSPropert
     lineHeight: 1.2,
     cursor:     'default',
   }
-}
-
-/** Native <details>: the TL;DR above it stays visible, the full text opens on
- *  demand. No state, works without JS. */
-function ReadMore({ children }: { children: React.ReactNode }) {
-  return (
-    <details className="group mt-1">
-      <summary className="inline-flex cursor-pointer list-none items-center gap-1 py-2 text-xs font-medium text-accent hover:text-accent-hi transition-colors [&::-webkit-details-marker]:hidden">
-        <span className="group-open:hidden">Read more</span>
-        <span className="hidden group-open:inline">Show less</span>
-        <span aria-hidden="true" className="transition-transform duration-200 group-open:rotate-180">▾</span>
-      </summary>
-      <div className="mt-1 space-y-3">{children}</div>
-    </details>
-  )
 }
 
 type Paper = { title: string; authors: string; venue: string; url: string; added: string; myTake: string }

@@ -1,13 +1,14 @@
 import content from '../../data/content.json'
 import SectionHeading from './SectionHeading'
 import ProjectVisual from './ProjectVisual'
+import ReadMore from './ReadMore'
 
 export default function Projects() {
   const { projects } = content
 
   return (
-    <section id="projects" className="bg-surface py-24 px-6 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="projects" className="bg-surface py-12 md:py-16 px-6 scroll-mt-20">
+      <div className="max-w-6xl mx-auto">
 
         <SectionHeading eyebrow="Selected work" title="Projects" />
 
@@ -40,22 +41,25 @@ export default function Projects() {
                 </h3>
               </div>
 
-              <p className="text-fg-muted text-sm leading-relaxed flex-1">
-                {project.description}
-              </p>
+              <div className="flex-1">
+                <p className="text-fg-muted text-sm md:text-[15px] leading-relaxed">{project.tldr}</p>
+                <ReadMore>
+                  <p className="text-fg-muted text-sm leading-relaxed">{project.description}</p>
+                </ReadMore>
+              </div>
 
               {'link' in project && project.link && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-accent hover:text-accent-hi transition-colors"
+                  className="inline-flex items-center gap-1.5 mt-2 text-sm font-medium text-accent hover:text-accent-hi transition-colors"
                 >
                   View on GitHub ↗
                 </a>
               )}
 
-              <div className="flex flex-wrap gap-1.5 mt-5">
+              <div className="flex flex-wrap gap-1.5 mt-4">
                 {project.stack.map((tech) => (
                   <span
                     key={tech}

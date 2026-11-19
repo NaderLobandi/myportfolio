@@ -5,18 +5,24 @@ export default function SectionHeading({
   eyebrow,
   title,
   note,
+  action,
 }: {
   eyebrow: string
   title: string
   note?: string
+  /** Optional link shown on the heading's baseline, right-aligned. */
+  action?: React.ReactNode
 }) {
   return (
-    <div data-reveal="up" className="mb-14 max-w-2xl">
-      <p className="text-accent text-[11px] font-medium uppercase tracking-[0.22em] mb-3">
-        {eyebrow}
-      </p>
-      <h2 className="display text-3xl md:text-4xl font-bold text-fg">{title}</h2>
-      {note && <p className="text-fg-subtle text-sm mt-3 leading-relaxed">{note}</p>}
+    <div data-reveal="up" className="mb-8 md:mb-10 flex items-end justify-between gap-4">
+      <div className="max-w-2xl">
+        <p className="text-accent text-[11px] font-medium uppercase tracking-[0.22em] mb-3">
+          {eyebrow}
+        </p>
+        <h2 className="display text-3xl md:text-4xl font-bold text-fg">{title}</h2>
+        {note && <p className="text-fg-subtle text-sm md:text-base mt-3 leading-relaxed">{note}</p>}
+      </div>
+      {action && <div className="shrink-0 pb-1">{action}</div>}
     </div>
   )
 }

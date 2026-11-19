@@ -189,14 +189,18 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
   return (
     <header
       // Opaque once it has a background: a translucent bar let page content
-      // show through it while scrolling.
+      // show through it while scrolling. The ::before extends the same colour
+      // upward: iOS Safari can paint page content in the strip above a fixed
+      // bar (status-bar area, collapsing toolbar), and this covers that strip.
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        scrolled || forceBg ? 'bg-surface border-b border-edge' : 'bg-transparent'
+        scrolled || forceBg
+          ? "bg-surface border-b border-edge before:pointer-events-none before:absolute before:inset-x-0 before:bottom-full before:h-64 before:bg-surface before:content-['']"
+          : 'bg-transparent'
       }`}
     >
       {/* Slims down after scrolling; every control stays in place. */}
       <div
-        className={`max-w-5xl mx-auto px-6 flex items-center justify-between transition-[height] duration-300 ${
+        className={`max-w-6xl mx-auto px-6 flex items-center justify-between transition-[height] duration-300 ${
           scrolled ? 'h-12' : 'h-16'
         }`}
       >

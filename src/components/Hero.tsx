@@ -42,7 +42,7 @@ export default function Hero({ hero, meta, latest }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] flex items-center bg-surface px-6 py-24 overflow-hidden"
+      className="relative bg-surface px-6 pt-28 pb-12 md:pt-36 md:pb-16 overflow-hidden"
     >
       {/* Dot grid background */}
       <div
@@ -55,7 +55,7 @@ export default function Hero({ hero, meta, latest }: HeroProps) {
         }}
       />
 
-      <div className="relative max-w-5xl mx-auto w-full flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-16">
+      <div className="relative max-w-6xl mx-auto w-full flex flex-col items-center gap-10 md:flex-row md:items-center md:gap-16">
 
         {/* Photo */}
         <div className="order-first md:order-last flex-shrink-0 enter-pop" style={delay(150)}>

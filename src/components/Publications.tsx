@@ -36,8 +36,8 @@ export default function Publications() {
   const pubs = content.publications as unknown as Publication[]
 
   return (
-    <section id="publications" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="publications" className="bg-surface py-12 md:py-16 px-6 border-t border-edge-subtle scroll-mt-20">
+      <div className="max-w-6xl mx-auto">
 
         <SectionHeading
           eyebrow="Peer reviewed"

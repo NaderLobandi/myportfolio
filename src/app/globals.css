@@ -58,6 +58,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Same colour as the page, so overscroll and browser-chrome areas match */
+  background: var(--surface);
 }
 
 body {
@@ -71,7 +73,9 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: 60;
+  /* Below the navbar (z-50): a full-screen fixed layer on top of it stops
+     iOS Safari from treating the navbar as the top-edge element. */
+  z-index: 40;
   pointer-events: none;
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");

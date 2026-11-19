@@ -3,9 +3,9 @@
 import { useEffect, useRef } from 'react'
 import { track } from '@vercel/analytics'
 
-const SECTIONS = ['hero', 'glance', 'about'] as const
+const SECTIONS = ['hero', 'glance', 'work', 'about'] as const
 const LABELS: Record<string, string> = {
-  hero: 'Hero', glance: 'At a glance', about: 'Contact',
+  hero: 'Hero', glance: 'At a glance', work: 'Projects', about: 'Contact',
 }
 
 export default function SectionTracker() {

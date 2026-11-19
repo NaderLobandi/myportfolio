@@ -13,11 +13,11 @@ IDENTITY
 
 EDUCATION
   • Ph.D., Computer Science — University of Denver, Ritchie School (Mar 2026 – May 2028, expected)
-    GPA: 3.7 | Advisor: Dr. Mohammad Mahoor | Honor: IAAP 2026 Scholarship Award
+    Advisor: Dr. Mohammad Mahoor | Honor: IAAP 2026 Scholarship Award
     Research focus: Efficient foundation models, model compression & quantization, on-device
     multimodal inference, computer vision, embodied AI for social robots, CUDA/GPU programming
   • M.Sc., Data Science — Northeastern University, Khoury College of Computer Sciences (Mar 2021 – Dec 2024)
-    GPA: 3.8 | Honor: Gordon Institute LEADERS Fellowship
+    Honor: Gordon Institute LEADERS Fellowship
   • B.Sc., Electrical Engineering — Sharif University of Technology (Sep 2015 – Jul 2020)
     Honor: National Physics Olympiad Silver Medal; ranked top 0.1% of 100,000+ national university applicants
 

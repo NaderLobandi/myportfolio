@@ -19,6 +19,7 @@
   "experience": [
     {
       "company": "University of Denver, Ritchie School of Engineering & Computer Science",
+      "tldr": "Research on efficient multimodal models for on-device inference, facial expression recognition, and perception and speech for a social robot.",
       "logo": "/logos/du.svg",
       "title": "Research Assistant",
       "location": "Denver, CO",
@@ -33,6 +34,7 @@
     },
     {
       "company": "Stealth Startup",
+      "tldr": "Built and deployed a cardiovascular risk model (AUC 0.89), plus real-time speech and agentic workflows for an elder-care platform.",
       "logo": "/logos/stealth.png",
       "title": "Data Scientist",
       "type": "Startup",
@@ -47,6 +49,7 @@
     },
     {
       "company": "VHB (Vanasse Hangen Brustlin Inc.)",
+      "tldr": "Analyzed terabytes of traffic data on Databricks, shipped an internal RAG chatbot, and built forecasting and real-time vision pipelines.",
       "logo": "/logos/vhb.png",
       "title": "Data Scientist",
       "location": "Watertown, MA",
@@ -61,6 +64,7 @@
     },
     {
       "company": "Kibur Medical Inc.",
+      "tldr": "Built an image preprocessing pipeline that improved cell quantification accuracy by about 20%, with AWS S3 for image access.",
       "logo": "/logos/kibur.png",
       "title": "Data Scientist Intern",
       "location": "Boston, MA",
@@ -73,6 +77,7 @@
     },
     {
       "company": "Northeastern University",
+      "tldr": "Trained ML models on biosensor time-series data for COVID-19 detection (95% recall) and co-authored 4 peer-reviewed papers.",
       "logo": "/logos/northeastern.png",
       "title": "Research Assistant",
       "location": "Boston, MA",
@@ -198,6 +203,7 @@
   "projects": [
     {
       "name": "E-Waste Benchmark Dataset for Data Centers",
+      "tldr": "A benchmark dataset for spotting recoverable hardware in data centers, built from 1.5M+ images scraped by AI agents.",
       "figure": "ewaste-dataset",
       "tag": "PhD Research",
       "description": "Building a large-scale benchmark dataset for hardware e-waste detection and recovery in data centers. Scraped more than 1.5 million images with agent-driven web scraping pipelines, and am using it to train efficient vision models for identifying recoverable hardware.",
@@ -205,6 +211,7 @@
     },
     {
       "name": "Speech Synthesis via Search",
+      "tldr": "Clones a target voice onto a frozen TTS model by search alone, lifting speaker similarity from 84.95 to 96.61. In production on a social robot.",
       "figure": "speech-search",
       "tag": "PhD Research · In production",
       "description": "Black-box search framework that clones a target voice onto a frozen TTS model without retraining it, built for a social robot. Raised speaker-similarity fitness from 84.95 to 96.61 in 2,000 evaluations, and now runs in production on the robot.",
@@ -212,6 +219,7 @@
     },
     {
       "name": "Embodied Multiparty AI",
+      "tldr": "Lets a social robot tell who is speaking and who is being addressed by fusing microphone-array direction with camera video.",
       "figure": "multiparty",
       "tag": "PhD Research",
       "description": "Multiparty perception for a social robot. Fuses microphone-array direction of arrival into camera video to resolve who is speaking and who is being addressed in group conversation, with a geometry-grounded benchmark for evaluation.",
@@ -219,6 +227,7 @@
     },
     {
       "name": "JobScout — Agentic Job Search System",
+      "tldr": "A multi-agent job search tool: one MCP server over eleven job boards, deterministic dealbreaker filtering, and a human approval gate.",
       "figure": "jobscout",
       "link": "https://github.com/NaderLobandi/jobscout",
       "description": "Built a multi-agent job search tool where an orchestrator dispatches specialist sub-agents for search, scoring, and drafting, each scoped to one task through its own agent skill. Wrote a custom MCP server normalizing eleven job boards behind a single tool surface. Kept dealbreaker filtering in deterministic Python so an untrusted posting cannot prompt-inject past it, and enforced a human-in-the-loop gate with no code path to auto-submit.",
@@ -227,6 +236,7 @@
     },
     {
       "name": "SecureFaceID — Liveness-Aware Face Authentication",
+      "tldr": "Face authentication with liveness detection on a plain RGB camera. It rejects photo and screen spoofs and works with masks.",
       "figure": "securefaceid",
       "link": "https://github.com/NaderLobandi/SecureFaceID",
       "description": "Built a face authentication system with liveness detection that runs on a standard RGB camera instead of depth or infrared hardware. Uses blink detection to reject photo and screen spoofing attempts, and stays accurate when the user is wearing a mask.",
@@ -234,6 +244,7 @@
     },
     {
       "name": "E-Waste Sustainability Assistant",
+      "tldr": "Point a camera at electronic waste and get its carbon footprint, recoverable value, and disposal action.",
       "figure": "ewaste-scan",
       "link": "https://github.com/NaderLobandi/Summit-Hack-26",
       "description": "Built a vision tool that identifies electronic waste from a photo and returns its carbon footprint, recoverable value, and disposal action. Implemented in Streamlit using Gemini 3 Flash for vision with strict JSON output, plus a heuristic decision engine with safety overrides.",
@@ -242,6 +253,7 @@
     },
     {
       "name": "Financial News Sentiment Analysis",
+      "tldr": "Sentiment classification for financial news, benchmarking classical and transformer models. BERT reaches 0.86 accuracy.",
       "figure": "sentiment",
       "link": "https://github.com/NaderLobandi/cs6120-finance-sentiment",
       "description": "Built an NLP system to classify sentiment in high-volume financial news. Benchmarked classical and transformer models across two datasets, with FinBERT at 0.73 accuracy and 0.74 macro-F1 on Alpha Vantage, and BERT-uncased at 0.86 and 0.86 on Yahoo Finance, validated against real ticker movements.",
@@ -249,6 +261,7 @@
     },
     {
       "name": "Financial Time-Series & Document QA",
+      "tldr": "A Streamlit tool for backtesting forecasting strategies, plus plain-language Q&A over 10-K filings.",
       "figure": "forecast",
       "description": "Built a Streamlit tool for interactive backtesting of forecasting strategies with reliable horizons up to two months, paired with a chat interface for querying 10-K filings in plain language.",
       "stack": ["Python", "Streamlit", "AutoTS", "LangChain", "LLaMA-3", "ARIMA", "NeuralProphet", "VARMAX", "RAG"]
@@ -261,9 +274,9 @@
       "degree": "Ph.D. in Computer Science",
       "start": "2026-03",
       "end": "2028-05",
-      "gpa": "3.7",
       "focus": "Multimodal Deep Learning, Computer Vision, Efficient Foundation Models, Model Compression & Quantization, On-Device Inference, GPU Computing & CUDA Programming",
-      "honors": "IAAP 2026 Scholarship Award"
+      "honors": "IAAP 2026 Scholarship Award",
+      "courses": ["Advanced Algorithms & Data Structures", "Advanced Computer Vision", "Diffusion Models", "Deep Learning", "Operating Systems", "Shell Scripting & System Tools"]
     },
     {
       "institution": "Northeastern University, Khoury College of Computer Sciences",
@@ -271,8 +284,8 @@
       "degree": "M.Sc. in Data Science",
       "start": "2021-03",
       "end": "2024-12",
-      "gpa": "3.8",
-      "honors": "Gordon Institute LEADERS Fellowship; LEADERS Leadership Certificate"
+      "honors": "Gordon Institute LEADERS Fellowship; LEADERS Leadership Certificate",
+      "courses": ["Supervised Machine Learning", "Unsupervised Machine Learning", "Statistical Inference", "Natural Language Processing", "Data Management and Processing", "Database Management Systems"]
     },
     {
       "institution": "Sharif University of Technology",
@@ -297,7 +310,7 @@
     }
   ],
   "contact": {
-    "bio": "If you are a builder or thinker working on hard problems, let's connect."
+    "bio": "I'm open to research collaborations and roles in efficient multimodal AI. Email is the fastest way to reach me."
   },
   "meta": {
     "siteTitle": "Nader Lobandi — PhD Researcher & Machine Learning Engineer",

@@ -14,8 +14,8 @@ export default function Education() {
   const { education } = content
 
   return (
-    <section id="education" className="bg-surface py-24 px-6 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="education" className="bg-surface py-12 md:py-16 px-6 scroll-mt-20">
+      <div className="max-w-6xl mx-auto">
 
         <SectionHeading eyebrow="Academic background" title="Education" />
 
@@ -46,24 +46,31 @@ export default function Education() {
 
               <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-3">
                 {'focus' in entry && entry.focus && (
-                  <p className="text-fg-subtle text-sm leading-relaxed w-full">
-                    <span className="text-fg-faint text-xs uppercase tracking-wider mr-2">Focus</span>
+                  <p className="text-fg-muted text-sm leading-relaxed w-full">
+                    <span className="text-fg-subtle text-xs uppercase tracking-wider mr-2">Focus</span>
                     {entry.focus}
                   </p>
                 )}
-                {'gpa' in entry && entry.gpa && (
-                  <span className="inline-flex items-center gap-1.5 text-xs text-fg-subtle">
-                    <span className="text-fg-faint uppercase tracking-wider">GPA</span>
-                    {entry.gpa}
-                  </span>
-                )}
                 {'honors' in entry && entry.honors && (
-                  <p className="text-fg-subtle text-sm leading-relaxed w-full">
-                    <span className="text-fg-faint text-xs uppercase tracking-wider mr-2">Honors</span>
+                  <p className="text-fg-muted text-sm leading-relaxed w-full">
+                    <span className="text-fg-subtle text-xs uppercase tracking-wider mr-2">Honors</span>
                     {entry.honors}
                   </p>
                 )}
               </div>
+
+              {'courses' in entry && entry.courses && (
+                <div className="mt-5 border-t border-edge-subtle pt-4">
+                  <p className="text-fg-subtle text-xs uppercase tracking-wider mb-2.5">Coursework</p>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {entry.courses.map((course) => (
+                      <li key={course} className="rounded-full border border-edge bg-overlay px-2.5 py-1 text-xs text-fg-muted">
+                        {course}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           ))}
         </div>

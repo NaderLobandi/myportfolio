@@ -76,15 +76,14 @@ export default function About() {
   const { contact } = content
 
   return (
-    <section id="about" className="bg-surface py-24 px-6 border-t border-edge-subtle scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="bg-surface py-12 md:py-16 px-6 border-t border-edge-subtle scroll-mt-20">
+      <div className="max-w-6xl mx-auto">
 
-        <SectionHeading eyebrow="Get in touch" title="Contact" />
+        <div className="grid gap-2 md:grid-cols-2 md:gap-16 items-start">
 
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
-
-          <div data-reveal="left">
-            <p className="text-fg text-lg md:text-xl leading-relaxed">
+          <div>
+            <SectionHeading eyebrow="Get in touch" title="Contact" />
+            <p data-reveal="up" className="text-fg-muted text-lg md:text-xl leading-relaxed max-w-md -mt-3 mb-8 md:mb-0">
               {contact.bio}
             </p>
           </div>

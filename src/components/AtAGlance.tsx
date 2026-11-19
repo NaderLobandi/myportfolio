@@ -4,8 +4,10 @@ import SectionHeading from './SectionHeading'
 import OrgLogo, { logoOf } from './OrgLogo'
 import ProjectVisual from './ProjectVisual'
 
-/** Home-page summary: one line per job and per degree. Full detail lives on
- *  the /experience, /education, /projects and /publications tabs. */
+/** Home-page summary: one line per degree and job, then three projects. Full
+ *  detail lives on the /education, /experience, /projects and /publications tabs. */
+
+const HOME_PROJECT_COUNT = 3
 
 /** "2024-01".."2025-03" -> "2024 – 2025"; same year collapses; "Present" -> "Now". */
 function years(start: string, end: string): string {
@@ -14,92 +16,137 @@ function years(start: string, end: string): string {
   return from === to ? from : `${from} – ${to}`
 }
 
-function Row({ title, sub, date, logo }: { title: string; sub: string; date: string; logo?: string }) {
-  return (
-    <li className="flex items-center gap-3 py-3 border-b border-edge-subtle last:border-0">
-      <OrgLogo src={logo} name={sub} size={36} />
-      <span className="min-w-0 flex-1">
-        <span className="block text-fg text-sm font-medium leading-snug">{title}</span>
-        <span className="block text-fg-subtle text-xs mt-0.5 truncate">{sub}</span>
-      </span>
-      <span className="text-fg-subtle text-xs whitespace-nowrap">{date}</span>
-    </li>
-  )
-}
-
-const PROJECT_THUMBS = 3
-
 function MoreLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="inline-block mt-4 text-accent text-sm font-medium hover:text-accent-hi transition-colors">
+    <Link href={href} className="text-accent text-sm font-medium whitespace-nowrap hover:text-accent-hi transition-colors">
       {children} →
     </Link>
   )
 }
 
+/** One summary card. The title and its link share the top row, so every card
+ *  lines up the same way whatever its length. `min-w-0` lets truncated text
+ *  shrink instead of widening the page on phones. */
+function Panel({ title, href, linkLabel, className = '', children }: {
+  title: string; href: string; linkLabel: string; className?: string; children: React.ReactNode
+}) {
+  return (
+    <div data-reveal="up" className={`card min-w-0 rounded-2xl p-5 md:p-6 ${className}`}>
+      <div className="flex items-baseline justify-between gap-4 mb-2">
+        <h3 className="text-fg text-lg font-semibold">{title}</h3>
+        <MoreLink href={href}>{linkLabel}</MoreLink>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+function Row({ title, sub, date, logo }: { title: string; sub: string; date: string; logo?: string }) {
+  return (
+    <li className="flex items-center gap-3 py-3 border-b border-edge-subtle last:border-0 last:pb-0">
+      <OrgLogo src={logo} name={sub} size={40} />
+      <span className="min-w-0 flex-1">
+        <span className="block text-fg text-[15px] md:text-base font-medium leading-snug">{title}</span>
+        <span className="block text-fg-subtle text-sm mt-0.5 truncate">{sub}</span>
+      </span>
+      <span className="text-fg-subtle text-sm whitespace-nowrap">{date}</span>
+    </li>
+  )
+}
+
 export default function AtAGlance() {
   const { experience, education, publications, projects } = content
+  const publisherLogos = [...new Set(publications.map(logoOf))]
 
   return (
-    <section id="glance" className="bg-surface py-24 px-6 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
-        <SectionHeading eyebrow="At a glance" title="Background" />
+    <>
+      <section id="glance" className="bg-surface py-12 md:py-16 px-6 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading eyebrow="At a glance" title="Background" />
 
-        {/* DOM order is the phone order: Education, Experience, Projects.
-            From md up: Education + Projects stack on the left, Experience on
-            the right. `min-w-0` lets the truncated org names shrink — without
-            it a grid column grows to its longest one-line text and the whole
-            page scrolls sideways on phones. */}
-        <div className="grid gap-10 md:grid-cols-2 md:gap-x-16">
-          <div data-reveal="up" className="min-w-0">
-            <p className="text-fg-subtle text-[11px] uppercase tracking-widest mb-1">Education</p>
-            <ul>
-              {education.map((e) => (
-                <Row
-                  key={e.institution}
-                  title={e.degree}
-                  sub={e.institution.split(',')[0]}
-                  date={e.end.slice(0, 4)}
-                  logo={logoOf(e)}
-                />
-              ))}
-            </ul>
-            <MoreLink href="/education">Full education</MoreLink>
-          </div>
+          {/* DOM order is the phone order: Education, Experience, Publications.
+              From md up, Education and Publications stack on the left and
+              stretch to exactly the height of Experience on the right. */}
+          <div className="grid gap-5 md:grid-cols-2 md:grid-rows-[auto_1fr]">
+            <Panel title="Education" href="/education" linkLabel="Details">
+              <ul>
+                {education.map((e) => (
+                  <Row
+                    key={e.institution}
+                    title={e.degree}
+                    sub={e.institution.split(',')[0]}
+                    date={e.end.slice(0, 4)}
+                    logo={logoOf(e)}
+                  />
+                ))}
+              </ul>
+            </Panel>
 
-          <div
-            data-reveal="up"
-            style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
-            className="min-w-0 md:col-start-2 md:row-start-1 md:row-span-2"
-          >
-            <p className="text-fg-subtle text-[11px] uppercase tracking-widest mb-1">Experience</p>
-            <ul>
-              {experience.map((job) => (
-                <Row
-                  key={job.company + job.startDate}
-                  title={job.title}
-                  sub={job.company}
-                  date={years(job.startDate, job.end)}
-                  logo={logoOf(job)}
-                />
-              ))}
-            </ul>
-            <MoreLink href="/experience">Full experience</MoreLink>
-          </div>
+            <Panel title="Experience" href="/experience" linkLabel="Details" className="md:col-start-2 md:row-start-1 md:row-span-2">
+              <ul>
+                {experience.map((job) => (
+                  <Row
+                    key={job.company + job.startDate}
+                    title={job.title}
+                    sub={job.company}
+                    date={years(job.startDate, job.end)}
+                    logo={logoOf(job)}
+                  />
+                ))}
+              </ul>
+            </Panel>
 
-          <div data-reveal="up" className="min-w-0 pt-6 border-t border-edge-subtle">
-            <Link href="/projects" className="grid grid-cols-3 gap-2 group" aria-label={`See all ${projects.length} projects`}>
-              {projects.slice(0, PROJECT_THUMBS).map((p) => (
-                <ProjectVisual key={p.name} project={p} sizes="160px" className="rounded-lg group-hover:opacity-90 transition-opacity" />
-              ))}
-            </Link>
-            <div className="flex flex-wrap gap-x-6">
-              <MoreLink href="/projects">{projects.length} projects</MoreLink>
-              <MoreLink href="/publications">{publications.length} peer-reviewed publications</MoreLink>
-            </div>
+            <Panel title="Publications" href="/publications" linkLabel="Details">
+              {/* One row, so this card plus Education matches Experience's height */}
+              <div className="flex items-center gap-3 pt-3">
+                <div className="flex shrink-0 gap-1.5">
+                  {publisherLogos.map((logo) => <OrgLogo key={logo} src={logo} name="Publisher" size={40} />)}
+                </div>
+                <span className="min-w-0">
+                  <span className="block text-fg text-[15px] md:text-base font-medium leading-snug">
+                    {publications.length} peer-reviewed papers
+                  </span>
+                  <span className="block text-fg-subtle text-sm mt-0.5 truncate">IEEE, Elsevier and AIP Publishing</span>
+                </span>
+              </div>
+            </Panel>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="work" className="bg-surface pb-12 md:pb-16 px-6 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Projects"
+            action={<MoreLink href="/projects">More projects</MoreLink>}
+          />
+
+          {/* Phones: compact rows (thumbnail beside text). md up: three cards. */}
+          <div className="grid gap-4 md:grid-cols-3 md:gap-5">
+            {projects.slice(0, HOME_PROJECT_COUNT).map((p) => (
+              <Link
+                key={p.name}
+                href="/projects"
+                data-reveal="up"
+                className="card group flex items-start gap-4 overflow-hidden rounded-2xl p-3 md:block md:p-0"
+              >
+                <ProjectVisual
+                  project={p}
+                  sizes="(max-width: 768px) 130px, 380px"
+                  className="w-32 shrink-0 rounded-lg md:w-auto md:rounded-none md:border-0 md:border-b"
+                />
+                <div className="min-w-0 md:p-5">
+                  <h3 className="text-fg text-[15px] md:text-base font-semibold leading-snug group-hover:text-accent transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="text-fg-muted text-xs md:text-sm leading-relaxed mt-1.5 line-clamp-3">{p.tldr}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
