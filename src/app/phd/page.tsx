@@ -41,6 +41,21 @@ function wordStyle(text: string, weight: number, tier: string): React.CSSPropert
   }
 }
 
+/** Native <details>: the TL;DR above it stays visible, the full text opens on
+ *  demand. No state, works without JS. */
+function ReadMore({ children }: { children: React.ReactNode }) {
+  return (
+    <details className="group mt-1">
+      <summary className="inline-flex cursor-pointer list-none items-center gap-1 py-2 text-xs font-medium text-accent hover:text-accent-hi transition-colors [&::-webkit-details-marker]:hidden">
+        <span className="group-open:hidden">Read more</span>
+        <span className="hidden group-open:inline">Show less</span>
+        <span aria-hidden="true" className="transition-transform duration-200 group-open:rotate-180">▾</span>
+      </summary>
+      <div className="mt-1 space-y-3">{children}</div>
+    </details>
+  )
+}
+
 type Paper = { title: string; authors: string; venue: string; url: string; added: string; myTake: string }
 
 // ── page ───────────────────────────────────────────────────────────────────
@@ -106,6 +121,10 @@ export default function PhDJourneyPage() {
                 const location   = 'location'     in m ? (m as { location: string }).location : ''
                 const photoSrc   = hasPhoto ? (m as { photo: string }).photo : ''
                 const paragraphs = m.description.split('\n\n')
+                const tldr       = 'tldr' in m ? (m as { tldr: string }).tldr : ''
+                const fullText   = paragraphs.map((para, p) => (
+                  <p key={p} className="text-fg/75 text-sm leading-relaxed">{para}</p>
+                ))
 
                 return (
                   <div
@@ -148,11 +167,15 @@ export default function PhDJourneyPage() {
                         )}
                       </h3>
 
-                      <div className="space-y-3">
-                        {paragraphs.map((para, p) => (
-                          <p key={p} className="text-fg/75 text-sm leading-relaxed">{para}</p>
-                        ))}
-                      </div>
+                      {/* Long entries show a TL;DR; the full text is one tap away */}
+                      {tldr ? (
+                        <>
+                          <p className="text-fg/75 text-sm leading-relaxed">{tldr}</p>
+                          <ReadMore>{fullText}</ReadMore>
+                        </>
+                      ) : (
+                        <div className="space-y-3">{fullText}</div>
+                      )}
 
                       {entryLink && (
                         <a
@@ -277,10 +300,12 @@ export default function PhDJourneyPage() {
                   </span>
                 </div>
 
-                <h3 className="text-fg font-semibold text-base leading-snug mb-2">
+                {/* The title is the one-line takeaway; detail opens on demand */}
+                <h3 className="text-fg font-semibold text-base leading-snug">
                   {item.title}
                 </h3>
 
+                <ReadMore>
                 <p className="text-fg/75 text-sm leading-relaxed">{item.summary}</p>
 
                 <p className="text-fg/55 text-xs mt-3">{item.names}</p>
@@ -311,6 +336,7 @@ export default function PhDJourneyPage() {
                     </ul>
                   </div>
                 )}
+                </ReadMore>
               </div>
             ))}
           </div>

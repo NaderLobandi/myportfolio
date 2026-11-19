@@ -45,8 +45,33 @@ export default function AtAGlance() {
       <div className="max-w-5xl mx-auto">
         <SectionHeading eyebrow="At a glance" title="Background" />
 
-        <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-          <div data-reveal="up">
+        {/* DOM order is the phone order: Education, Experience, Projects.
+            From md up: Education + Projects stack on the left, Experience on
+            the right. `min-w-0` lets the truncated org names shrink — without
+            it a grid column grows to its longest one-line text and the whole
+            page scrolls sideways on phones. */}
+        <div className="grid gap-10 md:grid-cols-2 md:gap-x-16">
+          <div data-reveal="up" className="min-w-0">
+            <p className="text-fg-subtle text-[11px] uppercase tracking-widest mb-1">Education</p>
+            <ul>
+              {education.map((e) => (
+                <Row
+                  key={e.institution}
+                  title={e.degree}
+                  sub={e.institution.split(',')[0]}
+                  date={e.end.slice(0, 4)}
+                  logo={logoOf(e)}
+                />
+              ))}
+            </ul>
+            <MoreLink href="/education">Full education</MoreLink>
+          </div>
+
+          <div
+            data-reveal="up"
+            style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
+            className="min-w-0 md:col-start-2 md:row-start-1 md:row-span-2"
+          >
             <p className="text-fg-subtle text-[11px] uppercase tracking-widest mb-1">Experience</p>
             <ul>
               {experience.map((job) => (
@@ -62,31 +87,15 @@ export default function AtAGlance() {
             <MoreLink href="/experience">Full experience</MoreLink>
           </div>
 
-          <div data-reveal="up" style={{ '--reveal-delay': '100ms' } as React.CSSProperties}>
-            <p className="text-fg-subtle text-[11px] uppercase tracking-widest mb-1">Education</p>
-            <ul>
-              {education.map((e) => (
-                <Row
-                  key={e.institution}
-                  title={e.degree}
-                  sub={e.institution.split(',')[0]}
-                  date={e.end.slice(0, 4)}
-                  logo={logoOf(e)}
-                />
+          <div data-reveal="up" className="min-w-0 pt-6 border-t border-edge-subtle">
+            <Link href="/projects" className="grid grid-cols-3 gap-2 group" aria-label={`See all ${projects.length} projects`}>
+              {projects.slice(0, PROJECT_THUMBS).map((p) => (
+                <ProjectVisual key={p.name} project={p} sizes="160px" className="rounded-lg group-hover:opacity-90 transition-opacity" />
               ))}
-            </ul>
-            <MoreLink href="/education">Full education</MoreLink>
-
-            <div className="mt-10 pt-6 border-t border-edge-subtle">
-              <Link href="/projects" className="grid grid-cols-3 gap-2 group" aria-label={`See all ${projects.length} projects`}>
-                {projects.slice(0, PROJECT_THUMBS).map((p) => (
-                  <ProjectVisual key={p.name} project={p} sizes="160px" className="rounded-lg group-hover:opacity-90 transition-opacity" />
-                ))}
-              </Link>
-              <div className="flex flex-wrap gap-x-6">
-                <MoreLink href="/projects">{projects.length} projects</MoreLink>
-                <MoreLink href="/publications">{publications.length} peer-reviewed publications</MoreLink>
-              </div>
+            </Link>
+            <div className="flex flex-wrap gap-x-6">
+              <MoreLink href="/projects">{projects.length} projects</MoreLink>
+              <MoreLink href="/publications">{publications.length} peer-reviewed publications</MoreLink>
             </div>
           </div>
         </div>

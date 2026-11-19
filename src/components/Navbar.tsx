@@ -188,13 +188,18 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || forceBg
-          ? 'bg-surface/90 backdrop-blur-md border-b border-edge'
-          : 'bg-transparent'
+      // Opaque once it has a background: a translucent bar let page content
+      // show through it while scrolling.
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        scrolled || forceBg ? 'bg-surface border-b border-edge' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      {/* Slims down after scrolling; every control stays in place. */}
+      <div
+        className={`max-w-5xl mx-auto px-6 flex items-center justify-between transition-[height] duration-300 ${
+          scrolled ? 'h-12' : 'h-16'
+        }`}
+      >
 
         {/* Wordmark + theme toggle */}
         <div className="flex items-center gap-2">
@@ -274,7 +279,7 @@ export default function Navbar({ previews }: { previews: MilestonePreview[] }) {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div id="mobile-menu" className="md:hidden bg-surface/95 backdrop-blur-md border-b border-edge px-6 pb-4">
+        <div id="mobile-menu" className="md:hidden bg-surface border-b border-edge px-6 pb-4">
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
